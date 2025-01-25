@@ -16,7 +16,7 @@ $(document).ready(() => {
         let count = 5;
         countMsg.text(count);
         const interval = setInterval(() => {
-            if (count <= 5) {
+            if (count > 0) {
                 count--;
                 countMsg.text(count);
             } else {

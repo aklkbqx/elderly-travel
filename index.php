@@ -17,17 +17,14 @@ if(isset($_SESSION["user_login"])){
     <?php require "link.php"; ?>
 </head>
 <body>
-    <?php require "components/nav.php"; ?>    
+    <?php require "components/nav.php"; ?>
 
-    <div class="d-flex align-items-end justify-content-center" style="width:100%;height:100vh;background-image:url('<?= imagePath('web_images','bg-banner.png') ?>');background-position: center;background-repeat: no-repeat;background-size: cover;padding-bottom: 5rem;">
-        <div class="d-flex flex-wrap align-items-start justify-content-lg-between justify-content-center w-100 container px-5">
-            <div>
-                <div class="d-flex flex-column text-white">
-                    <div style="font-size:20px">เว็บไซต์สำหรับผู้สูงอายุ</div>
-                    <div style="font-size:100px" class="text-white fw-bold">Elderly Travel</div>
-                    <div style="font-size:20px" class="fst-italic">"เอลเดอร์ลี่ แทรเวล" ให้คุณได้สัมผัสประสบการณ์การท่องเที่ยวเชิงสุขภาพ</div>
-                </div>
-                <img src="<?= imagePath("web_images","elderly.png"); ?>" width="100%" height="400px" class="mt-5" style="object-fit:contain">
+    <div class="image-header">
+        <div class="d-flex flex-wrap align-items-start justify-content-xxl-between justify-content-center w-100 container px-5">
+            <div class="d-flex flex-column text-white mb-5 mb-lg-0">
+                <div style="font-size:20px">เว็บไซต์สำหรับผู้สูงอายุ</div>
+                <div style="font-size:100px" class="text-white fw-bold">Elderly Travel</div>
+                <div style="font-size:20px" class="fst-italic">"เอลเดอร์ลี่ แทรเวล" ให้คุณได้สัมผัสประสบการณ์การท่องเที่ยวเชิงสุขภาพ</div>
             </div>
             <div class="bg-white shadow p-4 d-flex flex-column align-items-center" style="width:500px;border-radius:1.5rem">
                 <h3 class="">จองทริปการท่องเที่ยว</h3>
@@ -50,7 +47,7 @@ if(isset($_SESSION["user_login"])){
                     </div>
                 </div>
                 
-                <a disabled href="<?= isset($_SESSION["user_login"]) ? 'booking.php' : 'login.php' ?>" class="btn btn-teal w-100 py-3">
+                <a href="<?= isset($_SESSION["user_login"]) ? 'booking.php' : 'login.php' ?>" class="btn btn-teal w-100 py-3">
                     <?= isset($_SESSION["user_login"]) ? 'ดำเนินการต่อ' : 'ดำเนินการต่อ' ?>
                 </a>
 
@@ -60,21 +57,20 @@ if(isset($_SESSION["user_login"])){
 
     <div class="bg-white">
         <div class="container position-relative">
-
-            <div class="row bg-teal p-4 rounded-xl" style="transform: translateY(-80px);">
-                <div class="col-4">
+            <div class="row bg-teal p-4 rounded-xl d-none d-lg-flex" style="transform: translateY(-80px);">
+                <div class="col-lg-4 mb-2 mb-lg-0">
                     <div class="d-flex align-items-center gap-2 rounded-xl p-2 text-white" style="background-color: #37706c;">
                         <img src="<?= imagePath("web_images/icons","chats.png") ?>" width="100px" height="100px" />
                         <div>การสนทนาแบบ Realtime และแชทบอทปรึกษาตลอด 24 ชม.</div>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-lg-4 mb-2 mb-lg-0">
                     <div class="d-flex align-items-center gap-2 rounded-xl p-2 text-white" style="background-color: #37706c;">
                         <img src="<?= imagePath("web_images/icons","plane.png") ?>" width="100px" height="100px" />
                         <div>วางแผนการท่องเที่ยวเชิงสุขภาพ เหมาะสำหรับผู้สูงอายุ</div>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-lg-4 mb-2 mb-lg-0">
                     <div class="d-flex align-items-center gap-2 rounded-xl p-2 text-white" style="background-color: #37706c;">
                         <img src="<?= imagePath("web_images/icons","paper.png") ?>" width="100px" height="100px" />
                         <div>ตั้งกระทู้ กระดานสนทนา โต้ตอบแลกเปลี่ยนประสบการณ์ ความคิดเห็น</div>
@@ -155,10 +151,8 @@ if(isset($_SESSION["user_login"])){
 
     <?php require_once("components/footer.php"); ?>
 
-
     <script>
         const navbar = $("#navbar #navbar-bg");
-
         $(window).scroll(function() {
             if ($(this).scrollTop() > 100) {
                 navbar.css({
@@ -172,6 +166,17 @@ if(isset($_SESSION["user_login"])){
                 });
             }
         });
+        $(document).ready(()=>{
+            setTimeout(async () => {
+                $.ajax({
+                    url:"api/visitors.php",
+                    type: "POST",
+                    success: (response)=>{
+                        console.log(response);
+                    }
+                })
+            }, 5000);
+        })
     </script>
 </body>
 </html>

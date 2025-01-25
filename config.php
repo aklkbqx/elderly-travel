@@ -24,8 +24,8 @@ function msg($type,$title,$body,$location){
 
 foreach(["success","warning","danger"] as $index=>$type){
     if(isset($_SESSION[$type])){ ?>
-        <div class="position-fixed opacity-0" style="top:10px;right:10px;" id="alertMsg">
-            <div class="border p-2 position-relative overflow-hidden ps-3 shadow-sm rounded-xl" style="width:350px;">
+        <div class="position-fixed opacity-0" style="top:10px;right:10px;z-index:999" id="alertMsg">
+            <div class="p-3 position-relative overflow-hidden ps-4 shadow rounded-xl bg-white" style="width:350px;">
                 <div class="bg-<?= $type; ?> position-absolute" style="width:10px;height:100%;top:0;left:0;"></div>
                 <h5><?= $_SESSION[$type][0]; ?></h5>
                 <div class="position-absolute d-flex align-items-center gap-2" style="top:10px;right:10px;">
@@ -45,5 +45,14 @@ function linkPage($path, $target) {
 
 function imagePath($path, $target) {
     return $_SERVER["REQUEST_URI"] == "/" ? "./images/$path/$target" : "../images/$path/$target";
+}
+
+if(isset($_GET["logout"])){
+    $session = isset($_SESSION["user_login"]) ? "user_login" : (isset($_SESSION["admin_login"]) ? "admin_login" : null);
+    if(isset($_SESSION[$session])){
+        unset($_SESSION[$session]);
+        msg("success","สำเร็จ!","ออกจากระบบแล้ว!","/");
+    }
+
 }
 ?>

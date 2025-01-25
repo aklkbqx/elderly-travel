@@ -1,6 +1,6 @@
 <footer class="w-100 p-5">
     <div class="container">
-        <div class="d-flex flex-row justify-content-between align-items-center">
+        <div class="d-flex flex-lg-row flex-column justify-content-between align-items-center">
 
             <div class="d-flex flex-column">
                 <h1 class="text-teal fw-bold">Elderly Travel</h1>
@@ -15,7 +15,7 @@
                 <?php navlink("text-dark") ?>
             </div>
 
-            <div class="d-flex justify-content-end flex-column">
+            <div class="d-flex justify-content-end flex-column mt-5 mt-lg-0">
                 <h4>ติดตามช่าวสารใหม่ๆจากเรา</h4>
                 <div class="d-flex align-items-center gap-2">
                     <div class="form-floating">

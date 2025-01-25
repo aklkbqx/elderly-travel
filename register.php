@@ -10,6 +10,76 @@ require_once("config.php");
     <?php require_once("link.php"); ?>
 </head>
 <body>
-    
+    <a href="/" class='position-absolute text-teal text-decoration-none' style='top:10px;left:10px'><- กลับ</a>
+
+    <div class="vh-100 d-flex flex-column flex-lg-row align-items-lg-center justify-content-between">
+        <div class='flex-1 d-flex justify-content-center p-4'>
+            <form action="api/auth.php" method='post' class='m-0' style='width:400px;'>
+                <h1 class='text-center mb-2'>สมัครสมาชิก</h1>
+                <div class='d-flex flex-column gap-2 mb-2'>
+                    <div class='flex-1 d-flex flex-row gap-2'>
+                        <div class="form-floating flex-1">
+                            <input type="text" class="form-control" placeholder='ชื่อ' name='firstname'>
+                            <label for="ชื่อ">ชื่อ</label>
+                        </div>
+                        <div class="form-floating flex-1">
+                            <input type="text" class="form-control" placeholder='นามสกุล' name='lastname'>
+                            <label for="นามสกุล">นามสกุล</label>
+                        </div>
+                    </div>
+                    <div class="form-floating">
+                        <input type="text" class="form-control" placeholder='อีเมล' name='email'>
+                        <label for="อีเมล">อีเมล</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" placeholder='รหัสผ่าน' name='password'>
+                        <label for="รหัสผ่าน">รหัสผ่าน</label>
+                        <img id='showPassword1' src="<?= imagePath("web_images/icons","eye.png"); ?>" style='width:40px;height:40px;top:10px;right:10px' class='object-fit-cover position-absolute cursor-pointer'>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" placeholder='ยืนยันรหัสผ่าน' name='c_password'>
+                        <label for="ยืนยันรหัสผ่าน">ยืนยันรหัสผ่าน</label>
+                        <img id='showPassword2' src="<?= imagePath("web_images/icons","eye.png"); ?>" style='width:40px;height:40px;top:10px;right:10px' class='object-fit-cover position-absolute cursor-pointer'>
+                    </div>
+                </div>
+                <button type='submit' name='register' class="btn btn-teal w-100" style='font-size:30px'>
+                    สมัครสมาชิก
+                </button>
+            </form>
+        </div>
+
+        <div class="h-100 bg-teal w-100 flex-1 d-flex align-items-center justify-content-center" style="border-radius:10rem 0rem 0rem 10rem">
+            <div class='d-flex justify-contnt-center align-items-center flex-column text-white'>
+                <h1 style='font-size:50px' class='fw-bold'>ยินดีต้อนรับ</h1>
+                <p style='font-size:20px'>คุณมีบัญชีแล้วใช่หรือไม่</p>
+                <a href="login.php" style='font-size:30px' class='btn btn-outline-light'>เข้าสู่ระบบ</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const showPassword1 = $("#showPassword1");
+        showPassword1.on("click",()=>{
+            const inputPassword = $("input[name=password]");
+            if(inputPassword.attr("type") == "password"){
+                showPassword1.attr("src","<?= imagePath("web_images/icons","eye-slash.png"); ?>");
+                inputPassword.attr("type","text")
+            }else{
+                showPassword1.attr("src","<?= imagePath("web_images/icons","eye.png"); ?>");
+                inputPassword.attr("type","password")
+            }
+        })
+        const showPassword2 = $("#showPassword2");
+        showPassword2.on("click",()=>{
+            const inputPassword = $("input[name=c_password]");
+            if(inputPassword.attr("type") == "password"){
+                showPassword2.attr("src","<?= imagePath("web_images/icons","eye-slash.png"); ?>");
+                inputPassword.attr("type","text")
+            }else{
+                showPassword2.attr("src","<?= imagePath("web_images/icons","eye.png"); ?>");
+                inputPassword.attr("type","password")
+            }
+        })
+    </script>
 </body>
 </html>
