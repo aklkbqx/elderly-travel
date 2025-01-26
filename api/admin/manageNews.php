@@ -13,7 +13,7 @@ if(isset($_REQUEST["addNews"])){
         if(!empty($imageNews)){
             $extension = pathinfo($imageNews)["extension"];
             $image = uniqid() .".".$extension;
-            move_uploaded_file($tmp_name,$path.$imageNews);
+            move_uploaded_file($tmp_name,$path.$image);
         }else{
             throw new PDOException("กรุณาใส่รูปภาพข่าว!");
         }
@@ -43,7 +43,7 @@ if(isset($_REQUEST["editNews"]) && isset($_GET["news_id"])){
         if(!empty($imageNews)){
             $extension = pathinfo($imageNews)["extension"];
             $image = uniqid() .".".$extension;
-            move_uploaded_file($tmp_name,$path.$imageNews);
+            move_uploaded_file($tmp_name,$path.$image);
         }else{
             $image = $row["image"];
         }

@@ -4,7 +4,7 @@ require "config.php";
 if(isset($_SESSION["user_login"])){
     $row = sql("SELECT * FROM users WHERE user_id = ?",[$_SESSION["user_login"]])->fetch();
 }elseif(isset($_SESSION["admin_login"])){
-    msg("คำเตือน","ไม่สามารถเข้าถึงหน้านี้ได้",$_SERVER["HTTP_REFERER"]);
+    msg("warning","คำเตือน","ไม่สามารถเข้าถึงหน้านี้ได้","admin/");
 }
 ?>
 
@@ -153,6 +153,10 @@ if(isset($_SESSION["user_login"])){
 
     <script>
         const navbar = $("#navbar #navbar-bg");
+        navbar.css({
+            'backdrop-filter': 'blur(10px)',
+            'background-image': 'linear-gradient(0deg, transparent, transparent)'
+        });
         $(window).scroll(function() {
             if ($(this).scrollTop() > 100) {
                 navbar.css({

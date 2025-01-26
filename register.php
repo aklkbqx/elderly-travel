@@ -1,5 +1,12 @@
 <?php 
 require_once("config.php");
+
+if(isset($_SESSION["user_login"])){
+    msg("warning","คำเตือน","ไม่สามารถเข้าถึงหน้านี้ได้","/");
+}elseif(isset($_SESSION["admin_login"])){
+    msg("warning","คำเตือน","ไม่สามารถเข้าถึงหน้านี้ได้","admin/");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +17,11 @@ require_once("config.php");
     <?php require_once("link.php"); ?>
 </head>
 <body>
-    <a href="/" class='position-absolute text-teal text-decoration-none' style='top:10px;left:10px'><- กลับ</a>
+    
+    <a href="/" class='position-absolute text-teal text-decoration-none d-flex flex-row gap-2 align-items-center' style='top:10px;left:10px'>
+        <img src="<?= imagePath("web_images/icons","chevron-back.png") ?>" alt="" width='35px' height='35px'>
+        กลับ
+    </a>
 
     <div class="vh-100 d-flex flex-column flex-lg-row align-items-lg-center justify-content-between">
         <div class='flex-1 d-flex justify-content-center p-4'>

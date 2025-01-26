@@ -7,10 +7,6 @@
     --teal: #1D5E5A;
 }
 
-body{
-    transform-style: preserve-3d;
-}
-
 h1,h2,h3,h4,h5,h6{
     margin: 0;
     padding: 0;
@@ -60,7 +56,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .btn {
-    border-radius: 0.5rem !important;
+    border-radius: 1rem !important;
 }
 
 .text-teal {
@@ -69,6 +65,29 @@ h1,h2,h3,h4,h5,h6{
 
 .bg-teal {
     background-color: var(--teal) !important;
+}
+
+.btn-light2 {
+    background-color: #e6e6e6 !important;
+    border-radius: 1rem !important;
+    color: white;
+
+    &:hover {
+        color: white;
+        opacity: 0.6;
+    }
+}
+
+.btn-outline-light2 {
+    border:1px sloide #e6e6e6;
+    background-color: #ececec;
+    border-radius: 1rem !important;
+    color: #444444;
+
+    &:hover {
+        color: black;
+        opacity: 0.6;
+    }
 }
 
 .btn-teal {

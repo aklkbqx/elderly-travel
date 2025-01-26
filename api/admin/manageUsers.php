@@ -16,7 +16,7 @@ if(isset($_REQUEST["addUser"])){
         if(!empty($imageUser)){
             $extension = pathinfo($imageUser)["extension"];
             $image = uniqid() .".".$extension;
-            move_uploaded_file($tmp_name,$path.$imageUser);
+            move_uploaded_file($tmp_name,$path.$image);
         }else{
             $image = "default-profile.png";
         }
@@ -43,7 +43,7 @@ if(isset($_REQUEST["editUser"]) && isset($_GET["user_id"])){
     $firstname = $_POST["firstname"] ?? $row["firstname"];
     $lastname = $_POST["lastname"] ?? $row["lastname"];
     $email = $_POST["email"] ?? $row["email"];
-    $password = $_POST["password"] ?? $row["password"];
+    $password = $_POST["password"];
     $role = $_POST["role"] ?? $row["role"];
 
     $imageUser = $_FILES["image"]["name"];
@@ -59,12 +59,12 @@ if(isset($_REQUEST["editUser"]) && isset($_GET["user_id"])){
             }
             $extension = pathinfo($imageUser)["extension"];
             $image = uniqid() .".".$extension;
-            move_uploaded_file($tmp_name,$path.$imageUser);
+            move_uploaded_file($tmp_name,$path.$image);
         }else{
             $image = $row["image"];
         }
 
-        $passwordHash = password_hash($password,PASSWORD_DEFAULT);
+        $passwordHash = !empty($password) ? password_hash($password,PASSWORD_DEFAULT) : $row["password"];
         $insert = sql("UPDATE users SET firstname=?,lastname=?,email=?,password=?,image=?,role=? WHERE user_id = ?",[
             $firstname,
             $lastname,

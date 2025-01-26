@@ -40,10 +40,10 @@ if(isset($_REQUEST["login"])){
         $fetchUser = sql("SELECT * FROM users WHERE email = ?",[$email]);
         if($fetchUser->rowCount() > 0){
             $row = $fetchUser->fetch();
-            if(password_verify($row["password"],$password)){
+            if(password_verify($password,$row["password"])){
                 $_SESSION[$row["role"]."_login"] = $row["user_id"];
                 $location = $row["role"] == "admin" ? "../admin/" : "../" ;
-                $firstname = $row["fistname"];
+                $firstname = $row["firstname"];
                 msg("success","สำเร็จ!","คุณ $firstname เข้าสู่ระบบสำเร็จแล้ว",$location);
             }else{
                 throw new PDOException("รหัสผ่านของคุณไม่ถูกต้อง!");

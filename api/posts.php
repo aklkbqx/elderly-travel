@@ -13,7 +13,7 @@ if(isset($_REQUEST["addPost"])){
         if(!empty($imagePost)){
             $extension = pathinfo($imagePost)["extension"];
             $image = uniqid() .".".$extension;
-            move_uploaded_file($tmp_name,$path.$imagePost);
+            move_uploaded_file($tmp_name,$path.$image);
         }else{
             throw new PDOException("กรุณาใส่รูปภาพกระทู้ของคุณ!");
         }
@@ -42,7 +42,7 @@ if(isset($_REQUEST["editPost"]) && isset($_GET["post_id"])){
         if(!empty($imagePost)){
             $extension = pathinfo($imagePost)["extension"];
             $image = uniqid() .".".$extension;
-            move_uploaded_file($tmp_name,$path.$imagePost);
+            move_uploaded_file($tmp_name,$path.$image);
         }else{
             $image = $row["image"];
         }
