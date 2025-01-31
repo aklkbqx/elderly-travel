@@ -1,0 +1,32 @@
+services:
+  php: 
+    container_name: php_elderly_travel
+    build: .
+    ports:
+      - 3000:80
+    volumes:
+      - .:/var/www/html/
+    depends_on:
+      - mariadb
+  mariadb:
+    container_name: mariadb_elderly_travel
+    image: mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: ROOT_PASSWORD
+      MARIADB_USER: username
+      MARIADB_PASSWORD: password
+      MARIADB_DATABASE: elderly_db
+      TZ: 'Asia/Bangkok'
+    ports:
+      - 9906:3306
+    volumes:
+      - ./mariadb/data:/var/lib/mysql
+  phpmyadmin:
+    container_name: phpmyadmin_elderly
+    image: phpmyadmin
+    ports:
+      - 8888:80
+    environment:
+      PMA_HOST: mariadb
+    depends_on:
+      - mariadb

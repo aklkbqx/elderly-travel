@@ -1,0 +1,156 @@
+* {
+    transition: 0.4s !important;
+}
+
+:root {
+    --black-light: #212529;
+    --teal: #1D5E5A;
+}
+
+h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+}
+
+.opacity-0 {
+    opacity: 0;
+}
+
+.opacity-1 {
+    opacity: 0;
+}
+
+.rounded-xl {
+    border-radius: 1rem !important;
+}
+.rounded-2xl {
+    border-radius: 2rem !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.object-fit-cover {
+    object-fit: cover;
+}
+
+.form-control{
+    border-radius: 1rem;
+    &:focus{
+        box-shadow: 0 0px 5px 1px var(--teal) !important;
+    }
+}
+
+.form-select{
+    border-radius: 1rem;
+    &:focus{
+        box-shadow: 0 0px 5px 1px var(--teal) !important;
+    }
+}
+
+.dropdown-menu {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+
+    &>.dropdown-item {
+        border-radius: 0.5rem;
+    }
+}
+
+.btn {
+    border-radius: 1rem !important;
+}
+
+.text-teal {
+    color: var(--teal);
+}
+
+.bg-teal {
+    background-color: var(--teal) !important;
+}
+
+.btn-light2 {
+    background-color: #e6e6e6 !important;
+    border-radius: 1rem !important;
+    color: white;
+
+    &:hover {
+        color: white;
+        opacity: 0.6;
+    }
+}
+
+.btn-outline-light2 {
+    border:1px sloide #e6e6e6;
+    background-color: #ececec;
+    border-radius: 1rem !important;
+    color: #444444;
+
+    &:hover {
+        color: black;
+        opacity: 0.6;
+    }
+}
+
+.btn-teal {
+    background-color: var(--teal) !important;
+    border-radius: 1rem !important;
+    color: white;
+
+    &:hover {
+        color: white;
+        opacity: 0.6;
+    }
+}
+
+.btn-outline-teal {
+    border: 1px solid var(--teal);
+    border-radius: 1rem !important;
+    color: var(--teal);
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+
+    &:hover {
+        color: white;
+        opacity: 0.6;
+        background-color: var(--teal);
+    }
+}
+
+/* ------------------------------------------------------------------- */
+
+.navlink {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    gap: 2rem;
+
+    &>a {
+        text-decoration: none;
+        font-weight: 700;
+
+        &:hover {
+            transform: translateY(5px);
+        }
+    }
+}
+
+.image-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-image: url(../images/web_images/image-header.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 5rem;
+}
