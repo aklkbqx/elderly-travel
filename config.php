@@ -50,6 +50,7 @@ function imagePath($path, $target) {
 if(isset($_GET["logout"])){
     $session = isset($_SESSION["user_login"]) ? "user_login" : (isset($_SESSION["admin_login"]) ? "admin_login" : null);
     if(isset($_SESSION[$session])){
+        sql("UPDATE users SET active_status=? WHERE user_id=?",["offline",$_SESSION[$session]]);
         unset($_SESSION[$session]);
         msg("success","สำเร็จ!","ออกจากระบบแล้ว!","/");
     }

@@ -139,10 +139,10 @@ if($fetchAsessment->rowCount() > 0){ ?>
 
                                                 <?php 
                                                 if($assessment["additional"] !== null){ ?>
-                                                   <div class="form-floating mt-2" id='additional-question'>
-                                                       <input type="text" class='form-control' placeholder='คำถามเพิ่มเติม' name='additional' value='<?= $assessment["additional"]; ?>'>
-                                                       <label for="คำถามเพิ่มเติม">คำถามเพิ่มเติม</label>
-                                                   </div>
+                                                    <div class="form-floating mt-2" id='additional-question'>
+                                                        <input type="text" class='form-control' placeholder='คำถามเพิ่มเติม' name='additional' value='<?= $assessment["additional"]; ?>'>
+                                                        <label for="คำถามเพิ่มเติม">คำถามเพิ่มเติม</label>
+                                                    </div>
                                                 <?php } ?>
 
                                             </div>
@@ -183,7 +183,7 @@ if($fetchAsessment->rowCount() > 0){ ?>
         </table>
     </div>
 <?php }else{ ?>
-
+    <h5 class='text-center text-muted'>ยังไม่มีแบบประเมิน</h5>
 <?php } ?>
     
 </div>

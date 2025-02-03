@@ -15,11 +15,12 @@ if(isset($_REQUEST["register"])){
 
         $passwordHash = password_hash($password,PASSWORD_DEFAULT);
 
-        $insert = sql("INSERT INTO users(firstname,lastname,email,password) VALUES(?,?,?,?)",[
+        $insert = sql("INSERT INTO users(firstname,lastname,email,password,active_status) VALUES(?,?,?,?,?)",[
             $firstname,
             $lastname,
             $email,
-            $passwordHash
+            $passwordHash,
+            "online"
         ]);
 
         $lastInsertId = $pdo->lastInsertId();
@@ -44,6 +45,7 @@ if(isset($_REQUEST["login"])){
                 $_SESSION[$row["role"]."_login"] = $row["user_id"];
                 $location = $row["role"] == "admin" ? "../admin/" : "../" ;
                 $firstname = $row["firstname"];
+                sql("UPDATE users SET active_status=? WHERE user_id = ?",["online",$row["user_id"]]);
                 msg("success","สำเร็จ!","คุณ $firstname เข้าสู่ระบบสำเร็จแล้ว",$location);
             }else{
                 throw new PDOException("รหัสผ่านของคุณไม่ถูกต้อง!");
