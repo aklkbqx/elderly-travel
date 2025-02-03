@@ -63,7 +63,7 @@ if($fetchAsessment->rowCount() > 0){ ?>
         <table class='table table-striped text-center align-middle'>
             <thead>
                 <tr>
-                    <td style="width: 90px;">ไอดี</td>
+                    <td style="width: 90px;">#</td>
                     <td style="width: 520px;">แบบประเมิน/สอบถาม</td>
                     <td style="width: 150px;">ตอบกลับ</td>
                     <td style="width: 150px;">เข้าชม</td>
@@ -71,10 +71,12 @@ if($fetchAsessment->rowCount() > 0){ ?>
                 </tr>
             </thead>
             <tbody>
-                <?php while($assessment = $fetchAsessment->fetch()){ ?>
+                <?php 
+                $index=1;
+                while($assessment = $fetchAsessment->fetch()){ ?>
                     <tr data-search-item>
                         <td>
-                            <div class='text-center fw-bold'><?= $assessment["assessment_id"] ?></div>
+                            <div class='text-center fw-bold'><?= $index ?></div>
                         </td>
                         <td>
                             <h6 data-search-keyword='<?= $assessment["title"] ?>'><?= $assessment["title"] ?></h6>
@@ -109,6 +111,7 @@ if($fetchAsessment->rowCount() > 0){ ?>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="modal fade" id='editAssessment-<?= $assessment["assessment_id"] ?>'>
                                     <div class="modal-dialog modal-dialog-centered">
                                         <form action="../api/admin/manageAssessments.php?assessment_id=<?= $assessment["assessment_id"] ?>" class="modal-content" method='post' enctype='multipart/form-data'>
@@ -178,12 +181,12 @@ if($fetchAsessment->rowCount() > 0){ ?>
                             </div>
                         </td>
                     </tr>
-                <?php } ?>
+                <?php $index++; } ?>
             </tbody>
         </table>
     </div>
 <?php }else{ ?>
-    <h5 class='text-center text-muted'>ยังไม่มีแบบประเมิน</h5>
+    <h5 class='text-center text-muted'>ยังไม่มีแบบสอบถาม/ประเมิน...</h5>
 <?php } ?>
     
 </div>

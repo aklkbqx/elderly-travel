@@ -160,7 +160,7 @@
                     </div>
                 </div>
             <?php } }else{ ?>
-            <h1 class='text-center text-muted'>ยังไม่มีข่าว...</h1>
+            <h5 class='text-center text-muted'>ยังไม่มีข่าว...</h5>
         <?php } ?>
     </div>
 </div>

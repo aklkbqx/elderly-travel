@@ -22,7 +22,7 @@
             <?php if(isset($_SESSION["user_login"]) || isset($_SESSION["admin_login"])){ ?>
                 <div class="dropdown">
                     <div class="d-flex flex-row gap-2 btn btn-outline-light border-0 cursor-pointer dropdown-toggle align-items-center" data-bs-toggle="dropdown" style='border-radius: 2rem !important;'>
-                        <img src="<?= imagePath("user_images",$row["image"]) ?>" width="50px" height="50px" class="rounded-circle" />
+                        <img src="<?= imagePath("user_images",$row["image"]) ?>" width="50px" height="50px" class="rounded-circle object-fit-cover" />
                         <div><?= $row["firstname"] ?></div>
                     </div>
                     <ul class="dropdown-menu">

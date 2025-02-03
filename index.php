@@ -42,7 +42,7 @@ if(isset($_SESSION["user_login"])){
                     <div class="text-center">จำนวนคน</div>
                     <div class="d-flex align-items-center justify-content-between gap-2">
                         <button class="btn btn-light rounded-xl fs-5 border">-</button>
-                        <label for="">0</label>
+                        <input type="number" value='0' class='form-control text-center' name=''>
                         <button class="btn btn-light rounded-xl fs-5 border">+</button>
                     </div>
                 </div>
@@ -90,8 +90,10 @@ if(isset($_SESSION["user_login"])){
                         </div>
                         <div class="carousel slide mt-2" id="carouselSlide" data-bs-ride="carousel">
                             <div class="carousel-inner rounded-xl overflow-hidden">
-                                <?php while($news = $fetchAllNews->fetch()){ ?>
-                                    <a href='news.php?news_id=<?= $news["news_id"] ?>' class="carousel-item active btn btn-outline-teal p-0" data-bs-intervel="1000">
+                                <?php
+                                $index=1;
+                                while($news = $fetchAllNews->fetch()){ ?>
+                                    <a href='news.php?news_id=<?= $news["news_id"] ?>' class="carousel-item btn btn-outline-teal p-0 <?= $index==1 ? 'active' : null ?>" data-bs-intervel="1000">
                                         <img src="<?= imagePath("news_images",$news["image"]) ?>" alt="" class="rounded-xl object-fit-cover" height="500px" width="100%">
                                         <div class="position-absolute" style="bottom:2rem;left:2rem;z-index:99">
                                             <h3 class="text-white"><?= $news["title"] ?></h3>
@@ -102,7 +104,7 @@ if(isset($_SESSION["user_login"])){
                                         </div>
                                         <div style='height: 500px;width: 100%;top: 0;left: 0;background-image: linear-gradient(1deg, #000000a8, transparent);' class="position-absolute"></div>
                                     </a>
-                                <?php } ?>
+                                <?php $index++; } ?>
                             </div>
                             <button type="button" data-bs-target="#carouselSlide" class="carousel-control-prev" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon"></span>
@@ -121,7 +123,7 @@ if(isset($_SESSION["user_login"])){
                 <div class="text-center mt-5">
                     <h1 class="mb-2">แบบสอบถาม/ประเมิน</h1>
                     <?php while($assessment = $fetchAllAssessments->fetch()){ ?>
-                        <button type="button" class="btn btn-light w-100 p-4 justify-content-between flex-row d-flex shadow rounded-xl border">
+                        <button type="button" class="btn btn-light w-100 p-4 justify-content-between flex-row d-flex shadow rounded-xl border align-items-center">
                             <div class="d-flex flex-column align-items-start">
                                 <h5><?= $assessment["title"] ?></h5>
                                 <div class="d-flex align-items-center gap-2">

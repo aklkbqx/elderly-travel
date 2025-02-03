@@ -73,21 +73,23 @@
             <table class='table table-striped text-center align-middle'>
                 <thead>
                     <tr>
-                        <td style="width: 113px;">ไอดี</td>
+                        <td style="width: 113px;">#</td>
                         <td style="width: 442px;">ชื่อ-นามสกุล</td>
                         <td style="width: 410px;">อีเมล</td>
                         <td style="width: 349px;">จัดการ</td>
                     </tr>
                 </thead>
                 <tbody>
-                <?php while($user = $fetchUser->fetch()){ ?>
+                <?php
+                $index=1;
+                while($user = $fetchUser->fetch()){ ?>
                     <tr data-search-item>
                         <td>
-                            <div class='text-center fw-bold'><?= $user["user_id"]; ?></div>
+                            <div class='text-center fw-bold'><?= $index; ?></div>
                         </td>
                         <td>
                             <div class='d-flex align-items-center gap-2'>
-                                <img src="<?= imagePath('user_images',$user["image"]) ?>" width='50px' height='50px' class='rounded-circle border'>
+                                <img src="<?= imagePath('user_images',$user["image"]) ?>" width='50px' height='50px' class='rounded-circle border object-fit-cover'>
                                 <div class='d-flex align-items-center gap-2'>
                                     <div data-search-keyword="<?= $user["firstname"] ?> <?= $user["firstname"] ?>"><?= $user["firstname"]; ?> <?= $user["lastname"]; ?></div>
                                 </div>
@@ -98,7 +100,6 @@
                             <div class='d-flex align-items-center gap-2 w-100'>
                                 <button type='button' data-bs-toggle='modal' class='btn btn-warning w-100' data-bs-target='#editUser-<?= $user["user_id"]; ?>'>แก้ไข</button>
                                 <button type='button' data-bs-toggle='modal' class='btn btn-danger w-100' data-bs-target='#deleteUser-<?= $user["user_id"]; ?>'>ลบ</button>
-
                                 <div class="modal fade" id='editUser-<?= $user["user_id"]; ?>'>
                                     <div class="modal-dialog modal-dialog-centered">
                                         <form action="../api/admin/manageUsers.php?user_id=<?= $user["user_id"]; ?>" class="modal-content" method='post' enctype='multipart/form-data'>
@@ -162,7 +163,7 @@
                                             <div class="modal-footer d-flex w-100 align-items-center">
                                                 <div class="w-100 d-flex align-items-center gap-2">
                                                     <button type="reset" data-bs-dismiss='modal' class='btn btn-light w-100'>ปิด</button>
-                                                    <button type="submit" name='deleteUser' class='btn btn-success w-100'>ยืนยันการลบ</button>
+                                                    <button type="submit" name='deleteUser' class='btn btn-danger w-100'>ยืนยันการลบ</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -171,11 +172,11 @@
                             </div>
                         </td>
                     </tr>
-                <?php } ?>
+                <?php $index++; } ?>
                 </tbody>
             </table>
         </div>
     <?php }else{ ?>
-        <h1 class='text-center mt-2 text-muted'>ยังไม่มีสมาชิก...</h1>
+        <h5 class='text-center text-muted'>ยังไม่มีสมาชิก...</h5>
     <?php } ?>
 </div>

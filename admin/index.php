@@ -25,7 +25,7 @@ $pages = [
     "home"=>"🏡 หน้าแรก",
     "manageUsers"=>"👤 จัดการสมาชิก",
     "manageNews"=>"📰 จัดการข่าวประชาสัมพันธ์",
-    "manageAssessments"=>"📝 จัดการแบบประเมิน",
+    "manageAssessments"=>"📝 จัดการแบบสอบถาม/ประเมิน",
 ];
 ?>
 
@@ -60,7 +60,7 @@ $pages = [
                                 <a href="<?= $_SERVER["REQUEST_URI"] === "/" ? "chats.php?receiver_id=".$user['user_id'] : "../chats.php?receiver_id=".$user['user_id'] ?>" class='btn btn-outline-teal border-0 p-1 w-100'>
                                     <li class='d-flex align-items-center gap-2'>
                                         <div class='position-relative'>
-                                            <img src="<?= imagePath("user_images",$user["image"]) ?>" class='border rounded-circle' style='width:50px;height:50px'/>
+                                            <img src="<?= imagePath("user_images",$user["image"]) ?>" class='border rounded-circle object-fit-cover' style='width:50px;height:50px'/>
                                             <div style='width:15px;height:15px;bottom:0px;right:0px;' class='bg-<?= $user["active_status"]=="online"?"success":"danger" ?> position-absolute rounded-circle'></div>
                                         </div>
                                         <div><?= $user["firstname"] ?> <?= $user["lastname"] ?></div>
