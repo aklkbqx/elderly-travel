@@ -42,14 +42,14 @@ h1,h2,h3,h4,h5,h6{
 .form-control{
     border-radius: 1rem;
     &:focus{
-        box-shadow: 0 0px 5px 1px var(--teal) !important;
+        box-shadow: 0 0 3px 1px var(--teal) !important;
     }
 }
 
 .form-select{
     border-radius: 1rem;
     &:focus{
-        box-shadow: 0 0px 5px 1px var(--teal) !important;
+        box-shadow: 0 0 3px 1px var(--teal) !important;
     }
 }
 

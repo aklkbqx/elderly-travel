@@ -45,7 +45,7 @@ CREATE TABLE `chats` (
   `sender_id` int(11) NOT NULL,
   `receiver_id` int(11) NOT NULL,
   `message` varchar(150) NOT NULL,
-  `image` varchar(255) NOT NULL,
+  `image` varchar(255) NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 

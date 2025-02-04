@@ -6,7 +6,7 @@
                 <h1 class="text-teal fw-bold">Elderly Travel</h1>
                 <div class="fw-bold fs-5">สถิติผู้เข้าชมเว็บไซต์</div>
                 <div class="d-flex flex-row align-items-center gap-2">
-                    <img src="<?= imagePath("web_images/icons","eye.png") ?>" alt="" width="35px" height="35px" class="object-fit-cover">
+                    <img src="<?= imagePath("web_images/icons","eye.png") ?>" alt="" width="25px" height="25px" class="object-fit-cover">
                     จำนวนผู้เข้าชมทั้งหมด <span><?= sql("SELECT * FROM visitors WHERE visitor_id = 1")->fetch()["count"] ?></span> ครั้ง
                 </div>
             </div>

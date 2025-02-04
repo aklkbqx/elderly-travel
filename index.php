@@ -17,7 +17,10 @@ if(isset($_SESSION["user_login"])){
     <?php require "link.php"; ?>
 </head>
 <body>
-    <?php require "components/nav.php"; ?>
+    <?php 
+        require "components/nav.php";
+        require_once("components/popChats.php");
+    ?>
 
     <div class="image-header">
         <div class="d-flex flex-wrap align-items-start justify-content-xxl-between justify-content-center w-100 container px-5">
@@ -30,27 +33,26 @@ if(isset($_SESSION["user_login"])){
                 <h3 class="">จองทริปการท่องเที่ยว</h3>
                 <div class="d-flex align-items-center gap-4 w-100 mt-2">
                     <div class="form-floating w-100">
-                        <input id="เช็คอิน" type="date" class="form-control rounded-xl">
+                        <input id="เช็คอิน" type="date" class="form-control rounded-xl" name=''>
                         <label for="เช็คอิน">เช็คอิน</label>
                     </div>
                     <div class="form-floating w-100">
-                        <input id="เช็คเอาท์" type="date" class="form-control rounded-xl">
+                        <input id="เช็คเอาท์" type="date" class="form-control rounded-xl" name=''>
                         <label for="เช็คเอาท์">เช็คเอาท์</label>
                     </div>
                 </div>
                 <div class="my-5">
                     <div class="text-center">จำนวนคน</div>
                     <div class="d-flex align-items-center justify-content-between gap-2">
-                        <button class="btn btn-light rounded-xl fs-5 border">-</button>
-                        <input type="number" value='0' class='form-control text-center' name=''>
-                        <button class="btn btn-light rounded-xl fs-5 border">+</button>
+                        <button onclick="" class="btn btn-light rounded-xl fs-5 border">-</button>
+                        <input id="people" type="number" value='1' min="1" max='100' class='form-control text-center' name='people'>
+                        <button onclick="" class="btn btn-light rounded-xl fs-5 border">+</button>
                     </div>
                 </div>
                 
                 <a href="<?= isset($_SESSION["user_login"]) ? 'booking.php' : 'login.php' ?>" class="btn btn-teal w-100 py-3">
                     <?= isset($_SESSION["user_login"]) ? 'ดำเนินการต่อ' : 'ดำเนินการต่อ' ?>
                 </a>
-
             </div>
         </div>
     </div>
