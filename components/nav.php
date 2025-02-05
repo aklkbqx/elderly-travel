@@ -8,7 +8,7 @@
 <?php } ?>
 
 <nav class="w-100 position-fixed z-99" style="top:10px;z-index:9" id="navbar">
-    <div id="navbar-bg" class="container d-flex align-items-center p-4 position-relative justify-content-between rounded-2xl" style="backdrop-filter:blur(10px);background-image: linear-gradient(0deg, rgb(13 110 253 / 85%), rgb(13 110 253 / 60%))">
+    <div id="navbar-bg" class="container d-flex align-items-center p-4 position-relative justify-content-between rounded-2xl" style="backdrop-filter:blur(10px);background-image: linear-gradient(0deg, #1d5e5a, #1d5e5a)">
 
         <a href="/" class="text-decoration-none">
             <h3 class="text-white">Elderly Travel</h3>

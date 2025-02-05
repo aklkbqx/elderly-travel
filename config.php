@@ -56,4 +56,8 @@ if(isset($_GET["logout"])){
     }
 
 }
+
+function isLogin(){
+    return $isLogin = isset($_SESSION["user_login"]) || isset($_SESSION["admin_login"]);
+}
 ?>

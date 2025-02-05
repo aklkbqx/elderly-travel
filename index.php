@@ -88,7 +88,7 @@ if(isset($_SESSION["user_login"])){
                                 <div class="text-teal">News</div>
                                 <h1>ข่าวสารประชาสัมพันธ์ล่าสุด</h1>
                             </div>
-                            <a href="" class="btn btn-outline-teal">ดูเพิ่มเติม</a>
+                            <a href="news.php" class="btn btn-outline-teal">ดูเพิ่มเติม</a>
                         </div>
                         <div class="carousel slide mt-2" id="carouselSlide" data-bs-ride="carousel">
                             <div class="carousel-inner rounded-xl overflow-hidden">
