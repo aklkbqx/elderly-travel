@@ -23,7 +23,7 @@ if(isset($_SESSION["user_login"])){
     <div class='vh-100 d-flex flex-column justify-content-center align-items-center position-relative'>
         <div class='d-flex flex-column gap-2' style='width:80%;height:80%'>
             <div class='d-flex align-items-center justify-content-start gap-4'>
-                <a href="javascript:window.history.back()" class='d-flex flex-row gap-2 align-items-center text-decoration-none text-teal'>
+                <a href="<?= $row["role"] == "admin" ? "admin" : "/" ?>" class='d-flex flex-row gap-2 align-items-center text-decoration-none text-teal'>
                     <img src="<?= imagePath("web_images/icons","chevron-back.png"); ?>" alt="" class='object-fit-cover' style='width:15px;height:15px;'>
                     <div>กลับ</div>
                 </a>

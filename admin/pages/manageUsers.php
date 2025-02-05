@@ -57,8 +57,8 @@
     </div>
 </div>
 
-<div class='mb-2 border-bottom w-100 p-2 d-flex justify-content-between mt-2'>
-    <h4>เลือกบทบาท:</h4>
+<div class='mb-2 w-100 p-2 d-flex justify-content-between mt-2'>
+    <h4>เลือกบทบาท</h4>
     <div class='border rounded-xl d-flex flex-row align-items-center'>
         <a href='?manageUsers&user' class='btn <?= isset($_GET["user"]) ? "btn-teal" : "btn-light" ?>'>ผู้ใช้งานทั่วไป</a>
         <a href='?manageUsers&admin' class='btn <?= isset($_GET["admin"]) ? "btn-teal" : "btn-light" ?>'>ผู้ดูแลระบบ</a>
