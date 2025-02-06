@@ -7,7 +7,7 @@ if(isset($_REQUEST["addPost"])){
 
     $imagePost = $_FILES["image"]["name"];
     $tmp_name = $_FILES["image"]["tmp_name"];
-    $path = "../../images/post_images/";
+    $path = "../images/post_images/";
 
     try{
         if(!empty($imagePost)){
@@ -36,7 +36,7 @@ if(isset($_REQUEST["editPost"]) && isset($_GET["post_id"])){
 
     $imagePost = $_FILES["image"]["name"];
     $tmp_name = $_FILES["image"]["tmp_name"];
-    $path = "../../images/post_images/";
+    $path = "../images/post_images/";
 
     try{
         if(!empty($imagePost)){
@@ -65,7 +65,7 @@ if(isset($_REQUEST["deletePost"]) && isset($_GET["post_id"])){
     $post_id = $_GET["post_id"];
     $row = sql("SELECT * FROM posts WHERE post_id = ?",[$post_id])->fetch();
 
-    $path = "../../images/post_images/";
+    $path = "../images/post_images/";
 
     try{
         if(file_exists($path.$row["image"])){

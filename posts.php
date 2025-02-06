@@ -41,7 +41,7 @@ if(isset($_SESSION["user_login"])){
 
             <div class="modal fade" id='addPost'>
                 <div class="modal-dialog modal-dialog-centered">
-                    <form method='post' action='api/posts.php' class="modal-content">
+                    <form method='post' action='api/posts.php' class="modal-content" enctype='multipart/form-data'>
                         <div class="modal-header">
                             <h4 class="modal-title">เขียนโพสต์</h4>
                             <button type='button' class="btn-close" data-bs-dismiss="modal"></button>
@@ -56,8 +56,8 @@ if(isset($_SESSION["user_login"])){
                             <textarea name="text" class='form-control mb-2 mt-2' style='min-height:100px' placeholder='เขียนโพสต์ของคุณ' required></textarea>
                             <input id='chooseImageFile' type="file" name='image' hidden onchange='$("#imagePreview").attr("src",window.URL.createObjectURL(this.files[0]));$("#imageBlock").removeClass("d-none")'>
                             <div class='d-flex'>
-                                <label for="chooseImageFile" class='btn btn-outline-light mt-2 p-1 d-flex align-items-center gap-1'>
-                                    <img src="<?= imagePath("web_images/icons","image.png") ?>" width='35px' height='35px' class='object-fit-cover'>
+                                <label for="chooseImageFile" class='btn btn-outline-light border-0 mt-2 d-flex align-items-center gap-1'>
+                                    <img src="<?= imagePath("web_images/icons","image.png") ?>" width='25px' height='25px' class='object-fit-cover'>
                                     <div class='text-dark'>เพิ่มรูปภาพ</div>
                                 </label>
                             </div>
@@ -78,15 +78,18 @@ if(isset($_SESSION["user_login"])){
         </div>
 
         <?php 
-        $fetchPosts = sql("SELECT * FROM posts LEFT JOIN users ON posts.user_id = users.user_id");
+        $fetchPosts = sql("SELECT *,posts.image as post_image,posts.created_at as post_created_at FROM posts LEFT JOIN users ON posts.user_id = users.user_id ORDER BY post_created_at DESC");
         if($fetchPosts->rowCount() > 0){
             while($post = $fetchPosts->fetch()){ ?>
             <div class='border shadow-sm rounded-xl mb-4'>
-                <div class='p-4 d-flex justify-content-between align-items-center'>
+                <div class='pb-2 px-4 pt-4 d-flex justify-content-between align-items-center'>
                     <div class='d-flex align-items-center gap-2'>
-                        <img src="<?= imagePath("user_images",$row["image"]); ?>" width='50px' height='50px' class='rounded-circle object-fit-cover border'>
-                        <div class=''>
-                            <?= $row["firstname"] ?> <?= $row["lastname"] ?>
+                        <img src="<?= imagePath("user_images",$post["image"]); ?>" width='50px' height='50px' class='rounded-circle object-fit-cover border'>
+                        <div class='d-flex flex-column'>
+                            <div class=''>
+                                <?= $post["firstname"] ?> <?= $post["lastname"] ?>
+                            </div>
+                            <div class='text-muted' style='font-size:14px'><?= $post["post_created_at"] ?></div>
                         </div>
                     </div>
                     <div class="dropdown">
@@ -102,7 +105,7 @@ if(isset($_SESSION["user_login"])){
 
                         <div class="modal fade" id='editPost-<?= $post["post_id"] ?>'>
                             <div class="modal-dialog modal-dialog-centered">
-                                <form method='post' action='api/posts.php' class="modal-content">
+                                <form method='post' action='api/posts.php' class="modal-content" enctype='multipart/form-data'>
                                     <div class="modal-header">
                                         <h4 class="modal-title">แก้ไขโพสต์</h4>
                                         <button type='button' class="btn-close" data-bs-dismiss="modal"></button>
@@ -135,13 +138,15 @@ if(isset($_SESSION["user_login"])){
                                 </form>
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <img src="<?= imagePath("post_images","") ?>" width='100%' height='350px'>
+                <div class='px-4 py-2'>
+                    <?= $post["text"] ?>
+                </div>  
+                <img src="<?= imagePath("post_images",$post["post_image"]) ?>" width='100%' height='400px' class='object-fit-cover'>
                 <div class='p-2 px-4 d-flex justify-content-between'>
-                    <div>ถูกใจแล้ว <span>2</span> คน</div>
-                    <div>ความคิดเห็น <span>2</span></div>
+                    <div>ถูกใจแล้ว <span><?= sql("SELECT COUNT(*) as count FROM post_likes WHERE post_id = ?",[$post["post_id"]])->fetch()["count"] ?></span> คน</div>
+                    <div>ความคิดเห็น <span><?= sql("SELECT COUNT(*) as count FROM post_comments WHERE post_id = ?",[$post["post_id"]])->fetch()["count"] ?></span></div>
                 </div>
                 <div class='p-2 px-4 d-flex justify-content-between border-top gap-2'>
                     <button type='button' class='btn btn-outline-light w-100 text-dark border'>ถูกใจ</button>
