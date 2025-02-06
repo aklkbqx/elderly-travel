@@ -34,11 +34,11 @@ if(isset($_SESSION["user_login"])){
                 <h1 class='text-center mb-2'>เข้าสู่ระบบ</h1>
                 <div class='d-flex flex-column gap-2 mb-2'>
                     <div class="form-floating">
-                        <input type="text" class="form-control" placeholder='อีเมล' name='email'>
+                        <input type="text" class="form-control" placeholder='อีเมล' name='email' required>
                         <label for="อีเมล">อีเมล</label>
                     </div>
                     <div class="form-floating position-relative">
-                        <input type="password" class="form-control" placeholder='รหัสผ่าน' name='password' id='password'>
+                        <input type="password" class="form-control" placeholder='รหัสผ่าน' name='password' id='password' required>
                         <label for="รหัสผ่าน">รหัสผ่าน</label>
                         <img onclick='openPassword($(this))' src="<?= imagePath("web_images/icons","eye.png"); ?>" style='width:40px;height:40px;top:10px;right:10px' class='object-fit-cover position-absolute cursor-pointer'>
                     </div>

@@ -1,6 +1,6 @@
 <?php 
 require "config.php";
-
+$row = null;
 if(isset($_SESSION["user_login"])){
     $row = sql("SELECT * FROM users WHERE user_id = ?",[$_SESSION["user_login"]])->fetch();
 }elseif(isset($_SESSION["admin_login"])){
@@ -124,23 +124,28 @@ if(isset($_SESSION["user_login"])){
             if($fetchAllAssessments->rowCount() > 0){ ?>
                 <div class="text-center mt-5">
                     <h1 class="mb-2">แบบสอบถาม/ประเมิน</h1>
-                    <?php while($assessment = $fetchAllAssessments->fetch()){ ?>
-                        <button type="button" class="btn btn-light w-100 p-4 justify-content-between flex-row d-flex shadow rounded-xl border align-items-center">
-                            <div class="d-flex flex-column align-items-start">
+                    <?php while($assessment = $fetchAllAssessments->fetch()){
+                        $assessment_responses = $row ? sql("SELECT * FROM assessment_responses WHERE assessment_id = ? AND user_id = ?",[$assessment["assessment_id"],$row["user_id"]])->fetch() : null;
+                        ?>
+                        <a href='assessments.php?assessment_id=<?= $assessment["assessment_id"] ?>' class="btn btn-light w-100 p-4 justify-content-between flex-row d-flex shadow rounded-xl border align-items-center">
+                            <div class="d-flex flex-column align-items-start gap-2">
+                                <?php if($assessment_responses){ ?>
+                                    <div class="badge text-bg-success fw-bold fs-6">ทำแล้ว</div>
+                                <?php } ?>
                                 <h5><?= $assessment["title"] ?></h5>
                                 <div class="d-flex align-items-center gap-2">
                                     <div class="d-flex flex-row gap-2 align-items-center text-muted">
-                                        <img src="<?= imagePath("web_images/icons","eye.png") ?>" alt="" width="35px" height="35px" class="object-fit-cover">
+                                        <img src="<?= imagePath("web_images/icons","eye.png") ?>" alt="" width="25px" height="25px" class="object-fit-cover">
                                         จำนวนผู้เข้าชม <span><?= $assessment["visitors"] ?></span>
                                     </div>
                                     <div class="d-flex flex-row gap-2 align-items-center text-muted">
-                                        <img src="<?= imagePath("web_images/icons","peoples.png") ?>" alt="" width="35px" height="35px" class="object-fit-cover">
+                                        <img src="<?= imagePath("web_images/icons","peoples.png") ?>" alt="" width="25px" height="25px" class="object-fit-cover">
                                         ผู้ทำแบบประเมิน <span><?= sql("SELECT COUNT(*) as count FROM assessment_responses")->fetch()["count"] ?></span>
                                     </div>
                                 </div>
                             </div>
-                            <img src="<?= imagePath("web_images/icons","chevron-forward.png") ?>" alt="" width="50px" height="50px" class="object-fit-cover">
-                        </button>
+                            <img src="<?= imagePath("web_images/icons","chevron-forward.png") ?>" alt="" width="40px" height="40px" class="object-fit-cover">
+                        </a>
                     <?php } ?>
                 </div>
             <?php } ?>

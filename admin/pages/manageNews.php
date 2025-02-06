@@ -22,11 +22,11 @@
 
                     <div class='d-flex flex-column gap-2'>
                         <div class="form-floating flex-1">
-                            <input type="text" class="form-control" placeholder='หัวข้อข่าว' name='title'>
+                            <input type="text" class="form-control" placeholder='หัวข้อข่าว' name='title' required>
                             <label for="หัวข้อข่าว">หัวข้อข่าว</label>
                         </div>
                         <div class="form-floating flex-1">
-                            <textarea type="text" class="form-control" placeholder='คำอธิบาย' name='body' style='height:100px;'></textarea>
+                            <textarea type="text" class="form-control" placeholder='คำอธิบาย' name='body' style='height:100px;' required></textarea>
                             <label for="คำอธิบาย">คำอธิบาย</label>
                         </div>
                     </div>
@@ -116,11 +116,11 @@
 
                                                     <div class='d-flex flex-column gap-2'>
                                                         <div class="form-floating flex-1">
-                                                            <input type="text" class="form-control" placeholder='หัวข้อข่าว' name='title' value='<?= $news['title'] ?>'>
+                                                            <input type="text" class="form-control" placeholder='หัวข้อข่าว' name='title' value='<?= $news['title'] ?>' required>
                                                             <label for="หัวข้อข่าว">หัวข้อข่าว</label>
                                                         </div>
                                                         <div class="form-floating flex-1">
-                                                            <textarea type="text" class="form-control" placeholder='คำอธิบาย' name='body' style='height:100px;'><?= $news['body'] ?></textarea>
+                                                            <textarea type="text" class="form-control" placeholder='คำอธิบาย' name='body' style='height:100px;' required><?= $news['body'] ?></textarea>
                                                             <label for="คำอธิบาย">คำอธิบาย</label>
                                                         </div>
                                                     </div>

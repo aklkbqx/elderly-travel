@@ -52,6 +52,7 @@ INSERT INTO `assessments` (`assessment_id`, `title`, `body`, `questions`, `addit
 --
 
 CREATE TABLE `assessment_responses` (
+  `assessment_responses_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `assessment_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `responses` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`responses`)),

@@ -23,7 +23,7 @@ if(isset($_SESSION["user_login"])){
     <div style='margin-top:10rem' class='container'>
 
         <div class='mb-2'>
-            <a href="/" class='text-dark text-decoration-none d-flex flex-row gap-2 align-items-center'>
+            <a href="javascript:window.history.back()" class='text-dark text-decoration-none d-flex flex-row gap-2 align-items-center'>
                 <img src="<?= imagePath("web_images/icons","chevron-back.png") ?>" alt="" width='35px' height='35px'>
                 กลับ
             </a>

@@ -15,7 +15,7 @@
                 </div>
                 <div class="modal-body">
                     <div class='form-floating mb-2'>
-                        <input type="text" class='form-control' name='title' placeholder='หัวข้อ'>
+                        <input type="text" class='form-control' name='title' placeholder='หัวข้อ' required>
                         <label for="หัวข้อ">หัวข้อ</label>
                     </div>
                     <div class='form-floating'>
@@ -26,7 +26,7 @@
                     <div class='d-flex flex-column mb-2' id='questions'>
                         <div class='d-flex align-items-center gap-2 mb-2'>
                             <h6><span>1</span>. </h6>
-                            <input type="text" class='form-control' name='questions[]' placeholder='คำถาม'>
+                            <input type="text" class='form-control' name='questions[]' placeholder='คำถาม' required>
                             <button type='button' class='d-none btn btn-outline-danger remove-question'>ลบ</button>
                         </div>                        
                     </div>
@@ -121,7 +121,7 @@ if($fetchAsessment->rowCount() > 0){ ?>
                                             </div>
                                             <div class="modal-body">
                                                 <div class='form-floating mb-2'>
-                                                    <input type="text" class='form-control' name='title' placeholder='หัวข้อ' value='<?= $assessment["title"] ?>'>
+                                                    <input type="text" class='form-control' name='title' placeholder='หัวข้อ' value='<?= $assessment["title"] ?>' required>
                                                     <label for="หัวข้อ">หัวข้อ</label>
                                                 </div>
                                                 <div class='form-floating'>
@@ -143,7 +143,7 @@ if($fetchAsessment->rowCount() > 0){ ?>
                                                 <?php 
                                                 if($assessment["additional"] !== null){ ?>
                                                     <div class="form-floating mt-2" id='additional-question'>
-                                                        <input type="text" class='form-control' placeholder='คำถามเพิ่มเติม' name='additional' value='<?= $assessment["additional"]; ?>'>
+                                                        <input type="text" class='form-control' placeholder='คำถามเพิ่มเติม' name='additional' value='<?= $assessment["additional"]; ?>' required>
                                                         <label for="คำถามเพิ่มเติม">คำถามเพิ่มเติม</label>
                                                     </div>
                                                 <?php } ?>

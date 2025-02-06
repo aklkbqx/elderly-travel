@@ -13,11 +13,11 @@
         <div class='d-flex flex-column gap-2'>
             <div class='flex-1 d-flex flex-row gap-2'>
                 <div class="form-floating flex-1">
-                    <input type="text" class="form-control" placeholder='ชื่อ' name='firstname' value="<?= $row["firstname"] ?>">
+                    <input type="text" class="form-control" placeholder='ชื่อ' name='firstname' value="<?= $row["firstname"] ?>" required>
                     <label for="ชื่อ">ชื่อ</label>
                 </div>
                 <div class="form-floating flex-1">
-                    <input type="text" class="form-control" placeholder='นามสกุล' name='lastname' value="<?= $row["lastname"] ?>">
+                    <input type="text" class="form-control" placeholder='นามสกุล' name='lastname' value="<?= $row["lastname"] ?>" required>
                     <label for="นามสกุล">นามสกุล</label>
                 </div>
             </div>

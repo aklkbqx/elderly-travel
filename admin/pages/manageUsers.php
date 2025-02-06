@@ -22,20 +22,20 @@
                     <div class='d-flex flex-column gap-2'>
                         <div class='flex-1 d-flex flex-row gap-2'>
                             <div class="form-floating flex-1">
-                                <input type="text" class="form-control" placeholder='ชื่อ' name='firstname'>
+                                <input type="text" class="form-control" placeholder='ชื่อ' name='firstname' required>
                                 <label for="ชื่อ">ชื่อ</label>
                             </div>
                             <div class="form-floating flex-1">
-                                <input type="text" class="form-control" placeholder='นามสกุล' name='lastname'>
+                                <input type="text" class="form-control" placeholder='นามสกุล' name='lastname' required>
                                 <label for="นามสกุล">นามสกุล</label>
                             </div>
                         </div>
                         <div class="form-floating">
-                            <input type="email" class="form-control" placeholder='อีเมล' name='email'>
+                            <input type="email" class="form-control" placeholder='อีเมล' name='email' required>
                             <label for="อีเมล">อีเมล</label>
                         </div>
                         <div class="form-floating">
-                            <input type="password" class="form-control" placeholder='รหัสผ่าน' name='password'>
+                            <input type="password" class="form-control" placeholder='รหัสผ่าน' name='password' required>
                             <label for="รหัสผ่าน">รหัสผ่าน</label>
                             <img onclick='openPassword($(this))' src="<?= imagePath("web_images/icons","eye.png"); ?>" style='width:40px;height:40px;top:10px;right:10px' class='object-fit-cover position-absolute cursor-pointer'>
                         </div>
@@ -117,16 +117,16 @@
                                                 <div class='d-flex flex-column gap-2'>
                                                     <div class='flex-1 d-flex flex-row gap-2'>
                                                         <div class="form-floating flex-1">
-                                                            <input type="text" class="form-control" placeholder='ชื่อ' name='firstname' value="<?= $user["firstname"] ?>">
+                                                            <input type="text" class="form-control" placeholder='ชื่อ' name='firstname' value="<?= $user["firstname"] ?>" required>
                                                             <label for="ชื่อ">ชื่อ</label>
                                                         </div>
                                                         <div class="form-floating flex-1">
-                                                            <input type="text" class="form-control" placeholder='นามสกุล' name='lastname' value="<?= $user["lastname"] ?>">
+                                                            <input type="text" class="form-control" placeholder='นามสกุล' name='lastname' value="<?= $user["lastname"] ?>" required>
                                                             <label for="นามสกุล">นามสกุล</label>
                                                         </div>
                                                     </div>
                                                     <div class="form-floating">
-                                                        <input type="email" class="form-control" placeholder='อีเมล' name='email' value="<?= $user["email"] ?>">
+                                                        <input type="email" class="form-control" placeholder='อีเมล' name='email' value="<?= $user["email"] ?>" required>
                                                         <label for="อีเมล">อีเมล</label>
                                                     </div>
                                                     <div class="form-floating">
