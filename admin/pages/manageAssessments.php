@@ -23,12 +23,13 @@
                         <label for="คำอธิบาย">คำอธิบาย</label>
                     </div>
                     <div class='my-2 fw-bold'>เขียนคำถาม...</div>
+
                     <div class='d-flex flex-column mb-2' id='questions'>
                         <div class='d-flex align-items-center gap-2 mb-2'>
                             <h6><span>1</span>. </h6>
                             <input type="text" class='form-control' name='questions[]' placeholder='คำถาม' required>
                             <button type='button' class='d-none btn btn-outline-danger remove-question'>ลบ</button>
-                        </div>                        
+                        </div>                   
                     </div>
 
                     <button class='btn btn-outline-teal w-100' type='button' id='addQuestion'>เพิ่มข้อคำถาม+</button>
@@ -52,6 +53,34 @@
             </form>
         </div>
     </div>
+
+    <script>
+         $("#addQuestion").on('click',()=>{
+            const lastQeustion = $("#questions div:last-child");
+            console.log(lastQeustion);
+            
+            const newQuestion = lastQeustion.clone();
+            const lastQuestionNumber = Number(lastQeustion.find("span").text());
+            const newQuestionNumner = lastQuestionNumber + 1;
+
+            newQuestion.find("button").removeClass("d-none");
+            newQuestion.find('span').text(newQuestionNumner);
+            newQuestion.find("input").val(null);
+
+            $("#questions").append(newQuestion);
+        });
+        
+        $(document).on("click", ".remove-question", function () {
+            $(this).parent().remove();
+            $('#questions div').each(function (index) {
+                $(this).find('span').text(index + 1);
+            });
+        });
+
+        $("additional-question").on("change",function(){
+            $(this).parent()
+        });
+    </script>
 </div>
 
 
@@ -93,15 +122,112 @@ if($fetchAsessment->rowCount() > 0){ ?>
                                 </div>
 
                                 <div class="modal fade" id='detailAssessment-<?= $assessment["assessment_id"] ?>'>
-                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-dialog modal-dialog-centered modal-xl">
                                         <div action="../api/admin/manageAssessments.php?assessment_id=<?= $assessment["assessment_id"] ?>" class="modal-content" method='post' enctype='multipart/form-data'>
                                             <div class="modal-header">
                                                 <h4 class="modal-title">รายละเอียดแบบสอบถาม/ประเมิน</h4>
                                                 <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
                                             </div>
                                             <div class="modal-body">
-                                                
+                                                <div class='text-start'>
+                                                    <h4><?= $assessment["title"] ?></h4>
+                                                    <div><?= $assessment["body"] ?></div>
+                                                </div>
+                                                <?php
+                                                $questions = json_decode($assessment["questions"]);
+                                                ?>
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th style='width:250px;'></th>
+                                                                <?php foreach($questions as $index=>$q){ ?>
+                                                                <th>
+                                                                    <div class='text-center'>
+                                                                        <?= $q ?>
+                                                                    </div>
+                                                                </th>
+                                                                <?php } ?>
+                                                                <th>
+                                                                    <div class='text-center'>
+                                                                        <?= $assessment["additional"] ?>
+                                                                    </div>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                           <?php
+                                                           $assessment_responses = sql("SELECT *,assessment_responses.created_at as ar_created_at FROM assessment_responses LEFT JOIN users ON assessment_responses.user_id = users.user_id WHERE assessment_id = ?",[$assessment["assessment_id"]]);
+                                                           $number = 1;
+                                                           while($ar = $assessment_responses->fetch()){ ?>
+                                                            <tr>
+                                                                <td class='align-middle'><?= $number; ?></td>
+                                                                <td>
+                                                                    <div class='d-flex align-items-center gap-1'>
+                                                                        <img src="<?= imagePath("user_images",$ar["image"]) ?>" width='50px' height='50px' class='rounded-circle object-fit-cover'>
+                                                                        <div class='text-start'>
+                                                                            <div><?= $ar["firstname"] ?> <?= $ar["lastname"] ?></div>
+                                                                            <div><?= $ar['ar_created_at'] ?></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <?php 
+                                                                $reponses = json_decode($ar["responses"]);
+                                                                foreach($reponses as $index=>$res){ ?>
+                                                                    <td class='align-middle'>
+                                                                        <?= $res; ?>
+                                                                    </td>
+                                                                <?php } ?>
+                                                                <td>
+                                                                    <?= $ar["additional"]  ?>
+                                                                </td>
+                                                            </tr>
+                                                           <?php $number++; } ?>
+                                                        </tbody>
+                                                    </table>
+                                                    
+                                                </div>
+
+                                                <div class="mt-2">
+                                                    <h5 class='mb-4 fw-bold'>สรุปผลการประเมิน</h5>
+                                                    <?php
+                                                    $total_responses = $assessment_responses->rowCount();
+                                                    $assessment_responses = sql("SELECT *,assessment_responses.created_at as ar_created_at FROM assessment_responses LEFT JOIN users ON assessment_responses.user_id = users.user_id WHERE assessment_id = ?",[$assessment["assessment_id"]]);
+                                                    $question_counts = [];
+                                                    foreach($questions as $index => $q) {
+                                                        $question_counts[$index] = array_fill(1, 5, 0);
+                                                    }
+                                                    
+                                                    while($ar = $assessment_responses->fetch()) {
+                                                        $responses = json_decode($ar["responses"]);
+                                                        foreach($responses as $index => $response) {
+                                                            $question_counts[$index][(int)$response]++;
+                                                        }
+                                                    }
+                                                    
+                                                    foreach($questions as $index => $question) {
+                                                        $max_count = max($question_counts[$index]);
+                                                        ?>
+                                                        <div class="mb-4">
+                                                            <div class="fw-bold mb-2"><?= $question ?></div>
+                                                            <?php for($rating = 1; $rating <= 5; $rating++) {
+                                                                $count = $question_counts[$index][$rating];
+                                                                $percentage = ($total_responses > 0) ? ($count / $total_responses) * 100 : 0;
+                                                            ?>
+                                                            <div class="d-flex align-items-center mb-2 gap-2">
+                                                                <div>ระดับ <?= $rating ?></div>
+                                                                <div class="graph-bar-container flex-1 rounded-2 overflow-hidden" style='background: #e9ecef;height: 25px'>
+                                                                    <div class='h-100' style="width: <?= $percentage ?>%;background: var(--teal-light);"></div>
+                                                                </div>
+                                                                <div style='width:40px;' class="text-end text-muted"><?= number_format($percentage, 1) ?>%</div>
+                                                            </div>
+                                                            <?php } ?>
+                                                        </div>
+                                                    <?php } ?>
+                                                </div>
                                             </div>
+                                            
                                             <div class="modal-footer d-flex w-100 align-items-center">
                                                 <div class="w-100 d-flex align-items-center gap-2">
                                                     <button type="reset" data-bs-dismiss='modal' class='btn btn-light w-100'>ปิด</button>
@@ -129,7 +255,7 @@ if($fetchAsessment->rowCount() > 0){ ?>
                                                     <label for="คำอธิบาย">คำอธิบาย</label>
                                                 </div>
                                                 <div class='my-2 fw-bold text-start'>คำถาม...</div>
-                                                <div class='d-flex flex-column mb-2' id='questions'>
+                                                <div class='d-flex flex-column mb-2'>
                                                     <?php 
                                                     foreach(json_decode($assessment["questions"]) as $index=>$q){ ?>
                                                         <div class='d-flex align-items-center gap-2 mb-2'>

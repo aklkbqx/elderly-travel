@@ -30,31 +30,7 @@ $(document).ready(() => {
             })
         }
     }
-    
 
-    $("#addQuestion").on('click',()=>{
-        const lastQeustion = $("#questions div:last-child");
-        const newQuestion = lastQeustion.clone();
-        const lastQuestionNumber = Number(lastQeustion.find("span").text());
-        const newQuestionNumner = lastQuestionNumber + 1;
-
-        newQuestion.find("button").removeClass("d-none");
-        newQuestion.find('span').text(newQuestionNumner);
-        newQuestion.find("input").val(null);
-
-        $("#questions").append(newQuestion);
-    });
-    
-    $(document).on("click", ".remove-question", function () {
-        $(this).parent().remove();
-        $('#questions div').each(function (index) {
-            $(this).find('span').text(index + 1);
-        });
-    });
-
-    $("additional-question").on("change",function(){
-        $(this).parent()
-    });
 });
 
 function openPassword(e) {

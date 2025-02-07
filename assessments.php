@@ -33,7 +33,7 @@ $score = [
     require_once("components/nav.php");
     ?>
 
-    <div class='container' style='margin-top:10rem'>
+    <div class='container mb-2' style='margin-top:10rem'>
         <div class='d-flex'>
             <a href="/" class='d-flex gap-1 align-items-center text-decoration-none text-dark'>
                 <img src="<?= imagePath("web_images/icons","chevron-back.png") ?>" width='15px' height='15px' class='object-fit-cover'>
