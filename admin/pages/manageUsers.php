@@ -42,6 +42,7 @@
                         <select name="role" class='form-select cursor-pointer'>
                             <option value="user">ผู้ใช้ทั่วไป</option>
                             <option value="admin">แอดมิน</option>
+                            <option value="doctor">แพทย์/หมอ</option>
                         </select>
                     </div>
 
@@ -62,11 +63,12 @@
     <div class='border rounded-xl d-flex flex-row align-items-center'>
         <a href='?manageUsers&user' class='btn <?= isset($_GET["user"]) ? "btn-teal" : "btn-light" ?>'>ผู้ใช้งานทั่วไป</a>
         <a href='?manageUsers&admin' class='btn <?= isset($_GET["admin"]) ? "btn-teal" : "btn-light" ?>'>ผู้ดูแลระบบ</a>
+        <a href='?manageUsers&doctor' class='btn <?= isset($_GET["doctor"]) ? "btn-teal" : "btn-light" ?>'>แพทย์/หมอ</a>
     </div>
 </div>
 
 <div class='overflow-auto h-100'>
-    <?php $role = isset($_GET["user"]) ? "user" : "admin";
+    <?php $role = isset($_GET["user"]) ? "user" : (isset($_GET["admin"]) ? "admin" : "doctor");
     $fetchUser = sql("SELECT * FROM users WHERE role = ?",[$role]);
     if($fetchUser->rowCount() > 0){ ?>
         <div class='overflow-hidden rounded-xl table-responsive'>
@@ -137,6 +139,7 @@
                                                     <select name="role" class='form-select cursor-pointer'>
                                                         <option value="user" <?= $user["role"] === "user" ? 'selected' : NULL ?>>ผู้ใช้ทั่วไป</option>
                                                         <option value="admin" <?= $user["role"] === "admin" ? 'selected' : NULL ?>>แอดมิน</option>
+                                                        <option value="doctor" <?= $user["role"] === "doctor" ? 'selected' : NULL ?>>แอดมิน</option>
                                                     </select>
                                                 </div>
 

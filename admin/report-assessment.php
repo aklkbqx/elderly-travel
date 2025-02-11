@@ -31,7 +31,6 @@ require_once("../config.php");
         .graph-bar {
             height: 100%;
             background: var(--teal-light);
-            transition: width 0.8s ease-in-out;
             position: relative;
             border-radius: 4px;
             background-image: linear-gradient(

@@ -19,7 +19,7 @@ if(isset($_SESSION["user_login"])){
 <body>
     
     <a href="/" class='position-absolute text-teal text-decoration-none d-flex flex-row gap-2 align-items-center' style='top:10px;left:10px'>
-        <img src="<?= imagePath("web_images/icons","chevron-back.png") ?>" alt="" width='35px' height='35px'>
+        <img src="<?= imagePath("web_images/icons","chevron-back.png") ?>" alt="" width='15px' height='15px'>
         กลับ
     </a>
 

@@ -115,7 +115,7 @@ if($fetchAsessment->rowCount() > 0){ ?>
                         <td><?= $assessment["visitors"] ?> ครั้ง</td>
                         <td>
                             <div class='d-flex flex-column align-items-center gap-1 w-100'>
-                                <button type='button' data-bs-toggle='modal' class='btn btn-teal w-100' data-bs-target='#detailAssessment-<?= $assessment["assessment_id"] ?>'>รายละเอียด</button>
+                                <button type='button' data-bs-toggle='modal' class='btn btn-teal w-100' data-bs-target='#detailAssessment-<?= $assessment["assessment_id"] ?>'>รายงาน</button>
                                 <div class='d-flex gap-2 w-100'>
                                     <button type='button' data-bs-toggle='modal' class='btn btn-warning w-100' data-bs-target='#editAssessment-<?= $assessment["assessment_id"] ?>'>แก้ไข</button>
                                     <button type='button' data-bs-toggle='modal' class='btn btn-danger w-100' data-bs-target='#deleteAssessment-<?= $assessment["assessment_id"] ?>'>ลบ</button>
@@ -157,10 +157,10 @@ if($fetchAsessment->rowCount() > 0){ ?>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                           <?php
-                                                           $assessment_responses = sql("SELECT *,assessment_responses.created_at as ar_created_at FROM assessment_responses LEFT JOIN users ON assessment_responses.user_id = users.user_id WHERE assessment_id = ?",[$assessment["assessment_id"]]);
-                                                           $number = 1;
-                                                           while($ar = $assessment_responses->fetch()){ ?>
+                                                            <?php
+                                                            $assessment_responses = sql("SELECT *,assessment_responses.created_at as ar_created_at FROM assessment_responses LEFT JOIN users ON assessment_responses.user_id = users.user_id WHERE assessment_id = ?",[$assessment["assessment_id"]]);
+                                                            $number = 1;
+                                                            while($ar = $assessment_responses->fetch()){ ?>
                                                             <tr>
                                                                 <td class='align-middle'><?= $number; ?></td>
                                                                 <td>
@@ -183,7 +183,7 @@ if($fetchAsessment->rowCount() > 0){ ?>
                                                                     <?= $ar["additional"]  ?>
                                                                 </td>
                                                             </tr>
-                                                           <?php $number++; } ?>
+                                                            <?php $number++; } ?>
                                                         </tbody>
                                                     </table>
                                                     
@@ -217,8 +217,22 @@ if($fetchAsessment->rowCount() > 0){ ?>
                                                             ?>
                                                             <div class="d-flex align-items-center mb-2 gap-2">
                                                                 <div>ระดับ <?= $rating ?></div>
-                                                                <div class="graph-bar-container flex-1 rounded-2 overflow-hidden" style='background: #e9ecef;height: 25px'>
-                                                                    <div class='h-100' style="width: <?= $percentage ?>%;background: var(--teal-light);"></div>
+                                                                <div class="flex-1 rounded-2 overflow-hidden" style='background: #e9ecef;height: 25px'>
+                                                                    <div class='h-100' style="width: <?= $percentage ?>%;
+                                                                    background: var(--teal-light);
+                                                                    background-image: linear-gradient(
+                                                                        45deg,
+                                                                        rgba(255, 255, 255, 0.15) 25%,
+                                                                        transparent 25%,
+                                                                        transparent 50%,
+                                                                        rgba(255, 255, 255, 0.15) 50%,
+                                                                        rgba(255, 255, 255, 0.15) 75%,
+                                                                        transparent 75%,
+                                                                        transparent
+                                                                    );
+                                                                    background-size: 1rem 1rem;
+                                                                    animation: progress-bar-stripes 1s linear infinite;
+                                                                    "></div>
                                                                 </div>
                                                                 <div style='width:40px;' class="text-end text-muted"><?= number_format($percentage, 1) ?>%</div>
                                                             </div>

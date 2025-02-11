@@ -1,4 +1,33 @@
+function setZoom(zoomValue) {
+    document.body.style.zoom = zoomValue;
+    localStorage.setItem('zoomValue', zoomValue);
+}
+
 $(document).ready(() => {
+    if (localStorage.getItem("theme")) {
+        $("html").attr("data-bs-theme", localStorage.getItem("theme"));
+        $("#toggleTheme").text(localStorage.getItem("theme") !== "light" ? "🌤️" : "🌙");
+    } else {
+        $("#toggleTheme").text("🌤️");
+        localStorage.setItem("theme", "light")
+    }
+    
+    if($("#toggleTheme")){
+        $("#toggleTheme").on("click",()=>{
+            const currentTheme = $("html").attr("data-bs-theme");
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+            $("html").attr("data-bs-theme", newTheme);
+            localStorage.setItem("theme", newTheme);
+            $("#toggleTheme").text(newTheme !== "light" ? "🌤️" : "🌙");
+        })
+    }
+
+    var savedZoomValue = localStorage.getItem('zoomValue');
+    if (savedZoomValue) {
+        document.body.style.zoom = savedZoomValue;
+        // $('.dropdown-item[for="zoom' + savedZoomValue.replace('%', '') + '"]').classList.add('checked');
+    }
+
     const alertMsg = $("#alertMsg");
     if (alertMsg) {
         const countMsg = $("#countMsg");
@@ -31,6 +60,11 @@ $(document).ready(() => {
         }
     }
 
+    const chanageTheme = $("#change-theme");
+    chanageTheme.on("click",()=>{
+        $("html").attr("data-bs-theme","dark");
+        localStorage.setItem("theme","dark");
+    })
 });
 
 function openPassword(e) {
@@ -58,3 +92,4 @@ function searchResult(e){
         }
     });
 }
+

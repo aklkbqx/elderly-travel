@@ -20,6 +20,7 @@ if(isset($_SESSION["user_login"])){
     <?php 
         require "components/nav.php";
         require_once("components/popChats.php");
+        require_once("components/options.php");
     ?>
 
     <div class="image-header">
@@ -127,7 +128,7 @@ if(isset($_SESSION["user_login"])){
                     <?php while($assessment = $fetchAllAssessments->fetch()){
                         $assessment_responses = $row ? sql("SELECT * FROM assessment_responses WHERE assessment_id = ? AND user_id = ?",[$assessment["assessment_id"],$row["user_id"]])->fetch() : null;
                         ?>
-                        <a href='assessments.php?assessment_id=<?= $assessment["assessment_id"] ?>' class="btn btn-light w-100 p-4 justify-content-between flex-row d-flex shadow rounded-xl border align-items-center">
+                        <a href='assessments.php?assessment_id=<?= $assessment["assessment_id"] ?>' class="btn btn-light w-100 p-4 justify-content-between flex-row d-flex shadow rounded-xl border align-items-center mb-2">
                             <div class="d-flex flex-column align-items-start gap-2">
                                 <?php if($assessment_responses){ ?>
                                     <div class="badge text-bg-success fw-bold fs-6">ทำแล้ว</div>

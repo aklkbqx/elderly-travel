@@ -2,12 +2,11 @@
 if(isset($_SESSION["user_login"]) || isset($_SESSION["admin_login"])){ ?>
     <div class='position-fixed' style='bottom:2rem;right:2rem;z-index:99'>
     <div class='dropup'>
-        <img src="<?= imagePath("web_images/icons","chat.png") ?>" data-bs-toggle='dropdown' style='width:80px;height:80px' class='rounded-circle object-fit-cover cursor-pointer'>
-        <div class='dropdown-menu p-2' style='width:300px;height:400px;'>
+        <img src="<?= imagePath("web_images/icons","chat.png") ?>" data-bs-toggle='dropdown' style='width:60px;height:60px;filter:drop-shadow(0 0 5px white)' class='rounded-circle object-fit-cover cursor-pointer'>
+        <div class='dropdown-menu p-2 overflow-hidden' style='width:300px;height:500px;'>
             <h5 class='p-3'>ส่งข้อความ</h5>
-            <div class='p-2'>
-                <?php 
-                function showUsers($role){
+            <div class='p-2 overflow-auto' style='height:340px'>
+                <?php function showUsers($role){
                     global $row;
                     $fetchUser = sql("SELECT * FROM users WHERE role = ?",[$role]);
                     if($fetchUser->rowCount() > 0){ $index=0; ?>
@@ -16,7 +15,7 @@ if(isset($_SESSION["user_login"]) || isset($_SESSION["admin_login"])){ ?>
                             if($user["user_id"] === $row["user_id"]){
                                 continue;
                             } 
-                            $showTextRole = $role=='admin'?'• ผู้ดูและระบบ':'• ผู้ใช้งานทั่วไป';
+                            $showTextRole = $role=='admin'?'• ผู้ดูและระบบ':($role=="user" ? '• ผู้ใช้งานทั่วไป' : '• แพทย์/หมอ');
                             echo $index == 0 ? "<div>$showTextRole</div>" : null ?>
                             <a href="<?= $_SERVER["REQUEST_URI"] === "/" ? "chats.php?receiver_id=".$user['user_id'] : "../chats.php?receiver_id=".$user['user_id'] ?>" class='btn btn-outline-teal border-0 p-1 w-100'>
                                 <li class='d-flex align-items-center gap-2'>
@@ -31,9 +30,16 @@ if(isset($_SESSION["user_login"]) || isset($_SESSION["admin_login"])){ ?>
                         </ul>
                     <?php }
                 }
+                showUsers("doctor");
                 showUsers("admin");
                 showUsers("user");
                 ?>
+            </div>
+            <div class='d-flex align-items-center gap-2 pt-2'>
+                <a href="<?= $_SERVER["REQUEST_URI"] == "/" ? "chat-bot.php" : "../chat-bot.php" ?>"  class='btn btn-outline-teal border-0 p-1 w-100'>
+                    <img src="<?= imagePath("user_images","bot.png") ?>" class='border rounded-circle object-fit-cover' style='width:50px;height:50px'/>
+                    <div>แชทบอทช่วยเหลือ 24. ชม</div>
+                </a>
             </div>
         </div>
     </div>

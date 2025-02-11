@@ -3,7 +3,6 @@
         <a href="/" class="<?= $className; ?>"><li>หน้าแรก</li></a>
         <a href="posts.php" class="<?= $className; ?>"><li>กระดานสนทนา</li></a>
         <a href="places.php" class="<?= $className; ?>"><li>สถานที่ท่องเที่ยว</li></a>
-        <a href="contactUs.php" class="<?= $className; ?>"><li>ติดต่อเรา</li></a>
     </ul>
 <?php } ?>
 
