@@ -3,7 +3,7 @@ services:
     container_name: php_elderly_travel
     build: .
     ports:
-      - 3000:80
+      - 80:80
     volumes:
       - .:/var/www/html/
     depends_on:
