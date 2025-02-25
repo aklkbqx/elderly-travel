@@ -56,6 +56,7 @@ $(document).ready(() => {
             processData: false,
             contentType: false,
             success: function(response) {
+                console.log(response);
                 inputMessage.val(null);
                 sended = true;
             }

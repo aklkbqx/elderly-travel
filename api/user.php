@@ -2,7 +2,7 @@
 require_once("../config.php");
 
 if(isset($_REQUEST["save"])){
-    $user_id = isset($_SESSION["user_login"]) ? $_SESSION["user_login"] : null;
+    $user_id = isset($_SESSION["user_login"]) ? $_SESSION["user_login"] : (isset($_SESSION["admin_login"]) ? $_SESSION["admin_login"] : (isset($_SESSION["doctor_login"]) ? $_SESSION["doctor_login"] : null)) ;
     $row = sql("SELECT * FROM users WHERE user_id = ?",[$user_id])->fetch();
     $firstname = $_POST["firstname"] ?? $row["firstname"];
     $lastname = $_POST["lastname"] ?? $row["lastname"];

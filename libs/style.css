@@ -1,14 +1,27 @@
-* {
-    transition: 0.4s !important;
-}
-
 :root {
     --black-light: #212529;
-    --teal: #1D5E5A;
-    --teal-light: #41beb5;
+    --teal: teal;
+    /* --teal: #1D5E5A; */
+    --teal2: rgb(15, 136, 136);
+    --teal-light: rgb(25, 155, 155);
 }
 
-h1,h2,h3,h4,h5,h6{
+@font-face {
+    font-family: Kanit;
+    src: url(font/Kanit/Kanit-Regular.ttf);
+}
+
+body {
+    font-family: "Kanit", serif;
+    font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin: 0;
     padding: 0;
 }
@@ -24,6 +37,7 @@ h1,h2,h3,h4,h5,h6{
 .rounded-xl {
     border-radius: 1rem !important;
 }
+
 .rounded-2xl {
     border-radius: 2rem !important;
 }
@@ -40,16 +54,19 @@ h1,h2,h3,h4,h5,h6{
     object-fit: cover;
 }
 
-.form-control{
+.form-control {
     border-radius: 1rem;
-    &:focus{
-        box-shadow: 0 0 3px 1px var(--teal) !important;
+
+    &:focus {
+        border: 1px solid var(--teal);
+        box-shadow: 0 0 1px 0.1rem var(--teal2) !important;
     }
 }
 
-.form-select{
+.form-select {
     border-radius: 1rem;
-    &:focus{
+
+    &:focus {
         box-shadow: 0 0 3px 1px var(--teal) !important;
     }
 }
@@ -87,7 +104,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .btn-outline-light2 {
-    border:1px sloide #e6e6e6;
+    border: 1px sloide #e6e6e6;
     background-color: #ececec;
     border-radius: 1rem !important;
     color: #444444;
@@ -143,7 +160,7 @@ h1,h2,h3,h4,h5,h6{
     }
 }
 
-.image-header{
+.image-header {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -154,4 +171,129 @@ h1,h2,h3,h4,h5,h6{
     background-repeat: no-repeat;
     background-size: cover;
     padding-bottom: 5rem;
+    position: relative;
+}
+
+.hero-elderly-travel {
+    display: flex;
+    flex-direction: column;
+    color: white;
+
+    & h1 {
+        font-size: 90px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .hero-elderly-travel {
+        & h1 {
+            font-size: 50px;
+        }
+    }
+}
+
+.button-option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    background-color: white;
+
+    & img {
+        filter: invert(0);
+    }
+}
+
+.booking-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    background-color: white;
+    padding: 1.5rem;
+    color: black;
+
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+}
+
+.backpage-button {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-direction: row;
+    gap: 1rem;
+    color: black;
+
+    img {
+        filter: invert(0);
+    }
+}
+
+.svg-icon {
+    filter: invert(0);
+}
+
+.btn-star {
+    background-color: white;
+    border-radius: 1rem;
+    cursor: pointer;
+    overflow: hidden;
+    transform: scale(1);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    padding: 8px;
+}
+
+.btn-star:hover {
+    background-color: #e9e9e994;
+    transform: scale(1.1);
+}
+
+#commentForm {
+    transition: all 0.3s ease;
+}
+
+[data-bs-theme=dark] {
+    .image-header::before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        z-index: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .button-option {
+        background-color: black;
+
+        & img {
+            filter: invert(1);
+        }
+    }
+
+    .booking-card {
+        background-color: black;
+        color: white;
+    }
+
+    .backpage-button {
+        color: white;
+
+        img {
+            filter: invert(1);
+        }
+    }
+
+    .svg-icon {
+        filter: invert(1);
+    }
+
 }

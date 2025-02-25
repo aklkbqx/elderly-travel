@@ -28,17 +28,17 @@
             <div class="form-floating">
                 <input type="password" class="form-control" placeholder='รหัสผ่านเดิม' name='con_password'>
                 <label for="รหัสผ่านเดิม">รหัสผ่านเดิม</label>
-                <img onclick='openPassword($(this))' src="<?= imagePath("web_images/icons","eye.png"); ?>" style='width:40px;height:40px;top:10px;right:10px' class='object-fit-cover position-absolute cursor-pointer'>
+                <img onclick='openPassword($(this))' src="<?= imagePath("web_images/icons","eye.svg"); ?>" style='width:30px;height:30px;top:15px;right:10px' class='object-fit-cover position-absolute cursor-pointer svg-icon'>
             </div>
             <div class="form-floating">
                 <input type="password" class="form-control" placeholder='รหัสผ่าน' name='password'>
                 <label for="รหัสผ่าน">รหัสผ่าน</label>
-                <img onclick='openPassword($(this))' src="<?= imagePath("web_images/icons","eye.png"); ?>" style='width:40px;height:40px;top:10px;right:10px' class='object-fit-cover position-absolute cursor-pointer'>
+                <img onclick='openPassword($(this))' src="<?= imagePath("web_images/icons","eye.svg"); ?>" style='width:30px;height:30px;top:15px;right:10px' class='object-fit-cover position-absolute cursor-pointer svg-icon'>
             </div>
             <div class="form-floating">
                 <input type="password" class="form-control" placeholder='ยืนยันรหัสผ่าน' name='c_password'>
                 <label for="ยืนยันรหัสผ่าน">ยืนยันรหัสผ่าน</label>
-                <img onclick='openPassword($(this))' src="<?= imagePath("web_images/icons","eye.png"); ?>" style='width:40px;height:40px;top:10px;right:10px' class='object-fit-cover position-absolute cursor-pointer'>
+                <img onclick='openPassword($(this))' src="<?= imagePath("web_images/icons","eye.svg"); ?>" style='width:30px;height:30px;top:15px;right:10px' class='object-fit-cover position-absolute cursor-pointer svg-icon'>
             </div>
         </div>
         <div class='mt-4 d-flex flex-row justify-content-end gap-2'>

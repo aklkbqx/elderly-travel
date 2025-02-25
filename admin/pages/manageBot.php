@@ -39,13 +39,13 @@
     <?php  $bot_responses = sql("SELECT * FROM bot_responses"); 
     if($bot_responses->rowCount() > 0){ ?>
         <div class='table-responsive'>
-            <table class='table table-striped table-bordered'>
+            <table class='table table-striped align-middle'>
                 <thead>
                     <tr>
                         <th style="width: 5%;"></th>
-                        <th style="width: 50%;">คำถาม</th>
-                        <th style="width: 50%;">คำตอบ</th>
-                        <th style="width: 150px;">จัดการ</th>
+                        <th style="width: 35%;">คำถาม</th>
+                        <th style="width: 35%;">คำตอบ</th>
+                        <th>จัดการ</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,15 +55,15 @@
                         $questions = json_decode($bot["questions"]);
                         $responses = json_decode($bot["responses"]);
 
-                        echo implode(", ",$responses);
+                        // echo implode(", ",$responses);
                         ?>
                         <tr data-search-item>
                             <td class='text-center'><?= $index; ?></td>
                             <td data-search-keyword="<?= implode(", ",$questions) ?>"><?= implode(", ",$questions) ?></td>
                             <td data-search-keyword="<?= implode(", ",$responses) ?>"><?= implode(", ",$responses) ?></td>
                             <td>
-                                <div class='d-flex align-items-center gap-2'>
-                                    <button type="button" class="btn btn-warning" data-bs-toggle='modal' data-bs-target='#editQue-Res-<?= $bot["response_id"] ?>'>แก้ไข</button>
+                                <div class='d-flex align-items-center gap-2 w-100'>
+                                    <button type="button" class="btn btn-warning w-100" data-bs-toggle='modal' data-bs-target='#editQue-Res-<?= $bot["response_id"] ?>'>แก้ไข</button>
 
                                     <div class="modal fade" id='editQue-Res-<?= $bot["response_id"] ?>'>
                                         <div class="modal-dialog modal-dialog-centered">
@@ -92,7 +92,7 @@
                                         </div>
                                     </div>
 
-                                    <a href='../api/admin/manageBot.php?deleteBotResponse&response_id=<?= $bot["response_id"] ?>' class="btn btn-danger">ลบ</a>
+                                    <a href='../api/admin/manageBot.php?deleteBotResponse&response_id=<?= $bot["response_id"] ?>' class="btn btn-danger w-100">ลบ</a>
                                 </div>
                             </td>
                         </tr>

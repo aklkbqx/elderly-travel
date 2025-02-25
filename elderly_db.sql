@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mariadb
--- Generation Time: Feb 04, 2025 at 10:42 AM
--- Server version: 11.6.2-MariaDB-ubu2404
+-- Generation Time: Feb 25, 2025 at 03:55 PM
+-- Server version: 11.7.2-MariaDB-ubu2404
 -- PHP Version: 8.2.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -43,7 +43,7 @@ CREATE TABLE `assessments` (
 --
 
 INSERT INTO `assessments` (`assessment_id`, `title`, `body`, `questions`, `additional`, `visitors`, `created_at`, `updated_at`) VALUES
-(2, 'รีวิว!!!!', 'ความพอใจ', '[\"\\u0e27\\u0e34\\u0e27\\u0e17\\u0e35\\u0e48\\u0e2a\\u0e27\\u0e22\\u0e07\\u0e32\\u0e21\",\"\\u0e2d\\u0e32\\u0e01\\u0e32\\u0e28\\u0e17\\u0e35\\u0e48\\u0e14\\u0e35!!!!!!!!\",\"\\u0e42\\u0e14\\u0e22\\u0e23\\u0e27\\u0e21\"]', 'มีอะไรอยากจะแนะนำฉันไหม', 0, '2025-02-03 09:07:03', '2025-02-04 07:41:01');
+(3, 'ทดสอบ', 'ทดสอบบบ', '[\"1\",\"2\",\"3\",\"4\"]', 'เทสสดี', 3, '2025-02-20 15:27:11', '2025-02-20 16:02:03');
 
 -- --------------------------------------------------------
 
@@ -52,7 +52,7 @@ INSERT INTO `assessments` (`assessment_id`, `title`, `body`, `questions`, `addit
 --
 
 CREATE TABLE `assessment_responses` (
-  `assessment_responses_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `assessment_responses_id` int(11) NOT NULL,
   `assessment_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `responses` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`responses`)),
@@ -60,6 +60,13 @@ CREATE TABLE `assessment_responses` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+--
+-- Dumping data for table `assessment_responses`
+--
+
+INSERT INTO `assessment_responses` (`assessment_responses_id`, `assessment_id`, `user_id`, `responses`, `additional`, `created_at`, `updated_at`) VALUES
+(2, 3, 4, '[\"5\",\"5\",\"5\",\"5\"]', 'test', '2025-02-20 16:02:35', NULL);
 
 -- --------------------------------------------------------
 
@@ -70,16 +77,23 @@ CREATE TABLE `assessment_responses` (
 CREATE TABLE `bookings` (
   `booking_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `booking_detail` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`booking_detail`)),
+  `booking_details` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '[]',
   `people` int(11) NOT NULL,
-  `booking_date` timestamp NOT NULL,
-  `start_date` timestamp NOT NULL,
-  `end_date` timestamp NOT NULL,
-  `total_price` decimal(8,2) NOT NULL,
-  `status` enum('PENDING','CONFIRMED','CANCELED') NOT NULL DEFAULT 'PENDING',
+  `booking_date` date NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `total_price` decimal(8,2) NOT NULL DEFAULT 0.00,
+  `status` enum('PENDING','CONFIRMED','COMPLETED','CANCELED','PAID') NOT NULL DEFAULT 'PENDING',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`booking_id`, `user_id`, `booking_details`, `people`, `booking_date`, `start_date`, `end_date`, `total_price`, `status`, `created_at`, `updated_at`) VALUES
+(7, 4, '[]', 1, '2025-02-22', '2025-02-22', '2025-02-22', 0.00, 'PENDING', '2025-02-22 13:41:08', '2025-02-22 15:35:37');
 
 -- --------------------------------------------------------
 
@@ -95,6 +109,13 @@ CREATE TABLE `bot_responses` (
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
+--
+-- Dumping data for table `bot_responses`
+--
+
+INSERT INTO `bot_responses` (`response_id`, `questions`, `responses`, `created_at`, `updated_at`) VALUES
+(2, '[\"hi,test\"]', '[\"hi,test\"]', '2025-02-20 15:58:52', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -109,37 +130,6 @@ CREATE TABLE `chats` (
   `image` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
-
---
--- Dumping data for table `chats`
---
-
-INSERT INTO `chats` (`chat_id`, `sender_id`, `receiver_id`, `message`, `image`, `created_at`) VALUES
-(62, 5, 4, 'สวัสดร', NULL, '2025-02-04 10:22:30'),
-(63, 5, 4, 'สวัสดี', NULL, '2025-02-04 10:22:32'),
-(64, 5, 4, 'สวัสดี', NULL, '2025-02-04 10:22:34'),
-(65, 5, 4, 'ว่าไงงง', NULL, '2025-02-04 10:22:40'),
-(66, 4, 5, 'asdasd', NULL, '2025-02-04 10:22:56'),
-(67, 4, 5, 'asd', NULL, '2025-02-04 10:22:57'),
-(68, 4, 5, 'asd', NULL, '2025-02-04 10:22:57'),
-(69, 4, 5, 'asd', NULL, '2025-02-04 10:22:58'),
-(70, 4, 5, 'asd', NULL, '2025-02-04 10:22:58'),
-(71, 4, 5, 'ddddd', NULL, '2025-02-04 10:22:59'),
-(72, 4, 5, 'adasdasd', NULL, '2025-02-04 10:23:00'),
-(73, 4, 5, 'asdasdasd', NULL, '2025-02-04 10:23:01'),
-(74, 4, 5, 'asdasd', NULL, '2025-02-04 10:23:01'),
-(75, 4, 5, 'asdasd', NULL, '2025-02-04 10:23:02'),
-(76, 4, 5, 'asd', NULL, '2025-02-04 10:23:02'),
-(77, 4, 5, 'asdasd', NULL, '2025-02-04 10:23:03'),
-(78, 5, 4, 'asdasasd', NULL, '2025-02-04 10:23:06'),
-(79, 5, 4, 'asdasd', NULL, '2025-02-04 10:23:07'),
-(80, 5, 4, 'asdasd', NULL, '2025-02-04 10:23:07'),
-(81, 4, 5, 'asdasd', NULL, '2025-02-04 10:23:10'),
-(82, 4, 5, 'asdasd', NULL, '2025-02-04 10:23:11'),
-(83, 4, 5, 'asdasd', NULL, '2025-02-04 10:23:11'),
-(84, 5, 4, 'dasdasdasd', NULL, '2025-02-04 10:23:15'),
-(85, 5, 4, 'asdasd', NULL, '2025-02-04 10:23:15'),
-(86, 5, 4, 'asdasd', NULL, '2025-02-04 10:23:16');
 
 -- --------------------------------------------------------
 
@@ -162,9 +152,7 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`news_id`, `title`, `body`, `image`, `visitors`, `created_at`, `updated_at`) VALUES
-(2, 'อากาศ', 'วันนี้อากาศดีมาก', '67a0866d7f40f.jpg', 0, '2025-02-03 09:03:41', NULL),
-(3, 'วิว', 'วิวยอดนิยม', '67a1c3616b0c0.png', 0, '2025-02-03 09:05:09', '2025-02-04 07:36:01'),
-(4, 'วิว', '', '67a08d61b7c85.jpg', 0, '2025-02-03 09:33:21', '2025-02-04 07:39:58');
+(6, 'test', 'test', '67b7546d97b91.jpeg', 48, '2025-02-20 16:12:29', '2025-02-25 11:28:20');
 
 -- --------------------------------------------------------
 
@@ -176,7 +164,7 @@ CREATE TABLE `news_comments` (
   `comment_id` int(11) NOT NULL,
   `news_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `comment` tinyint(1) NOT NULL,
+  `comment` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
@@ -194,6 +182,13 @@ CREATE TABLE `news_likes` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
+--
+-- Dumping data for table `news_likes`
+--
+
+INSERT INTO `news_likes` (`like_id`, `news_id`, `user_id`, `like`, `created_at`) VALUES
+(2, 6, 4, 1, '2025-02-21 11:40:21');
+
 -- --------------------------------------------------------
 
 --
@@ -204,12 +199,64 @@ CREATE TABLE `places` (
   `place_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
-  `images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`images`)),
   `health` varchar(255) NOT NULL,
   `price` decimal(8,2) NOT NULL,
+  `images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`images`)),
+  `category_id` int(11) NOT NULL,
+  `visitors` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+--
+-- Dumping data for table `places`
+--
+
+INSERT INTO `places` (`place_id`, `name`, `address`, `health`, `price`, `images`, `category_id`, `visitors`, `created_at`, `updated_at`) VALUES
+(4, 'tet', 'test', 'test', 0.00, '[\"67b85bc6dcdc3.png\"]', 10, 87, '2025-02-21 10:50:05', '2025-02-21 17:42:35'),
+(5, '1111', '23123', '123123123', 0.00, '[\"67b85bc6dcdc3.png\"]', 10, 87, '2025-02-21 10:50:05', '2025-02-21 17:42:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `place_categories`
+--
+
+CREATE TABLE `place_categories` (
+  `category_id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+--
+-- Dumping data for table `place_categories`
+--
+
+INSERT INTO `place_categories` (`category_id`, `name`, `created_at`, `updated_at`) VALUES
+(10, 'ท่องเที่ยว', '2025-02-21 17:29:32', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `place_likes`
+--
+
+CREATE TABLE `place_likes` (
+  `like_id` int(11) NOT NULL,
+  `place_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `like` tinyint(1) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+--
+-- Dumping data for table `place_likes`
+--
+
+INSERT INTO `place_likes` (`like_id`, `place_id`, `user_id`, `like`, `created_at`, `updated_at`) VALUES
+(11, 4, 4, 1, '2025-02-21 17:42:33', NULL);
 
 -- --------------------------------------------------------
 
@@ -221,11 +268,20 @@ CREATE TABLE `place_reviews` (
   `review_id` int(11) NOT NULL,
   `place_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `score` varchar(255) NOT NULL,
-  `comment` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+  `comment` text NOT NULL,
+  `rating` int(1) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+--
+-- Dumping data for table `place_reviews`
+--
+
+INSERT INTO `place_reviews` (`review_id`, `place_id`, `user_id`, `comment`, `rating`, `created_at`, `updated_at`) VALUES
+(3, 4, 4, 'test', 5, '2025-02-22 00:42:27', NULL),
+(4, 4, 4, 'test', 5, '2025-02-22 00:42:27', NULL),
+(5, 4, 4, 'test', 4, '2025-02-22 00:42:27', '2025-02-22 01:08:57');
 
 -- --------------------------------------------------------
 
@@ -237,10 +293,17 @@ CREATE TABLE `posts` (
   `post_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `text` varchar(255) NOT NULL,
-  `image` varchar(150) NOT NULL,
+  `image` varchar(150) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`post_id`, `user_id`, `text`, `image`, `created_at`, `updated_at`) VALUES
+(11, 4, 'asd', '67b755cf6394a.jpeg', '2025-02-20 16:18:23', NULL);
 
 -- --------------------------------------------------------
 
@@ -252,10 +315,19 @@ CREATE TABLE `post_comments` (
   `comment_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `comment` varchar(255) NOT NULL,
+  `comment` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+--
+-- Dumping data for table `post_comments`
+--
+
+INSERT INTO `post_comments` (`comment_id`, `post_id`, `user_id`, `comment`, `created_at`, `updated_at`) VALUES
+(1, 9, 4, 'test', '2025-02-20 16:09:20', NULL),
+(2, 9, 4, 'test', '2025-02-20 16:09:23', NULL),
+(3, 9, 4, 'test', '2025-02-20 16:09:24', NULL);
 
 -- --------------------------------------------------------
 
@@ -272,6 +344,14 @@ CREATE TABLE `post_likes` (
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
+--
+-- Dumping data for table `post_likes`
+--
+
+INSERT INTO `post_likes` (`comment_id`, `post_id`, `user_id`, `like`, `created_at`, `updated_at`) VALUES
+(4, 11, 4, 1, '2025-02-20 16:18:34', NULL),
+(5, 10, 4, 1, '2025-02-20 16:18:36', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -283,9 +363,9 @@ CREATE TABLE `users` (
   `firstname` varchar(150) NOT NULL,
   `lastname` varchar(150) NOT NULL,
   `email` varchar(150) NOT NULL,
-  `password` varchar(100) NOT NULL,
+  `password` varchar(60) NOT NULL,
   `image` varchar(150) NOT NULL DEFAULT 'default-profile.png',
-  `role` enum('user','admin') NOT NULL DEFAULT 'user',
+  `role` enum('user','admin','doctor') NOT NULL DEFAULT 'user',
   `active_status` enum('online','offline') NOT NULL DEFAULT 'offline',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
@@ -296,10 +376,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `email`, `password`, `image`, `role`, `active_status`, `created_at`, `updated_at`) VALUES
-(4, 'asd', 'asd', 'asd@gmail.com', '$2y$10$W2EN3tgzp5c1DdWGILoHxOEoIwyD1/TGf7HnB2m4LCeeldSUctvxO', '67a1d47767967.png', 'user', 'online', '2025-01-25 08:13:01', '2025-02-04 08:48:55'),
-(5, 'admin', 'admin', 'admin@admin.com', '$2y$10$c19VUioqWilX2ukGXCtec.6cWoEDpjU9YWZV629bdit4PUWCjYFHS', 'default-profile.png', 'admin', 'offline', '2025-01-25 10:21:32', '2025-02-04 10:32:50'),
-(7, '123', '123', '123@gmail.com', '$2y$10$TgSE.pD7M7jn2bo6hjK9A.bJp2lq1tgrtqgbpqzgU/tMeCBsv.5gG', 'default-profile.png', 'user', 'offline', '2025-01-27 09:03:04', '2025-01-27 09:35:11'),
-(8, 'zxc', 'zxc', 'zxc@gmail.com', '$2y$10$YA4QFVyupO6njKLUUzaRk.5vTDpl73c50jwpZkfKdh5Ltgxr.t/Ii', 'default-profile.png', 'user', 'offline', '2025-01-27 09:03:10', '2025-01-27 09:33:39');
+(4, 'asd', 'asd', 'asd@gmail.com', '$2y$10$W2EN3tgzp5c1DdWGILoHxOEoIwyD1/TGf7HnB2m4LCeeldSUctvxO', '67b75078e5581.jpeg', 'user', 'online', '2025-01-25 01:13:01', '2025-02-21 11:35:46'),
+(5, 'admin', 'admin', 'admin@admin.com', '$2y$10$c19VUioqWilX2ukGXCtec.6cWoEDpjU9YWZV629bdit4PUWCjYFHS', '67b7506a808c7.jpeg', 'admin', 'online', '2025-01-25 03:21:32', '2025-02-21 11:52:00'),
+(7, '123', '123', '123@gmail.com', '$2y$10$TgSE.pD7M7jn2bo6hjK9A.bJp2lq1tgrtqgbpqzgU/tMeCBsv.5gG', 'default-profile.png', 'user', 'offline', '2025-01-27 02:03:04', '2025-01-27 02:35:11'),
+(8, 'zxc', 'zxc', 'zxc@gmail.com', '$2y$10$YA4QFVyupO6njKLUUzaRk.5vTDpl73c50jwpZkfKdh5Ltgxr.t/Ii', 'default-profile.png', 'user', 'offline', '2025-01-27 02:03:10', '2025-01-27 02:33:39');
 
 -- --------------------------------------------------------
 
@@ -318,7 +398,7 @@ CREATE TABLE `visitors` (
 --
 
 INSERT INTO `visitors` (`visitor_id`, `count`, `created_at`) VALUES
-(1, 261, '2025-01-25 03:59:57');
+(1, 1475, '2025-01-24 20:59:57');
 
 --
 -- Indexes for dumped tables
@@ -334,8 +414,9 @@ ALTER TABLE `assessments`
 -- Indexes for table `assessment_responses`
 --
 ALTER TABLE `assessment_responses`
-  ADD PRIMARY KEY (`assessment_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`assessment_responses_id`),
+  ADD KEY `assessment_responses_ibfk_1` (`user_id`),
+  ADD KEY `assessment_responses_ibfk_2` (`assessment_id`);
 
 --
 -- Indexes for table `bookings`
@@ -387,12 +468,24 @@ ALTER TABLE `places`
   ADD PRIMARY KEY (`place_id`);
 
 --
+-- Indexes for table `place_categories`
+--
+ALTER TABLE `place_categories`
+  ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `place_likes`
+--
+ALTER TABLE `place_likes`
+  ADD PRIMARY KEY (`like_id`),
+  ADD KEY `place_id` (`place_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `place_reviews`
 --
 ALTER TABLE `place_reviews`
-  ADD PRIMARY KEY (`review_id`),
-  ADD KEY `place_id` (`place_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`review_id`);
 
 --
 -- Indexes for table `posts`
@@ -437,25 +530,25 @@ ALTER TABLE `visitors`
 -- AUTO_INCREMENT for table `assessments`
 --
 ALTER TABLE `assessments`
-  MODIFY `assessment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `assessment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `assessment_responses`
 --
 ALTER TABLE `assessment_responses`
-  MODIFY `assessment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `assessment_responses_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `bot_responses`
 --
 ALTER TABLE `bot_responses`
-  MODIFY `response_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `response_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `chats`
@@ -467,49 +560,61 @@ ALTER TABLE `chats`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `news_comments`
 --
 ALTER TABLE `news_comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `news_likes`
 --
 ALTER TABLE `news_likes`
-  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `places`
 --
 ALTER TABLE `places`
-  MODIFY `place_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `place_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `place_categories`
+--
+ALTER TABLE `place_categories`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `place_likes`
+--
+ALTER TABLE `place_likes`
+  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `place_reviews`
 --
 ALTER TABLE `place_reviews`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `post_comments`
 --
 ALTER TABLE `post_comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `post_likes`
 --
 ALTER TABLE `post_likes`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -539,48 +644,6 @@ ALTER TABLE `assessment_responses`
 --
 ALTER TABLE `bookings`
   ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `chats`
---
-ALTER TABLE `chats`
-  ADD CONSTRAINT `chats_ibfk_1` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `chats_ibfk_2` FOREIGN KEY (`sender_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `news_comments`
---
-ALTER TABLE `news_comments`
-  ADD CONSTRAINT `news_comments_ibfk_1` FOREIGN KEY (`news_id`) REFERENCES `news` (`news_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `news_comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `news_likes`
---
-ALTER TABLE `news_likes`
-  ADD CONSTRAINT `news_likes_ibfk_1` FOREIGN KEY (`news_id`) REFERENCES `news` (`news_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `news_likes_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `place_reviews`
---
-ALTER TABLE `place_reviews`
-  ADD CONSTRAINT `place_reviews_ibfk_1` FOREIGN KEY (`place_id`) REFERENCES `places` (`place_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `place_reviews_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `post_comments`
---
-ALTER TABLE `post_comments`
-  ADD CONSTRAINT `post_comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `post_comments_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `posts` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `post_likes`
---
-ALTER TABLE `post_likes`
-  ADD CONSTRAINT `post_likes_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `post_likes_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

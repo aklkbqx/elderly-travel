@@ -1,4 +1,5 @@
-<div class='d-flex justify-content-between'>
+
+<div class='d-flex justify-content-between gap-2'>
     <div class='d-flex align-items-center gap-2 position-relative'>
         <input type="search" name='search' class='form-control ps-5' placeholder='ค้นหา' oninput="searchResult($(this))">
         <label for="" style='position: absolute;top: 0px;left: 8px;font-size: 25px;'>🔍</label>
@@ -14,11 +15,10 @@
                 </div>
                 <div class="modal-body">
                     <input type="file" name="image" id="select-image" hidden onchange="$('#image-preview').attr('src',window.URL.createObjectURL(this.files[0]))">
-                    <label for='select-image' class='d-flex justify-content-center btn btn-outline-light border-0 flex-column align-items-center gap-2'>
+                    <label for='select-image' class='d-flex justify-content-center btn btn-outline-light border-0 flex-column align-items-center gap-2 mb-2'>
                         <img id='image-preview' src="<?= imagePath("user_images","default-profile.png") ?>" width='200px' height='200px' class='rounded-circle border object-fit-cover'>
                         <div class='btn btn-outline-teal'>เปลี่ยนรูปภาพโปรไฟล์</div>
                     </label>
-
                     <div class='d-flex flex-column gap-2'>
                         <div class='flex-1 d-flex flex-row gap-2'>
                             <div class="form-floating flex-1">
@@ -37,7 +37,7 @@
                         <div class="form-floating">
                             <input type="password" class="form-control" placeholder='รหัสผ่าน' name='password' required>
                             <label for="รหัสผ่าน">รหัสผ่าน</label>
-                            <img onclick='openPassword($(this))' src="<?= imagePath("web_images/icons","eye.png"); ?>" style='width:40px;height:40px;top:10px;right:10px' class='object-fit-cover position-absolute cursor-pointer'>
+                            <img onclick='openPassword($(this))' src="<?= imagePath("web_images/icons","eye.svg"); ?>" style='width:35px;height:35px;top:12px;right:10px' class='object-fit-cover position-absolute cursor-pointer svg-icon'>
                         </div>
                         <select name="role" class='form-select cursor-pointer'>
                             <option value="user">ผู้ใช้ทั่วไป</option>
@@ -50,7 +50,7 @@
                 <div class="modal-footer d-flex w-100 align-items-center">
                     <div class="w-100 d-flex align-items-center gap-2">
                         <button type="reset" data-bs-dismiss='modal' class='btn btn-light w-100'>ปิด</button>
-                        <button type="submit" name='addUser' class='btn btn-success w-100'>เพิ่ม</button>
+                        <button type="submit" name='addUser' class='btn btn-teal w-100'>เพิ่ม</button>
                     </div>
                 </div>
             </form>
@@ -58,16 +58,16 @@
     </div>
 </div>
 
-<div class='mb-2 w-100 p-2 d-flex justify-content-between mt-2'>
-    <h4>เลือกบทบาท</h4>
-    <div class='border rounded-xl d-flex flex-row align-items-center'>
-        <a href='?manageUsers&user' class='btn <?= isset($_GET["user"]) ? "btn-teal" : "btn-light" ?>'>ผู้ใช้งานทั่วไป</a>
-        <a href='?manageUsers&admin' class='btn <?= isset($_GET["admin"]) ? "btn-teal" : "btn-light" ?>'>ผู้ดูแลระบบ</a>
-        <a href='?manageUsers&doctor' class='btn <?= isset($_GET["doctor"]) ? "btn-teal" : "btn-light" ?>'>แพทย์/หมอ</a>
-    </div>
-</div>
 
 <div class='overflow-auto h-100'>
+    <div class='mb-2 w-100 mt-3 d-flex justify-content-between mt-2 flex-wrap'>
+        <h4>เลือกบทบาท</h4>
+        <div class='rounded-xl d-flex flex-row align-items-center gap-1'>
+            <a href='?manageUsers&user' class='btn <?= isset($_GET["user"]) ? "btn-teal" : "btn-light" ?>'>ผู้ใช้งานทั่วไป</a>
+            <a href='?manageUsers&admin' class='btn <?= isset($_GET["admin"]) ? "btn-teal" : "btn-light" ?>'>ผู้ดูแลระบบ</a>
+            <a href='?manageUsers&doctor' class='btn <?= isset($_GET["doctor"]) ? "btn-teal" : "btn-light" ?>'>แพทย์/หมอ</a>
+        </div>
+    </div>
     <?php $role = isset($_GET["user"]) ? "user" : (isset($_GET["admin"]) ? "admin" : "doctor");
     $fetchUser = sql("SELECT * FROM users WHERE role = ?",[$role]);
     if($fetchUser->rowCount() > 0){ ?>
@@ -111,7 +111,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <input type="file" name="image" id="select-image-<?= $user["user_id"] ?>" hidden onchange="$('#image-preview-<?= $user['user_id'] ?>').attr('src',window.URL.createObjectURL(this.files[0]))">
-                                                <label for='select-image-<?= $user["user_id"] ?>' class='d-flex justify-content-center btn btn-outline-light border-0 flex-column align-items-center gap-2'>
+                                                <label for='select-image-<?= $user["user_id"] ?>' class='d-flex justify-content-center btn btn-outline-light border-0 flex-column align-items-center gap-2 mb-2'>
                                                     <img id='image-preview-<?= $user['user_id'] ?>' src="<?= imagePath("user_images",$user["image"]) ?>" width='200px' height='200px' class='rounded-circle border object-fit-cover'>
                                                     <div class='btn btn-outline-teal'>เปลี่ยนรูปภาพโปรไฟล์</div>
                                                 </label>
@@ -134,7 +134,7 @@
                                                     <div class="form-floating">
                                                         <input type="password" class="form-control" placeholder='รหัสผ่าน' name='password'>
                                                         <label for="รหัสผ่าน">รหัสผ่าน</label>
-                                                        <img onclick='openPassword($(this))' src="<?= imagePath("web_images/icons","eye.png"); ?>" style='width:40px;height:40px;top:10px;right:10px' class='object-fit-cover position-absolute cursor-pointer'>
+                                                        <img onclick='openPassword($(this))' src="<?= imagePath("web_images/icons","eye.svg"); ?>" style='width:35px;height:35px;top:12px;right:10px' class='object-fit-cover position-absolute cursor-pointer svg-icon'>
                                                     </div>
                                                     <select name="role" class='form-select cursor-pointer'>
                                                         <option value="user" <?= $user["role"] === "user" ? 'selected' : NULL ?>>ผู้ใช้ทั่วไป</option>

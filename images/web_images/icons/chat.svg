@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+  <defs>
+    <style>
+      .cls-1, .cls-4 {
+        fill: #1d5e5a;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-3, .cls-4 {
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <circle id="Ellipse_3_copy_3" data-name="Ellipse 3 copy 3" class="cls-1" cx="500.5" cy="498.5" r="478.5"/>
+  <circle class="cls-2" cx="237.578" cy="498.5" r="84.578"/>
+  <path id="Ellipse_3_copy" data-name="Ellipse 3 copy" class="cls-3" d="M500.5,414a84.5,84.5,0,1,1-84.6,84.5A84.549,84.549,0,0,1,500.5,414Z"/>
+  <ellipse id="Ellipse_3_copy_2" data-name="Ellipse 3 copy 2" class="cls-2" cx="763.422" cy="498.5" rx="84.578" ry="84.5"/>
+  <path class="cls-4" d="M567.4,754.691H904.982V929.735H707.4a140,140,0,0,1-140-140V754.691Z"/>
+</svg>

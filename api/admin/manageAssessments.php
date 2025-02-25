@@ -6,7 +6,7 @@ if(isset($_REQUEST["addAssessment"])){
     $body = $_POST["body"];
     $questions = $_POST["questions"];
     $additional = $_POST["additional"] ?? null;
-
+    
     try{
         sql("INSERT INTO assessments(title,body,questions,additional) VALUES(?,?,?,?)",[
             $title,

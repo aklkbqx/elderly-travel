@@ -19,17 +19,18 @@ if(isset($_SESSION["user_login"])){
     <?php require_once("../link.php"); ?>
 </head>
 <body>
+    <?php
+    require_once("../components/options.php");
+    require_once("../components/popChats.php");
+    ?>
     <div style='margin-top:5rem' class='container'>
 
-        <div class='mb-2'>
-            <a href="index.php?home" class='text-dark text-decoration-none d-flex flex-row gap-2 align-items-center'>
-                <img src="<?= imagePath("web_images/icons","chevron-back.png") ?>" alt="" width='35px' height='35px'>
-                กลับ
-            </a>
+        <div class='mb-2 d-flex'>
+            <?php backPage("/admin/?home") ?>
         </div>
         
-        <div class='container bg-white shadow p-4 rounded-xl'>
-            <form method='post' action='../api/user.php' class='row' enctype='multipart/form-data'>
+        <div class='container shadow p-4 rounded-xl'>
+            <form method='post' action='../api/user.php' class='row mb-0' enctype='multipart/form-data'>
                 <?php require_once("../components/editprofile.php"); ?>
             </form>
         </div>

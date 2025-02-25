@@ -1,4 +1,4 @@
-<div class='d-flex justify-content-between bg-white'>
+<div class='d-flex justify-content-between'>
     <div class='d-flex align-items-center gap-2 position-relative'>
         <input type="search" name='search' class='form-control ps-5' placeholder='ค้นหา' oninput="searchResult($(this))">
         <label for="" style='position: absolute;top: 0px;left: 8px;font-size: 25px;'>🔍</label>
@@ -15,9 +15,9 @@
                 </div>
                 <div class="modal-body">
                     <input type="file" name="image" id="select-image" hidden onchange="$('#image-preview').attr('src',window.URL.createObjectURL(this.files[0]))">
-                    <label for='select-image' class='d-flex justify-content-center btn btn-outline-light border-0 flex-column align-items-center gap-2'>
-                        <img id='image-preview' src="<?= imagePath("user_images","default-profile.png") ?>" width='100%' height='200px' class='rounded-xl border object-fit-cover'>
-                        <div class='btn btn-outline-teal'>เปลี่ยนรูปภาพโปรไฟล์</div>
+                    <label for='select-image' class='d-flex justify-content-center btn btn-outline-light border-0 flex-column align-items-center gap-2 mb-2'>
+                        <img id='image-preview' src="<?= imagePath("news_images","placeholder.png") ?>" width='100%' height='200px' class='rounded-xl border object-fit-cover'>
+                        <div class='btn btn-outline-teal'>เปลี่ยนรูปข่าว</div>
                     </label>
 
                     <div class='d-flex flex-column gap-2'>
@@ -35,7 +35,7 @@
                 <div class="modal-footer d-flex w-100 align-items-center">
                     <div class="w-100 d-flex align-items-center gap-2">
                         <button type="reset" data-bs-dismiss='modal' class='btn btn-light w-100'>ปิด</button>
-                        <button type="submit" name='addNews' class='btn btn-success w-100'>เพิ่ม</button>
+                        <button type="submit" name='addNews' class='btn btn-teal w-100'>เพิ่ม</button>
                     </div>
                 </div>
             </form>
@@ -45,12 +45,12 @@
 
 <div class='mt-2 h-100 overflow-auto'>
     <div class='row mb-5'>
-        <?php 
+        <?php
         $fetchNews = sql("SELECT * FROM news");
         if($fetchNews->rowCount() > 0){
-            while($news=$fetchNews->fetch()){ ?>
-                <div class="col-lg-4 mb-2" data-search-item>
-                    <div class='bg-white rounded-xl overflow-hidden border'>
+            while($news = $fetchNews->fetch()){ ?>
+                <div class='col-lg-4 mb-2' data-search-item>
+                    <div class="rounded-xl overflow-hidden border">
                         <img src="<?= imagePath('news_images',$news["image"]) ?>" width="100%" height='250px;' class='object-fit-cover'>
                         <div class='p-2 d-flex flex-column justify-content-between' style='height:156px'>
                             <div>
@@ -70,7 +70,7 @@
                                             <div class="modal-body">
                                                 <img src="<?= imagePath("news_images",$news["image"]); ?>" width='100%' height='300px' class='object-fit-cover rounded-xl border' />
                                                 <div class='d-flex align-items-center gap-2 mt-2 justify-content-end' style='bottom:10px;right:10px'>
-                                                    <img src="<?= imagePath("web_images/icons","eye.png"); ?>" width="25px" height='25px' class='rounded-xl' />
+                                                    <img src="<?= imagePath("web_images/icons","eye.svg"); ?>" width="25px" height='25px' class='rounded-xl svg-icon' />
                                                     <div>จำนวนผู้ที่เข้าชม: <?= $news["visitors"] ?> ครั้ง</div>
                                                 </div>
                                                 <div class='p-2'>
@@ -99,6 +99,7 @@
 
                                 <div class="d-flex align-items-center gap-2 mt-2">
                                     <button type='button' data-bs-toggle='modal' data-bs-target='#editNews-<?= $news["news_id"] ?>' class='btn btn-warning border w-100'>แก้ไขข่าว</button>
+                                    <button type='button' data-bs-toggle='modal' data-bs-target='#deleteNews-<?= $news["news_id"] ?>' class='btn btn-danger w-100'>ลบข่าว</button>
 
                                     <div class="modal fade" id='editNews-<?= $news["news_id"] ?>'>
                                         <div class="modal-dialog modal-dialog-centered">
@@ -109,9 +110,9 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <input type="file" name="image" id="select-image-<?= $news['news_id'] ?>" hidden onchange="$('#image-preview-<?= $news['news_id'] ?>').attr('src',window.URL.createObjectURL(this.files[0]))">
-                                                    <label for='select-image-<?= $news['news_id'] ?>' class='d-flex justify-content-center btn btn-outline-light border-0 flex-column align-items-center gap-2'>
+                                                    <label for='select-image-<?= $news['news_id'] ?>' class='d-flex justify-content-center btn btn-outline-light border-0 flex-column align-items-center gap-2 mb-2'>
                                                         <img id='image-preview-<?= $news['news_id'] ?>' src="<?= imagePath("news_images",$news["image"]) ?>" width='100%' height='200px' class='rounded-xl border object-fit-cover' />
-                                                        <div class='btn btn-outline-teal'>เปลี่ยนรูปภาพโปรไฟล์</div>
+                                                        <div class='btn btn-outline-teal'>เปลี่ยนรูปข่าว</div>
                                                     </label>
 
                                                     <div class='d-flex flex-column gap-2'>
@@ -129,13 +130,12 @@
                                                 <div class="modal-footer d-flex w-100 align-items-center">
                                                     <div class="w-100 d-flex align-items-center gap-2">
                                                         <button type="reset" data-bs-dismiss='modal' class='btn btn-light w-100'>ปิด</button>
-                                                        <button type="submit" name='editNews' class='btn btn-warning w-100'>แก้ไข</button>
+                                                        <button type="submit" name='editNews' class='btn btn-warning w-100'>บันทึก</button>
                                                     </div>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
-                                    <button type='button' data-bs-toggle='modal' data-bs-target='#deleteNews-<?= $news["news_id"] ?>' class='btn btn-danger w-100'>ลบข่าว</button>
 
                                     <div class="modal fade" id='deleteNews-<?= $news["news_id"] ?>'>
                                         <div class="modal-dialog modal-dialog-centered">
@@ -161,8 +161,9 @@
                         </div>
                     </div>
                 </div>
-            <?php } }else{ ?>
-            <h5 class='text-center text-muted'>ยังไม่มีข่าว...</h5>
+            <?php }
+        }else{ ?>
+            <h5 class='text-center text-muted'>ยังไม่มีข่าวสารประชาสัมพันธ์ในขณะนี้...</h5>
         <?php } ?>
     </div>
 </div>

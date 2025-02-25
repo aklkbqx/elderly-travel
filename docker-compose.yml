@@ -1,5 +1,5 @@
 services:
-  php: 
+  php:
     container_name: php_elderly_travel
     build: .
     ports:
@@ -8,6 +8,8 @@ services:
       - .:/var/www/html/
     depends_on:
       - mariadb
+    networks:
+      - app_network
   mariadb:
     container_name: mariadb_elderly_travel
     image: mariadb
@@ -21,6 +23,8 @@ services:
       - 9906:3306
     volumes:
       - ./mariadb/data:/var/lib/mysql
+    networks:
+      - app_network
   phpmyadmin:
     container_name: phpmyadmin_elderly
     image: phpmyadmin
@@ -30,3 +34,9 @@ services:
       PMA_HOST: mariadb
     depends_on:
       - mariadb
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge

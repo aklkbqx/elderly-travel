@@ -23,9 +23,7 @@ if(isset($_REQUEST["register"])){
             "online"
         ]);
 
-        $lastInsertId = $pdo->lastInsertId();
-
-        $_SESSION["user_login"] = $lastInsertId;
+        $_SESSION["user_login"] = $pdo->lastInsertId();
         
         msg("success","สำเร็จ!","คุณ $firstname สมัครสมาชิกสำเร็จแล้ว","../");
     }catch(PDOException $e){
@@ -43,7 +41,7 @@ if(isset($_REQUEST["login"])){
             $row = $fetchUser->fetch();
             if(password_verify($password,$row["password"])){
                 $_SESSION[$row["role"]."_login"] = $row["user_id"];
-                $location = $row["role"] == "admin" ? "../admin/" : "../" ;
+                $location = $row["role"] == "admin" ? "../admin/" : ($row["role"] == "doctor" ? "../doctor.php" : "../") ;
                 $firstname = $row["firstname"];
                 sql("UPDATE users SET active_status=? WHERE user_id = ?",["online",$row["user_id"]]);
                 msg("success","สำเร็จ!","คุณ $firstname เข้าสู่ระบบสำเร็จแล้ว",$location);

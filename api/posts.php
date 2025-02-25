@@ -5,6 +5,8 @@ if(isset($_SESSION["user_login"])){
     $row = sql("SELECT * FROM users WHERE user_id = ?",[$_SESSION["user_login"]])->fetch();
 }elseif(isset($_SESSION["admin_login"])){
     $row = sql("SELECT * FROM users WHERE user_id = ?",[$_SESSION["admin_login"]])->fetch();
+}elseif(isset($_SESSION["doctor_login"])){
+    $row = sql("SELECT * FROM users WHERE user_id = ?",[$_SESSION["doctor_login"]])->fetch();
 }
 
 if(isset($_REQUEST["addPost"])){
@@ -74,14 +76,53 @@ if(isset($_REQUEST["deletePost"]) && isset($_GET["post_id"])){
     $path = "../images/post_images/";
 
     try{
-        if(file_exists($path.$row["image"])){
-            unlink($path.$row["image"]);
+        if($row["image"]){
+            if(file_exists($path.$row["image"])){
+                unlink($path.$row["image"]);
+            }
         }
         sql("DELETE FROM posts WHERE post_id = ?",[$post_id]);
         msg("success","สำเร็จ!","ลบกระทู้สำเร็จแล้ว!",$_SERVER["HTTP_REFERER"]);
     }catch(PDOException $e){
         msg("danger","เกิดข้อผิดพลาด",$e->getMessage(),$_SERVER["HTTP_REFERER"]);
     }
+}
+
+if(isset($_GET["like"]) && isset($_GET["post_id"])){
+    $post_id = $_GET["post_id"];
+    
+    $post_like = sql("SELECT * FROM post_likes WHERE post_id = ? AND user_id = ?",[$post_id,$row["user_id"]]);
+    if($post_like->rowCount() > 0){
+        $post = sql("DELETE FROM post_likes WHERE post_id = ? AND user_id = ?",[$post_id,$row["user_id"]]);
+        msg("success","สำเร็จ!","ยกเลิกถูกใจกระทู้นี้แล้ว",$_SERVER["HTTP_REFERER"]);
+    }else{
+        $post = sql("INSERT INTO post_likes(`post_id`,`user_id`,`like`) VALUES(?,?,?)",[
+            $post_id,
+            $row["user_id"],
+            1
+        ]);
+        msg("success","สำเร็จ!","ถูกใจกระทู้นี้แล้ว",$_SERVER["HTTP_REFERER"]);
+    }
+}
+
+if(isset($_REQUEST["submit_comment"]) && isset($_GET["comment"]) && isset($_GET["post_id"])){
+    $post_id = $_GET["post_id"];
+    $comment = $_POST["comment"];
+
+    sql("INSERT INTO post_comments(post_id,user_id,comment) VALUES(?,?,?)",[
+        $post_id,
+        $row["user_id"],
+        $comment
+    ]);
+    msg("success","สำเร็จ!","แสดงความคิดเห็นกระทู้นี้แล้ว",$_SERVER["HTTP_REFERER"]);
+}
+
+if(isset($_GET['delete_comment']) && isset($_GET['comment_id']) && isset($_GET["post_id"])){
+    $comment_id = $_GET['comment_id'];
+    $post_id = $_GET["post_id"];
+
+    sql("DELETE FROM post_comments WHERE comment_id = ? AND post_id = ?",[$comment_id,$post_id]);
+    msg("success","สำเร็จ!","ลบความคิดเห็นแล้ว!",$_SERVER["HTTP_REFERER"]);
 }
 
 if(isset($_GET["sendComment"]) && isset($_GET["post_id"])){
