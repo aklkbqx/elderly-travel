@@ -226,7 +226,7 @@ if (isset($_SESSION["user_login"])) {
                 $fetchPlaces = sql("SELECT * FROM places");
                 if ($fetchPlaces->rowCount() > 0) {
                     while ($place = $fetchPlaces->fetch()) {
-                        placeCardBooking($place,false,$row["user_id"]);
+                        placeCardBooking($place,false,$row ? $row["user_id"] : 0);
                     }
                 } else { ?>
                     <h5 class='text-center text-muted'>ยังไม่มีสถานที่ในขณะนี้...</h5>

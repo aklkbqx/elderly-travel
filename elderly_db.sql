@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mariadb
--- Generation Time: Feb 25, 2025 at 03:55 PM
+-- Generation Time: Feb 26, 2025 at 04:08 PM
 -- Server version: 11.7.2-MariaDB-ubu2404
 -- PHP Version: 8.2.27
 
@@ -398,7 +398,7 @@ CREATE TABLE `visitors` (
 --
 
 INSERT INTO `visitors` (`visitor_id`, `count`, `created_at`) VALUES
-(1, 1475, '2025-01-24 20:59:57');
+(1, 1479, '2025-01-24 20:59:57');
 
 --
 -- Indexes for dumped tables

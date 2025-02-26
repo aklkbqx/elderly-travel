@@ -2,8 +2,13 @@
 session_start();
 date_default_timezone_set('Asia/Bangkok');
 
+$host = "34.87.146.17";
+$dbname = "elderly_db";
+$name = "username";
+$password = "password";
+
 try {
-    $pdo = new PDO("mysql:host=mariadb_elderly_travel;dbname=elderly_db", "username", "password");
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $name, $password);
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
