@@ -2,10 +2,10 @@
 session_start();
 date_default_timezone_set('Asia/Bangkok');
 
-$host = "34.87.146.17";
+$host = "34.68.114.14";
 $dbname = "elderly_db";
-$name = "username";
-$password = "password";
+$name = "admin";
+$password = "admin";
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $name, $password);
