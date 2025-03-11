@@ -1,6 +1,6 @@
 services:
   php:
-    container_name: php_elderly_travel
+    container_name: php_elderly-travel
     build: .
     ports:
       - 80:80
@@ -11,7 +11,7 @@ services:
     networks:
       - app_network
   mariadb:
-    container_name: mariadb_elderly_travel
+    container_name: mariadb_elderly-travel
     image: mariadb
     environment:
       MARIADB_ROOT_PASSWORD: ROOT_PASSWORD
