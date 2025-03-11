@@ -2,7 +2,7 @@
 session_start();
 date_default_timezone_set('Asia/Bangkok');
 
-$host = "34.68.114.14";
+$host = "35.209.134.44";
 $dbname = "elderly_db";
 $name = "admin";
 $password = "admin";
