@@ -2,7 +2,7 @@
 session_start();
 date_default_timezone_set('Asia/Bangkok');
 
-$servername = "https://aklkbqx.xyz";
+$servername = "156.67.218.234";
 $username = "username";
 $password = "password";
 $dbname = "elderly_db";

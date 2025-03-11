@@ -2,41 +2,49 @@ services:
   php:
     container_name: php_elderly-travel
     build: .
-    ports:
-      - 80:80
+    # ports:
+    #   - 80:80
     volumes:
-      - .:/var/www/html/
-    depends_on:
-      - mariadb
+      - ./src:/var/www/html/
+    # depends_on:
+    #   - mariadb
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.elderly-travel.entrypoints=web"
+      - "traefik.http.routers.elderly-travel.rule=Host(`elderly-travel.aklkbqx.xyz`)"
+      - "traefik.http.services.elderly-travel.loadbalancer.server.port=80"
     networks:
-      - app_network
-  mariadb:
-    container_name: mariadb_elderly-travel
-    image: mariadb
-    environment:
-      MARIADB_ROOT_PASSWORD: ROOT_PASSWORD
-      MARIADB_USER: username
-      MARIADB_PASSWORD: password
-      MARIADB_DATABASE: elderly_db
-      TZ: 'Asia/Bangkok'
-    ports:
-      - 9906:3306
-    volumes:
-      - ./mariadb/data:/var/lib/mysql
-    networks:
-      - app_network
-  phpmyadmin:
-    container_name: phpmyadmin_elderly
-    image: phpmyadmin
-    ports:
-      - 8888:80
-    environment:
-      PMA_HOST: mariadb
-    depends_on:
-      - mariadb
-    networks:
-      - app_network
+      - web_network
+
+  # mariadb:
+  #   container_name: mariadb_elderly-travel
+  #   image: mariadb
+  #   environment:
+  #     MARIADB_ROOT_PASSWORD: ROOT_PASSWORD
+  #     MARIADB_USER: username
+  #     MARIADB_PASSWORD: password
+  #     MARIADB_DATABASE: elderly_db
+  #     TZ: 'Asia/Bangkok'
+  #   ports:
+  #     - 9906:3306
+  #   volumes:
+  #     - ./mariadb/data:/var/lib/mysql
+  #   networks:
+  #     - app_network
+  # phpmyadmin:
+  #   container_name: phpmyadmin_elderly
+  #   image: phpmyadmin
+  #   ports:
+  #     - 8888:80
+  #   environment:
+  #     PMA_HOST: mariadb
+  #   depends_on:
+  #     - mariadb
+  #   networks:
+  #     - app_network
 
 networks:
   app_network:
     driver: bridge
+  web_network:
+    external: true
