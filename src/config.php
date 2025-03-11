@@ -2,13 +2,13 @@
 session_start();
 date_default_timezone_set('Asia/Bangkok');
 
-$host = "35.209.134.44";
+$servername = "https://aklkbqx.xyz";
+$username = "username";
+$password = "password";
 $dbname = "elderly_db";
-$name = "admin";
-$password = "admin";
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $name, $password);
+    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
