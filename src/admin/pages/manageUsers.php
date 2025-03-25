@@ -39,6 +39,7 @@
                             <label for="รหัสผ่าน">รหัสผ่าน</label>
                             <img onclick='openPassword($(this))' src="<?= imagePath("web_images/icons","eye.svg"); ?>" style='width:35px;height:35px;top:12px;right:10px' class='object-fit-cover position-absolute cursor-pointer svg-icon'>
                         </div>
+                        
                         <select name="role" class='form-select cursor-pointer'>
                             <option value="user">ผู้ใช้ทั่วไป</option>
                             <option value="admin">แอดมิน</option>
