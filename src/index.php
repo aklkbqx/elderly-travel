@@ -44,7 +44,7 @@ $booking = null;
                 if ($fetchBooking->rowCount() > 0) {
                     $booking = $fetchBooking->fetch();
             ?>
-                    <div class="shadow mt-2 mt-xl-0 booking-card mb-2 align-items-start" style="border-radius:1.5rem;z-index:1">
+                    <div class="shadow mt-2 mt-xl-0 booking-card mb-2 align-items-start" style="border-radius:1.5rem;z-index:1;">
                         <h3 class="text-center d-flex align-items-center justify-content-center w-100">ดำเนินการจองให้เสร็จสมบูรณ์</h3>
                         <div class="d-flex flex-column gap-2 my-4 text-muted">
                             <h5>วันที่เช็คอิน: <?= formatThaiDate($booking["start_date"]) ?></h5>
@@ -67,7 +67,7 @@ $booking = null;
 
     <?php cancelBooking($booking) ?>
 
-    <div class="container position-relative">
+    <div class="container position-relative suggest-web">
         <div class="row bg-teal p-4 rounded-xl d-flex mx-2" style="transform: translateY(-80px);">
             <div class="col-lg-4 mb-2 mb-lg-0">
                 <div class="d-flex align-items-center gap-2 rounded-xl p-2 text-white" style="background-color:var(--teal2);">
@@ -92,10 +92,10 @@ $booking = null;
         <div>
             <?php $fetchAllNews = sql("SELECT * FROM news");
             if ($fetchAllNews->rowCount() > 0) { ?>
-                <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-end justify-content-between">
                     <div>
                         <div class="text-teal">News</div>
-                        <h1>ข่าวสารประชาสัมพันธ์ล่าสุด</h1>
+                        <h1>ข่าวสารประชาสัมพันธ์</h1>
                     </div>
                     <a href="news.php" class="btn btn-outline-teal">ดูเพิ่มเติม</a>
                 </div>
@@ -106,10 +106,10 @@ $booking = null;
                         while ($news = $fetchAllNews->fetch()) { ?>
                             <a href='news.php?news_id=<?= $news["news_id"] ?>' class="carousel-item btn btn-outline-teal p-0 <?= $index == 1 ? 'active' : null ?>" data-bs-intervel="1000">
                                 <img src="<?= imagePath("news_images", $news["image"]) ?>" alt="" class="rounded-xl object-fit-cover" height="500px" width="100%">
-                                <div class="position-absolute" style="bottom:2rem;left:2rem;z-index:99">
+                                <div class="position-absolute" style="bottom:3rem;left:5%;z-index:99">
                                     <h3 class="text-white"><?= $news["title"] ?></h3>
                                 </div>
-                                <div class="position-absolute d-flex align-items-center gap-2" style="bottom:2rem;right:2rem;z-index:99">
+                                <div class="position-absolute d-flex align-items-center gap-2" style="bottom:0rem;right:1rem;z-index:99">
                                     <img src="<?= imagePath("web_images/icons", "eye.svg") ?>" width="35px" height="35px" style='filter: invert(1);'>
                                     <div class='text-white'>จำนวนผู้เข้าชม <span><?= $news["visitors"] ?></span></div>
                                 </div>
@@ -161,7 +161,7 @@ $booking = null;
         <?php } ?>
     </div>
 
-    <div class="bg-teal w-100 mt-5" style="height:500px;background-image:url('<?= imagePath('web_images', 'banner-footer.jpg') ?>');background-repeat: no-repeat;background-position: center;background-size: cover;"></div>
+    <div class="bg-teal w-100 mt-5 banner-footer position-relative"></div>
 
     <?php require_once("components/footer.php"); ?>
 

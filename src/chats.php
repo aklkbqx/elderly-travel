@@ -98,7 +98,7 @@ if (isset($_SESSION["user_login"])) {
                                 </div>
 
                                 <form method='post' id='form-chat' class='d-flex flex-row align-items-center gap-2 p-2'>
-                                    <input id='chooseImage' type="file" name='image' onchange="$('#imagePreview').attr('src',window.URL.createObjectURL(this.files[0]));$('#showImagePreview').removeClass('d-none').addClass('d-flex');" hidden>
+                                    <input id='chooseImage' type="file" accept="image/*" name='image' onchange="$('#imagePreview').attr('src',window.URL.createObjectURL(this.files[0]));$('#showImagePreview').removeClass('d-none').addClass('d-flex');" hidden>
                                     <label for="chooseImage" class='btn btn-outline-light p-0'>
                                         <img src="<?= imagePath("web_images/icons", "image.svg") ?>" width='40px' height='40px' class='rounded-circle object-fit-cover'>
                                     </label>

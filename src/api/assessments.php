@@ -28,11 +28,11 @@ if(isset($_REQUEST["sendAssessment"]) && isset($_GET["assessment_id"])){
     msg("success","สำเร็จ!","ทำแบบประเมินสำเร็จแล้ว!",$_SERVER["HTTP_REFERER"]);
 }
 
+
 if(isset($_GET["visitors"]) && isset($_GET["assessment_id"])){
     $assessment_id = $_GET["assessment_id"];
     $assessment = sql("SELECT * FROM assessments WHERE assessment_id = ?",[$assessment_id])->fetch();
-
-    sql("UPDATE assessments SET visitors = ? WHERE assessment_id = ?",[$assessment["visitors"] + 1,$assessment_id]);
+    sql("UPDATE assessments SET visitors = ? WHERE assessment_id = ?",[$assessment["visitors"] + 1,$assessment["assessment_id"]]);
 }
 
 ?>

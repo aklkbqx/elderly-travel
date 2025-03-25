@@ -14,7 +14,7 @@
                     <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
                 </div>
                 <div class="modal-body">
-                    <input type="file" name="image" id="select-image" hidden onchange="$('#image-preview').attr('src',window.URL.createObjectURL(this.files[0]))">
+                    <input type="file" accept="image/*" name="image" id="select-image" hidden onchange="$('#image-preview').attr('src',window.URL.createObjectURL(this.files[0]))">
                     <label for='select-image' class='d-flex justify-content-center btn btn-outline-light border-0 flex-column align-items-center gap-2 mb-2'>
                         <img id='image-preview' src="<?= imagePath("user_images","default-profile.png") ?>" width='200px' height='200px' class='rounded-circle border object-fit-cover'>
                         <div class='btn btn-outline-teal'>เปลี่ยนรูปภาพโปรไฟล์</div>
@@ -110,7 +110,7 @@
                                                 <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
                                             </div>
                                             <div class="modal-body">
-                                                <input type="file" name="image" id="select-image-<?= $user["user_id"] ?>" hidden onchange="$('#image-preview-<?= $user['user_id'] ?>').attr('src',window.URL.createObjectURL(this.files[0]))">
+                                                <input type="file" accept="image/*" name="image" id="select-image-<?= $user["user_id"] ?>" hidden onchange="$('#image-preview-<?= $user['user_id'] ?>').attr('src',window.URL.createObjectURL(this.files[0]))">
                                                 <label for='select-image-<?= $user["user_id"] ?>' class='d-flex justify-content-center btn btn-outline-light border-0 flex-column align-items-center gap-2 mb-2'>
                                                     <img id='image-preview-<?= $user['user_id'] ?>' src="<?= imagePath("user_images",$user["image"]) ?>" width='200px' height='200px' class='rounded-circle border object-fit-cover'>
                                                     <div class='btn btn-outline-teal'>เปลี่ยนรูปภาพโปรไฟล์</div>

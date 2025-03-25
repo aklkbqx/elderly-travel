@@ -1,7 +1,7 @@
 <div class='row'>
     <div class='col-lg-4'>
         <form action="../api/posts.php" method='post' enctype='multipart/form-data' class="mb-5">
-            <input name='image' id='imagePost' hidden type="file" onchange="$('#previewImage').attr('src',window.URL.createObjectURL(this.files[0]));$('#imagePreview').removeClass('d-none')">
+            <input name='image' accept="image/*" id='imagePost' hidden type="file" onchange="$('#previewImage').attr('src',window.URL.createObjectURL(this.files[0]));$('#imagePreview').removeClass('d-none')">
             <div class='d-flex align-items-center gap-2'>
                 <img src="<?= imagePath("user_images", $row["image"]) ?>" alt="" class='border rounded-circle object-fit-cover' width='50px' height='50px'>
                 <div><?= $row["firstname"] ?> <?= $row["lastname"] ?></div>
@@ -68,7 +68,7 @@
                                                 <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
                                             </div>
                                             <div class="modal-body">
-                                                <input name='image' id='imagePost<?= $post["post_id"] ?>' hidden type="file" onchange="$('#previewImage<?= $post['post_id'] ?>').attr('src',window.URL.createObjectURL(this.files[0]));$('#imagePreview<?= $post['post_id'] ?>').removeClass('d-none')">
+                                                <input name='image' accept="image/*" id='imagePost<?= $post["post_id"] ?>' hidden type="file" onchange="$('#previewImage<?= $post['post_id'] ?>').attr('src',window.URL.createObjectURL(this.files[0]));$('#imagePreview<?= $post['post_id'] ?>').removeClass('d-none')">
                                                 <div class='d-flex align-items-center gap-2'>
                                                     <img src="<?= imagePath("user_images", $user["image"]) ?>" alt="" class='border rounded-circle object-fit-cover' width='50px' height='50px'>
                                                     <div><?= $user["firstname"] ?> <?= $user["lastname"] ?></div>

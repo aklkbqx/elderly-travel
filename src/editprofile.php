@@ -23,13 +23,15 @@ if (isset($_SESSION["user_login"])) {
 </head>
 
 <body>
-    <?php require "components/nav.php"; ?>
+    <?php
+    require "components/nav.php";
+    require_once("components/popChats.php");
+    require_once("components/options.php");
+    ?>
     <div style='margin-top:10rem' class='container'>
-
         <div class='mb-2'>
-            <?php backPage("javascript:window.history.back()") ?>
+            <?php backPage("/") ?>
         </div>
-
         <div class='container shadow p-4 rounded-xl'>
             <form method='post' action='api/user.php' class='row' enctype='multipart/form-data'>
                 <?php require_once("components/editprofile.php"); ?>

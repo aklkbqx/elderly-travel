@@ -36,12 +36,7 @@ $score = [
     ?>
 
     <div class='container mb-2' style='margin-top:10rem'>
-        <div class='d-flex'>
-            <a href="/" class='d-flex gap-1 align-items-center text-decoration-none text-dark'>
-                <img src="<?= imagePath("web_images/icons", "chevron-back.svg") ?>" width='15px' height='15px' class='object-fit-cover'>
-                กลับ
-            </a>
-        </div>
+        <?php backPage('/'); ?>
 
         <?php
         if (isset($_GET["assessment_id"])) {
@@ -52,7 +47,7 @@ $score = [
             $responses = $assessment_responses ? json_decode($assessment_responses["responses"]) : null;
         ?>
             <form action="api/assessments.php?assessment_id=<?= $assessment_id ?>" method='post'>
-                <div class='mt-2 bg-white overflow-hidden rounded-xl border shadow-sm'>
+                <div class='mt-2 overflow-hidden rounded-xl border shadow-sm'>
                     <div class='bg-teal w-100' style='height:20px'></div>
                     <div class='px-5 py-4 position-relative'>
                         <?php if ($responses) { ?>
@@ -63,7 +58,7 @@ $score = [
                     </div>
                 </div>
 
-                <div class='mt-2 bg-white overflow-hidden position-relative rounded-xl border shadow-sm'>
+                <div class='mt-2 overflow-hidden position-relative rounded-xl border shadow-sm'>
                     <div class='table-responsive p-4'>
                         <table class="table table-striped">
                             <thead>
@@ -99,7 +94,7 @@ $score = [
 
                 <?php
                 if ($assessment["additional"]) { ?>
-                    <div class='mt-2 bg-white overflow-hidden position-relative rounded-xl border shadow-sm'>
+                    <div class='mt-2 overflow-hidden position-relative rounded-xl border shadow-sm'>
                         <div class='px-5 py-4'>
                             <h5><?= $assessment["additional"] ?></h5>
                             <input type="text" class="form-control mt-2" name='additional' placeholder='คำตอบ' required <?= $responses ? 'value="' . $assessment_responses["additional"] . '" disabled' : "" ?>>
@@ -122,10 +117,10 @@ $score = [
             <script>
                 setTimeout(() => {
                     $.ajax({
-                        url: "api/assessments.php?visitors&assessment_id=<?= $assessment_id ?>",
-                        type: "POST",
-                    });
-                }, 5000);
+                        url: "./api/assessments.php?visitors&assessment_id=<?= $assessment_id ?>",
+                        type: "post"
+                    })
+                }, 2000);
             </script>
         <?php } ?>
     </div>

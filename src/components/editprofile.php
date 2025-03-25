@@ -3,7 +3,7 @@
         <label for="select-image" class='cursor-pointer'>
             <img id='image-preview' src="<?= imagePath("user_images",$row["image"]) ?>" width='300px' height='300px' class='border rounded-circle bg-light object-fit-cover'>
         </label>
-        <input id='select-image' type="file" name='image' hidden onchange="$('#image-preview').attr('src',window.URL.createObjectURL(this.files[0]))">
+        <input id='select-image' type="file" accept="image/*" name='image' hidden onchange="$('#image-preview').attr('src',window.URL.createObjectURL(this.files[0]))">
         <label for="select-image" class='btn btn-outline-teal mt-2'>แก้ไขรูปภาพ</label>
     </div>
 </div>

@@ -63,7 +63,7 @@
                     <div class="overflow-x-auto p-2" style="white-space: nowrap;">
                         <div id="image-preview-container" class="d-flex align-items-center gap-2 position-relative">
                             <div class='addImage'>
-                                <input type="file" multiple name="image[]" id="select-image" accept="image/*" class="position-absolute border rounded-xl cursor-pointer opacity-0" style="width:200px;height:200px;">
+                                <input type="file" accept="image/*" multiple name="image[]" id="select-image" accept="image/*" class="position-absolute border rounded-xl cursor-pointer opacity-0" style="width:200px;height:200px;">
                                 <label for="select-image" class="d-flex align-items-center justify-content-center btn fs-1" style="width: 200px;height:200px;border:2px dashed #ffff">+</label>
                             </div>
                         </div>
@@ -260,7 +260,7 @@
                                                             <?php } ?>
 
                                                             <div class='addImage'>
-                                                                <input type="file" multiple name="image[]" id="edit-select-image-<?= $place["place_id"] ?>" accept="image/*" class="position-absolute border rounded-xl cursor-pointer opacity-0" style="width:200px;height:200px;">
+                                                                <input type="file" accept="image/*" multiple name="image[]" id="edit-select-image-<?= $place["place_id"] ?>" accept="image/*" class="position-absolute border rounded-xl cursor-pointer opacity-0" style="width:200px;height:200px;">
                                                                 <label for="edit-select-image-<?= $place["place_id"] ?>" class="d-flex align-items-center justify-content-center btn fs-1" style="width: 200px;height:200px;border:2px dashed #ffff">+</label>
                                                             </div>
                                                         </div>

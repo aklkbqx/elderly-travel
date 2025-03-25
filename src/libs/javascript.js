@@ -22,6 +22,10 @@ function setZoom(zoomValue) {
 }
 
 $(document).ready(() => {
+    if(!localStorage.getItem("zoomValue")){
+        localStorage.setItem('zoomValue', '100%');
+    }
+
     if (localStorage.getItem("theme")) {
         $("html").attr("data-bs-theme", localStorage.getItem("theme"));
         $("#toggleTheme").text(localStorage.getItem("theme") !== "light" ? "🌤️" : "🌙");

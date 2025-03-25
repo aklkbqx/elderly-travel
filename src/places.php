@@ -200,7 +200,7 @@ if (isset($_SESSION["user_login"])) {
                                 <div>
                                     <div class='mb-2 fw-semibold fs-5'><?= $place["name"] ?></div>
                                     <div class='d-flex align-items-center gap-1'>
-                                        <img src="<?= imagePath("web_images/icons", "eye.png") ?>" width='20px' height='20px' class='object-fit-cover'>
+                                        <img src="<?= imagePath("web_images/icons", "eye.svg") ?>" width='20px' height='20px' class='object-fit-cover svg-icon'>
                                         <div>จำนวนผู้เข้าชม <span><?= $place["visitors"] ?></span></div>
                                     </div>
                                     <div class='d-flex align-items-center gap-1'>

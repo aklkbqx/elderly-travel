@@ -14,7 +14,7 @@
                     <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
                 </div>
                 <div class="modal-body">
-                    <input type="file" name="image" id="select-image" hidden onchange="$('#image-preview').attr('src',window.URL.createObjectURL(this.files[0]))">
+                    <input type="file" accept="image/*" name="image" id="select-image" hidden onchange="$('#image-preview').attr('src',window.URL.createObjectURL(this.files[0]))">
                     <label for='select-image' class='d-flex justify-content-center btn btn-outline-light border-0 flex-column align-items-center gap-2 mb-2'>
                         <img id='image-preview' src="<?= imagePath("news_images","placeholder.png") ?>" width='100%' height='200px' class='rounded-xl border object-fit-cover'>
                         <div class='btn btn-outline-teal'>เปลี่ยนรูปข่าว</div>
@@ -109,7 +109,7 @@
                                                     <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <input type="file" name="image" id="select-image-<?= $news['news_id'] ?>" hidden onchange="$('#image-preview-<?= $news['news_id'] ?>').attr('src',window.URL.createObjectURL(this.files[0]))">
+                                                    <input type="file" accept="image/*" name="image" id="select-image-<?= $news['news_id'] ?>" hidden onchange="$('#image-preview-<?= $news['news_id'] ?>').attr('src',window.URL.createObjectURL(this.files[0]))">
                                                     <label for='select-image-<?= $news['news_id'] ?>' class='d-flex justify-content-center btn btn-outline-light border-0 flex-column align-items-center gap-2 mb-2'>
                                                         <img id='image-preview-<?= $news['news_id'] ?>' src="<?= imagePath("news_images",$news["image"]) ?>" width='100%' height='200px' class='rounded-xl border object-fit-cover' />
                                                         <div class='btn btn-outline-teal'>เปลี่ยนรูปข่าว</div>

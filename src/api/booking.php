@@ -16,41 +16,121 @@ if (isset($_GET["cancel_booking"])) {
 }
 
 if (isset($_GET["getBookings"]) && $_SERVER["REQUEST_METHOD"] == "GET") {
-    $html = '';
     $booking = sql("SELECT * FROM bookings WHERE user_id = ? AND status = 'PENDING'", [$user["user_id"]])->fetch();
-    $booking_details = json_decode($booking["booking_details"]);
-    echo $booking["booking_details"];
+    if($booking){
+        $booking_details = json_decode($booking["booking_details"], true);
+        echo json_encode($booking_details);
+    }else{
+        echo json_encode([]);
+    }
 }
 
 if (isset($_GET["addToBookings"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
     $place_id = $_POST["place_id"];
+    $date = $_POST["date"];
     $place = sql("SELECT * FROM places WHERE place_id = ?", [$place_id])->fetch();
     $booking = sql("SELECT * FROM bookings WHERE user_id = ? AND status = 'PENDING'", [$user["user_id"]])->fetch();
-    $booking_details = json_decode($booking["booking_details"]);
-    $detail = $booking_details;
-    $detail[] = [
+    $booking_details = json_decode($booking["booking_details"], true);
+
+    if (!isset($booking_details[$date])) {
+        $booking_details[$date] = [];
+    }
+
+    $lastEndTime = "07:00";
+    if (!empty($booking_details[$date])) {
+        $lastBooking = end($booking_details[$date]);
+        $lastEndTime = $lastBooking['end_time'];
+    }
+
+    $startTime = date('H:i', strtotime($lastEndTime . ' + 1 hour'));
+    $endTime = date('H:i', strtotime($startTime . ' + 1 hour'));
+
+    $place_data = [
         "place_id" => $place["place_id"],
-        "name" => $place["name"]
+        "name" => $place["name"],
+        "start_time" => $startTime,
+        "end_time" => $endTime, 
+        "price" => $place["price"]
     ];
-    $updated = sql("UPDATE bookings SET booking_details = ? WHERE booking_id = ?", [
-        json_encode($detail),
-        $booking["booking_id"]
-    ]);
-    $booking = sql("SELECT * FROM bookings WHERE user_id = ? AND status = 'PENDING'", [$user["user_id"]])->fetch();
-    echo $booking["booking_details"];
-}
 
-if (isset($_GET["removeFromBookings"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
-    $place_id = $_POST["place_id"];
-    $booking = sql("SELECT * FROM bookings WHERE user_id = ? AND status = 'PENDING'", [$user["user_id"]])->fetch();
-    $booking_details = json_decode($booking["booking_details"]);
-
-    $booking_details = array_values(array_filter($booking_details, function ($detail) use ($place_id) {
-        return $detail->place_id != $place_id;
-    }));
+    $booking_details[$date][] = $place_data;
 
     sql("UPDATE bookings SET booking_details = ? WHERE booking_id = ?", [
         json_encode($booking_details),
         $booking["booking_id"]
     ]);
+
+    echo json_encode($booking_details);
 }
+
+if (isset($_GET["removeFromBookings"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
+    $date = $_POST["date"];
+    $place_id = $_POST["place_id"];
+    $booking = sql("SELECT * FROM bookings WHERE user_id = ? AND status = 'PENDING'", [$user["user_id"]])->fetch();
+    $booking_details = json_decode($booking["booking_details"], true);
+
+    if (isset($booking_details[$date])) {
+        // หาตำแหน่ง index ของสถานที่ที่ต้องการลบ
+        $indexToRemove = null;
+        foreach ($booking_details[$date] as $index => $detail) {
+            if ($detail["place_id"] == $place_id) {
+                $indexToRemove = $index;
+                break;
+            }
+        }
+        
+        // ถ้าพบสถานที่ที่ต้องการลบ ให้ลบออกจาก array
+        if ($indexToRemove !== null) {
+            array_splice($booking_details[$date], $indexToRemove, 1);
+        }
+    }
+
+    sql("UPDATE bookings SET booking_details = ? WHERE booking_id = ?", [
+        json_encode($booking_details),
+        $booking["booking_id"]
+    ]);
+
+    echo json_encode(["status" => "success"]);
+}
+
+if (isset($_GET["updateBookingTime"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
+    $place_id = $_POST["place_id"];
+    $time = $_POST["time"];
+    $type = $_POST["type"];
+    $date = $_POST["date"];
+    
+    $booking = sql("SELECT * FROM bookings WHERE user_id = ? AND status = 'PENDING'", [$user["user_id"]])->fetch();
+    $booking_details = json_decode($booking["booking_details"], true);
+
+    if (isset($booking_details[$date])) {
+        foreach ($booking_details[$date] as &$detail) {
+            if ($detail["place_id"] == $place_id) {
+                $detail[$type] = $time;
+                break;
+            }
+        }
+    }
+
+    sql("UPDATE bookings SET booking_details = ? WHERE booking_id = ?", [
+        json_encode($booking_details),
+        $booking["booking_id"]
+    ]);
+
+    echo json_encode(["status" => "success"]);
+}
+
+if (isset($_GET["getPlaceDetails"]) && $_SERVER["REQUEST_METHOD"] == "GET") {
+    $place_id = $_GET["place_id"];
+    $place = sql("SELECT * FROM places WHERE place_id = ?", [$place_id])->fetch();
+    
+    if ($place) {
+        echo json_encode([
+            "description" => $place["description"],
+            "price" => $place["price"]
+        ]);
+    } else {
+        echo json_encode([]);
+    }
+}
+
+

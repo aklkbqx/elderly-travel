@@ -27,7 +27,7 @@ if (isset($_SESSION["user_login"])) {
     ?>
     <div class='container mb-5' style='margin-top:10rem'>
 
-        <?php backPage('javascript:window.history.back()'); ?>
+        <?php backPage('/'); ?>
 
         <?php if (isset($_GET["news_id"])) {
             $news_id = $_GET["news_id"];
@@ -76,8 +76,7 @@ if (isset($_SESSION["user_login"])) {
                     ?>
 
                     <div class='mt-4'>
-                        <?php
-                        while ($news_comnent = $news_comnents->fetch()) { ?>
+                        <?php while ($news_comnent = $news_comnents->fetch()) { ?>
                             <div class='d-flex align-items-center justify-content-between'>
                                 <div class='d-flex align-items-start gap-2 mb-4'>
                                     <img src="<?= imagePath("user_images", $news_comnent["image"]); ?>" class='rounded-circle border object-fit-cover' width='50px' height='50px'>
@@ -112,7 +111,7 @@ if (isset($_SESSION["user_login"])) {
                             <div>
                                 <div class='mb-2 fw-semibold fs-5'><?= $news["title"] ?></div>
                                 <div class='d-flex align-items-center gap-1'>
-                                    <img src="<?= imagePath("web_images/icons", "eye.png") ?>" width='20px' height='20px' class='object-fit-cover'>
+                                    <img src="<?= imagePath("web_images/icons", "eye.svg") ?>" width='20px' height='20px' class='object-fit-cover svg-icon'>
                                     <div>จำนวนผู้เข้าชม <span><?= $news["visitors"] ?></span></div>
                                 </div>
                                 <div class='d-flex align-items-center gap-1'>
@@ -141,10 +140,14 @@ if (isset($_SESSION["user_login"])) {
                 if ($fetchAllNews->rowCount() > 0) {
                     while ($news = $fetchAllNews->fetch()) { ?>
                         <div class='col-lg-4 mb-2'>
-                            <div class=' rounded-xl border overflow-hidden'>
-                                <img src="<?= imagePath("news_images", $news["image"]) ?>" width="100%" height='200px' class='object-fit-cover '>
-                                <div class='p-2'>
-                                    <h5 class='fw-bold'><?= $news["title"] ?></h5>
+                            <div class='rounded-xl border overflow-hidden d-flex flex-column justify-content-between' style="height: 320px;">
+                                <div>
+                                    <img src="<?= imagePath("news_images", $news["image"]) ?>" width="100%" height='200px' class='object-fit-cover '>
+                                    <div class="p-2">
+                                        <h5 class='fw-bold'><?= $news["title"] ?></h5>
+                                    </div>
+                                </div>
+                                <div class="px-2 pb-2">
                                     <a href="news.php?news_id=<?= $news["news_id"] ?>" class='btn btn-teal mt-2 w-100'>อ่านรายละเอียดเพิ่มเติม</a>
                                 </div>
                             </div>

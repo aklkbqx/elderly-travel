@@ -28,7 +28,7 @@ if (isset($_SESSION["user_login"])) {
     ?>
 
     <div class='container' style='margin-top:10rem'>
-        <?php backPage(); ?>
+        <?php backPage("/"); ?>
 
         <div class='border shadow-sm mt-2 rounded-xl mb-4 p-2'>
             <?php
@@ -62,7 +62,7 @@ if (isset($_SESSION["user_login"])) {
                                 <div><?= $row["firstname"] ?> <?= $row["lastname"] ?></div>
                             </div>
                             <textarea name="text" class='form-control mb-2 mt-2' style='min-height:100px' placeholder='เขียนโพสต์ของคุณ' required></textarea>
-                            <input id='chooseImageFile' type="file" name='image' hidden onchange='$("#imagePreview").attr("src",window.URL.createObjectURL(this.files[0]));$("#imageBlock").removeClass("d-none")'>
+                            <input id='chooseImageFile' type="file" accept="image/*" name='image' hidden onchange='$("#imagePreview").attr("src",window.URL.createObjectURL(this.files[0]));$("#imageBlock").removeClass("d-none")'>
                             <label for="chooseImageFile" class='btn btn-outline-light border-0' style="font-size: 30px;">🖼️</label>
                             <div class="d-none p-2" id='imageBlock'>
                                 <div style='width:100%;height:300px' class="position-relative">
@@ -121,7 +121,7 @@ if (isset($_SESSION["user_login"])) {
                                                     </div>
                                                 </div>
                                                 <textarea name="text" class='form-control mb-2 mt-2' style='min-height:100px' placeholder='เขียนโพสต์ของคุณ' required><?= $post["text"] ?></textarea>
-                                                <input id='chooseImageFile-<?= $post["post_id"] ?>' type="file" name='image' hidden onchange='$("#imagePreview-<?= $post["post_id"] ?>").attr("src",window.URL.createObjectURL(this.files[0]));$("#imageBlock-<?= $post["post_id"] ?>").removeClass("d-none")'>
+                                                <input id='chooseImageFile-<?= $post["post_id"] ?>' type="file" accept="image/*" name='image' hidden onchange='$("#imagePreview-<?= $post["post_id"] ?>").attr("src",window.URL.createObjectURL(this.files[0]));$("#imageBlock-<?= $post["post_id"] ?>").removeClass("d-none")'>
                                                 <?php
                                                 if ($post["post_image"]) { ?>
                                                     <label for="chooseImageFile-<?= $post["post_id"] ?>" class='btn btn-outline-light border-0' style="font-size: 30px;">🖼️</label>

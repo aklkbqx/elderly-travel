@@ -1,4 +1,6 @@
-<?php function formSelectDateBooking()
+<?php
+require_once("svg.php");
+function formSelectDateBooking()
 { ?>
     <form action="booking.php" method="post" class="shadow mt-2 mt-xl-0 booking-card mb-2" style="border-radius:1.5rem;z-index:1">
         <h3>จองทริปการท่องเที่ยว</h3>
@@ -12,7 +14,7 @@
                 <label for="เช็คเอาท์">เช็คเอาท์</label>
             </div>
         </div>
-        <div class="my-5">
+        <div class="my-3">
             <div class="text-center">จำนวนคน</div>
             <div class="d-flex align-items-center justify-content-between gap-2">
                 <button type='button' onclick="chanagePeople('minus')" class="btn btn-light rounded-xl fs-5 border">-</button>
@@ -69,25 +71,32 @@
     </form>
 <?php }
 
-function placeCardBooking($place, $booking = false, $user_id = 0)
-{ ?>
-    <div class='w-100 border shadow rounded-xl row overflow-hidden mb-2'>
-        <div class='col-lg-4 p-0'>
+function placeCardBooking($place, $booked = false, $user_id = 0)
+{
+?>
+    <div class='w-100 border shadow rounded-xl overflow-hidden mb-2 d-md-flex'>
+        <div class="col-lg-4">
             <img src="<?= imagePath("place_images", json_decode($place["images"])[0]) ?>" alt="" width="100%" height="250px" class='object-fit-cover'>
         </div>
         <div class='col-lg-8 p-4 d-flex flex-column position-relative'>
             <div>
-                <h5><?= $place["name"] ?></h5>
+                <h4 class="mb-2"><?= $place["name"] ?></h4>
                 <div>
-                    <p>📍 <span><?= $place["address"] ?></span></p>
+                    <p class="mb-1">
+                        <?php svg("map-pin", "25px", "25px", "#212529") ?>
+                        <span><?= $place["address"] ?></span>
+                    </p>
                 </div>
                 <div>
-                    <h6>❤️ ผลต่อสุขภาพ</h6>
+                    <h6>
+                        <?php svg("heart", "25px", "25px", "#dc3545") ?>
+                        ผลต่อสุขภาพ:
+                    </h6>
                     <p><?= $place["health"] ?></p>
                 </div>
-                <div>
+                <h5>
                     ราคา: <?= $place["price"] ?>
-                </div>
+                </h5>
             </div>
             <div class='position-absolute d-flex flex-column gap-2' style="top:10px; right:10px">
                 <div class='badge text-bg-success'><?= sql("SELECT * FROM place_categories WHERE category_id = ?", [$place["category_id"]])->fetch()["name"]; ?></div>
@@ -111,8 +120,8 @@ function placeCardBooking($place, $booking = false, $user_id = 0)
                 </div>
             </div>
             <div class="d-flex gap-2 align-items-center mt-auto">
-                <?php if ($booking) { ?>
-                    <button type='button' data-addto-booking-button='<?= $place["place_id"]; ?>' onclick='addToBookings(<?= $place["place_id"] ?>)' class='btn btn-teal rounded-xl w-100'>เพิ่มลงในรายการจอง</button>
+                <?php if ($booked) { ?>
+                    <button type='button' data-addPlaceId='<?= $place["place_id"]; ?>' class='btn btn-teal rounded-xl w-100'>เพิ่มลงในรายการจอง</button>
                     <?php } else {
                     $fetchBooking = sql("SELECT * FROM bookings WHERE user_id = ? AND status = 'PENDING'", [$user_id]);
                     if ($fetchBooking->rowCount() === 1) { ?>
@@ -143,7 +152,7 @@ function cancelBooking($booking)
                 <div class="modal-footer d-flex w-100 align-items-center">
                     <div class="w-100 d-flex align-items-center gap-2">
                         <button type="reset" data-bs-dismiss='modal' class='btn btn-light w-100'>ปิด</button>
-                        <button type="submit" name='deleteUser' class='btn btn-danger w-100'>ยืนยันการยกเลิก</button>
+                        <button type="submit" id="confirmCancelBooking" class='btn btn-danger w-100'>ยืนยันการยกเลิก</button>
                     </div>
                 </div>
             </form>
