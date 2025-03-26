@@ -53,13 +53,10 @@ if (isset($_SESSION["user_login"])) {
                     <div><?= $news["body"] ?></div>
 
                     <div class='d-flex justify-content-between mt-4 mb-2'>
-                        <?php
-                        if (isLogin()) { ?>
-                            <a href="./api/news.php?like&news_id=<?= $news_id ?>" class='text-decoration-none d-flex align-items-center gap-1 btn btn-light'>
-                                <img src="<?= imagePath("web_images/icons", $heart) ?>" width='30px' height='30px' class='object-fit-cover'>
-                                <div class=''><?= sql("SELECT COUNT(*) as count FROM news_likes WHERE news_id = ?", [$news_id])->fetch()["count"] ?></div>
-                            </a>
-                        <?php } ?>
+                        <a href="<?= isLogin() ? "./api/news.php?like&news_id=$news_id" : "login.php" ?>" class='text-decoration-none d-flex align-items-center gap-1 btn btn-light'>
+                            <img src="<?= imagePath("web_images/icons", $heart) ?>" width='30px' height='30px' class='object-fit-cover'>
+                            <div class=''><?= sql("SELECT COUNT(*) as count FROM news_likes WHERE news_id = ?", [$news_id])->fetch()["count"] ?></div>
+                        </a>
                         <div class='d-flex align-items-center gap-2'>
                             <img src="<?= imagePath("web_images/icons", "eye.svg") ?>" width='30px' height='30px' class='object-fit-cover svg-icon'>
                             <div>จำนวนผู้เข้าชม <span><?= $news["visitors"] ?></span></div>

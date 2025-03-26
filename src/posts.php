@@ -27,7 +27,7 @@ if (isset($_SESSION["user_login"])) {
     require_once("components/options.php");
     ?>
 
-    <div class='container' style='margin-top:10rem'>
+    <div class='mx-auto' style='margin-top:10rem;max-width:1000px'>
         <?php backPage("/"); ?>
 
         <div class='border shadow-sm mt-2 rounded-xl mb-4 p-2'>
@@ -143,7 +143,7 @@ if (isset($_SESSION["user_login"])) {
                         <?= $post["text"] ?>
                     </div>
                     <?php if ($post["post_image"] !== null) { ?>
-                        <img src="<?= imagePath("post_images", $post["post_image"]) ?>" width='100%' height='400px' class='object-fit-cover'>
+                        <img src="<?= imagePath("post_images", $post["post_image"]) ?>" width='100%' height='600px' class='object-fit-cover'>
                     <?php } ?>
                     <div class='p-2 px-4 d-flex justify-content-between'>
                         <div>ถูกใจแล้ว <span id="like-count-id-<?= $post["post_id"] ?>"></span> คน</div>
@@ -153,16 +153,13 @@ if (isset($_SESSION["user_login"])) {
                     $post_like = sql("SELECT * FROM post_likes WHERE post_id = ?", [$post["post_id"]])->fetch();
                     ?>
 
-                    <?php
-                    if (isLogin()) { ?>
-                        <div class='p-2 px-4 d-flex justify-content-between border-top gap-2'>
-                            <button type='button' onclick="likePost($(this),'<?= $post['post_id'] ?>')" class='btn <?= ($row && $post_like) && $row["user_id"] == $post_like["user_id"] ? "btn-teal" : "btn-outline-light" ?>  w-100 border d-flex align-items-center gap-2 justify-content-center'>
-                                <img src="<?= ($row && $post_like) && $row["user_id"] == $post_like["user_id"] ? imagePath("web_images/icons", "heart-red.png") : imagePath("web_images/icons", "heart-black.png") ?> " width='15px' height='15px' class='object-fit-cover svg-icon'>
-                                <div><?= ($row && $post_like) && $row["user_id"] == $post_like["user_id"] ? "ถูกใจแล้ว" : "ถูกใจ" ?></div>
-                            </button>
-                            <button type='button' data-bs-toggle='modal' data-bs-target='#commentModel-<?= $post['post_id'] ?>' class='btn btn-outline-light w-100 border'>แสดงความคิดเห็น</button>
-                        </div>
-                    <?php } ?>
+                    <div class='p-2 px-4 d-flex justify-content-between border-top gap-2'>
+                        <button type='button' onclick="<?= isLogin() ? "likePost($(this),'" . $post['post_id'] . "')" : "window.location = 'login.php'" ?>" class='btn <?= ($row && $post_like) && $row["user_id"] == $post_like["user_id"] ? "btn-teal" : "" ?>  w-100 border d-flex align-items-center gap-2 justify-content-center'>
+                            <img src="<?= ($row && $post_like) && $row["user_id"] == $post_like["user_id"] ? imagePath("web_images/icons", "heart-red.png") : imagePath("web_images/icons", "heart-black.png") ?> " width='15px' height='15px' class='object-fit-cover svg-icon'>
+                            <div><?= ($row && $post_like) && $row["user_id"] == $post_like["user_id"] ? "ถูกใจแล้ว" : "ถูกใจ" ?></div>
+                        </button>
+                        <button type='button' data-bs-toggle='modal' data-bs-target='#commentModel-<?= $post['post_id'] ?>' class='btn w-100 border'>แสดงความคิดเห็น</button>
+                    </div>
 
                     <div class="modal fade" id='commentModel-<?= $post['post_id'] ?>'>
                         <div class="modal-dialog modal-dialog-centered modal-xl">

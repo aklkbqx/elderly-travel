@@ -64,13 +64,10 @@ if (isset($_SESSION["user_login"])) {
                         <div>💰 ราคา: <?= $place["price"] ?></div>
 
                         <div class='d-flex justify-content-between mt-4 mb-2'>
-                            <?php
-                            if (isLogin()) { ?>
-                                <a href="./api/place.php?like&place_id=<?= $place_id ?>" class='text-decoration-none d-flex align-items-center gap-1 btn btn-light'>
-                                    <img src="<?= imagePath("web_images/icons", $heart) ?>" width='30px' height='30px' class='object-fit-cover'>
-                                    <div class=''><?= sql("SELECT COUNT(*) as count FROM place_likes WHERE place_id = ?", [$place_id])->fetch()["count"] ?></div>
-                                </a>
-                            <?php } ?>
+                            <a href="<?= isLogin() ? "./api/place.php?like&place_id=$place_id" : "login.php" ?>" class='text-decoration-none d-flex align-items-center gap-1 btn btn-light'>
+                                <img src="<?= imagePath("web_images/icons", $heart) ?>" width='30px' height='30px' class='object-fit-cover'>
+                                <div class=''><?= sql("SELECT COUNT(*) as count FROM place_likes WHERE place_id = ?", [$place_id])->fetch()["count"] ?></div>
+                            </a>
                             <div class='d-flex align-items-center gap-2'>
                                 <img src="<?= imagePath("web_images/icons", "eye.svg") ?>" width='30px' height='30px' class='object-fit-cover svg-icon'>
                                 <div>จำนวนผู้เข้าชม <span><?= $place["visitors"] ?></span></div>
@@ -78,7 +75,7 @@ if (isset($_SESSION["user_login"])) {
                         </div>
 
                         <?php
-                        if (sql("SELECT * FROM place_reviews WHERE user_id = ?", [$row["user_id"]])->rowCount() != 1) { ?>
+                        if (isLogin() && sql("SELECT * FROM place_reviews WHERE user_id = ?", [$row["user_id"]])->rowCount() != 1) { ?>
                             <div class="mt-4" id="reviewSection">
                                 <h5>ให้คะแนนและรีวิว</h5>
                                 <div class="d-flex align-items-center gap-2 mt-2" id="starContainer">
@@ -226,7 +223,7 @@ if (isset($_SESSION["user_login"])) {
                 $fetchPlaces = sql("SELECT * FROM places");
                 if ($fetchPlaces->rowCount() > 0) {
                     while ($place = $fetchPlaces->fetch()) {
-                        placeCardBooking($place,false,$row ? $row["user_id"] : 0);
+                        placeCardBooking($place, false, $row ? $row["user_id"] : 0);
                     }
                 } else { ?>
                     <h5 class='text-center text-muted'>ยังไม่มีสถานที่ในขณะนี้...</h5>
