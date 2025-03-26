@@ -2,51 +2,51 @@ services:
   php:
     container_name: php
     build: .
-    ports:
-      - 3000:80
+    # ports:
+    #   - 3000:80
     volumes:
       - ./src:/var/www/html/
-    depends_on:
-      - mariadb
-    # labels:
-    #   - "traefik.enable=true"
-    #   - "traefik.http.routers.elderly-travel.entrypoints=web"
-    #   - "traefik.http.routers.elderly-travel.rule=Host(`elderly-travel.aklkbqx.xyz`)"
-    #   - "traefik.http.services.elderly-travel.loadbalancer.server.port=80"
+    # depends_on:
+    #   - mariadb
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.elderly-travel.entrypoints=web"
+      - "traefik.http.routers.elderly-travel.rule=Host(`elderly-travel.aklkbqx.xyz`)"
+      - "traefik.http.services.elderly-travel.loadbalancer.server.port=80"
     networks:
-      # - web_network
-      - app_network
+      - web_network
+      # - app_network
 
-  mariadb:
-    container_name: mariadb
-    image: mariadb
-    environment:
-      MARIADB_ROOT_PASSWORD: ROOT_PASSWORD
-      MARIADB_USER: username
-      MARIADB_PASSWORD: password
-      MARIADB_DATABASE: elderly_db
-      TZ: 'Asia/Bangkok'
-    ports:
-      - 3306:3306
-    volumes:
-      - ./mariadb/data:/var/lib/mysql
-    networks:
-      - app_network
+  # mariadb:
+  #   container_name: mariadb
+  #   image: mariadb
+  #   environment:
+  #     MARIADB_ROOT_PASSWORD: ROOT_PASSWORD
+  #     MARIADB_USER: username
+  #     MARIADB_PASSWORD: password
+  #     MARIADB_DATABASE: elderly_db
+  #     TZ: 'Asia/Bangkok'
+  #   ports:
+  #     - 3306:3306
+  #   volumes:
+  #     - ./mariadb/data:/var/lib/mysql
+  #   networks:
+  #     - app_network
 
-  phpmyadmin:
-    container_name: phpmyadmin
-    image: phpmyadmin
-    ports:
-      - 8888:80
-    environment:
-      PMA_HOST: mariadb
-    depends_on:
-      - mariadb
-    networks:
-      - app_network
+  # phpmyadmin:
+  #   container_name: phpmyadmin
+  #   image: phpmyadmin
+  #   ports:
+  #     - 8888:80
+  #   environment:
+  #     PMA_HOST: mariadb
+  #   depends_on:
+  #     - mariadb
+  #   networks:
+  #     - app_network
 
 networks:
   app_network:
     driver: bridge
-  # web_network:
-  #   external: true
+  web_network:
+    external: true
