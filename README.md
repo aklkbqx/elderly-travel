@@ -67,7 +67,6 @@ If you want to contribute or report an issue, please open an Issue or Pull Reque
 <img src='https://github.com/user-attachments/assets/380f8cec-6cf2-425d-a6a1-c1b135c6dc88' width='50%' height='100%' />
 <img src='https://github.com/user-attachments/assets/60a7099e-8a4c-41f1-a10b-0020d3dade38' width='50%' height='100%' />
 <img src='https://github.com/user-attachments/assets/dcd96a4e-d7f7-49fc-ba31-9055e4fdcccc' width='50%' height='100%' />
-<img src='https://github.com/user-attachments/assets/701a4f31-2cf3-4230-b544-eb7bbb1428c5' width='50%' height='100%' />
 </div>
 
 
