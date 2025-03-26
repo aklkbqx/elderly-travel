@@ -16,9 +16,8 @@ function uploadImages($files)
         $tmp_name = $files["tmp_name"][$key];
 
         if (!empty($name)) {
-            $extension = pathinfo($name, PATHINFO_EXTENSION);
+            $extension = pathinfo($name)["extension"];
             $newImageName = uniqid() . "." . $extension;
-
             if (move_uploaded_file($tmp_name, $uploadPath . $newImageName)) {
                 $imageArray[] = $newImageName;
             }

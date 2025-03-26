@@ -19,8 +19,8 @@ require_once("config.php");
     require_once("components/popChats.php");
     require_once("components/options.php");
     ?>
-    <div class='d-flex justify-content-center' style="margin-top: 10rem;">
-        <div class='rounded-xl shadow d-flex flex-column border' style='width:40%;height:80%'>
+    <div class='d-flex justify-content-center container' style="margin-top: 10rem;">
+        <div class='rounded-xl shadow d-flex flex-column border w-100' style='height:80%'>
             <div class='p-2'>
                 <div class='d-flex mb-2'>
                     <?php backPage("window.history.back()"); ?>

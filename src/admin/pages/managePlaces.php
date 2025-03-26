@@ -17,9 +17,7 @@
                     <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
                 </div>
                 <div class="modal-body">
-                    <div id='box-categories'>
-
-                    </div>
+                    <div id='box-categories'></div>
                     <div class="form-floating flex-1">
                         <input type="text" class="form-control" placeholder='ชื่อหมวดหมู่' id='category_name' name='name' required>
                         <label for="ชื่อหมวดหมู่">ชื่อหมวดหมู่</label>
@@ -250,7 +248,7 @@
 
                                                             <?php
                                                             $images = json_decode($place["images"]);
-                                                            foreach ($images as $index => $image) {?>
+                                                            foreach ($images as $index => $image) { ?>
                                                                 <div class="image-preview" data-id="current">
                                                                     <img src="<?= imagePath("place_images", $image) ?>" class='rounded-xl object-fit-cover w-100 h-100'>
                                                                     <div class='remove-btn rounded-xl position-absolute bg-danger' style='top:10px;right:10px;' data-id='current'>
