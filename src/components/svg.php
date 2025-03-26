@@ -1,5 +1,5 @@
 <?php
-function svg($name = "none", $w = "35px", $h = "35px", $c = "#000",$class="svg-icon")
+function svg($name = "none", $w = "35px", $h = "35px", $c = "#000", $class = "svg-icon")
 {
     if ($name == "map-pin") { ?>
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="<?= $h ?>" width="<?= $w ?>" version="1.1" id="Capa_1" viewBox="0 0 293.334 293.334" xml:space="preserve" class="<?= $class ?>">
@@ -14,6 +14,14 @@ function svg($name = "none", $w = "35px", $h = "35px", $c = "#000",$class="svg-i
         <svg xmlns="http://www.w3.org/2000/svg" height="<?= $h ?>" width="<?= $w ?>" viewBox="0 0 16 16">
             <path d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z" fill="<?= $c ?>" />
         </svg>
-    <?php }
+    <?php } elseif ($name == "check") { ?>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="<?= $c ?>" height="<?= $h ?>" width="<?= $w ?>" version="1.1" id="Capa_1" viewBox="0 0 490.05 490.05" xml:space="preserve">
+            <g>
+                <g>
+                    <path d="M418.275,418.275c95.7-95.7,95.7-250.8,0-346.5s-250.8-95.7-346.5,0s-95.7,250.8,0,346.5S322.675,513.975,418.275,418.275    z M157.175,207.575l55.1,55.1l120.7-120.6l42.7,42.7l-120.6,120.6l-42.8,42.7l-42.7-42.7l-55.1-55.1L157.175,207.575z" />
+                </g>
+            </g>
+        </svg>
+<?php }
 }
 ?>

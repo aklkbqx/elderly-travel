@@ -5,10 +5,16 @@ if($_SERVER["REQUEST_URI"] === "/admin/"){
 }
 
 require_once("../config.php");
+require_once("../components/components.php");
 
 
 if($_SERVER["REQUEST_URI"] === "/admin/?manageUsers"){
     header("location: /admin/?manageUsers&user");
+    exit;
+}
+
+if($_SERVER["REQUEST_URI"] === "/admin/?manageBookings"){
+    header("location: /admin/?manageBookings&status=PENDING");
     exit;
 }
 

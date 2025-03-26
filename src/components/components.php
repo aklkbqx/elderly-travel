@@ -141,13 +141,13 @@ function cancelBooking($booking)
 { ?>
     <div class="modal fade" id='cancelBooking'>
         <div class="modal-dialog modal-dialog-centered">
-            <form action="api/booking.php?cancel_booking" class="modal-content" method='post' enctype='multipart/form-data'>
+            <form action="api/booking.php?cancel_booking" class="modal-content rounded-xl" method='post' enctype='multipart/form-data'>
                 <div class="modal-header">
                     <h4 class="modal-title">ยกเลิกการจอง</h4>
                     <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
                 </div>
                 <div class="modal-body">
-                    <h4 class='text-center'>แน่ใจที่จะยกเลิกการจองของคุณ</h4>
+                    <h4 class='text-center'>แน่ใจที่จะยกเลิกการจองของคุณ?</h4>
                 </div>
                 <div class="modal-footer d-flex w-100 align-items-center">
                     <div class="w-100 d-flex align-items-center gap-2">
@@ -159,5 +159,22 @@ function cancelBooking($booking)
         </div>
     </div>
 <?php }
+function loadingComponent()
+{ ?>
+    <div class="d-none vh-100 align-items-center justify-content-center position-absolute top-0 start-0 w-100" style="background-color: #0000007d;z-index:999" id="loadingComponent">
+        <div class="d-flex align-items-center gap-2">
+            <h4 class="text-white">กำลังโหลด..</h4>
+            <div class="spinner-border text-light" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+<?php }
 
+function spinner()
+{ ?>
+    <div class="spinner-border spinner-border-sm" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+<?php }
 ?>

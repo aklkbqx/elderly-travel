@@ -52,14 +52,13 @@
                 <div class='col-lg-4 mb-2' data-search-item>
                     <div class="rounded-xl overflow-hidden border">
                         <img src="<?= imagePath('news_images',$news["image"]) ?>" width="100%" height='250px;' class='object-fit-cover'>
-                        <div class='p-2 d-flex flex-column justify-content-between' style='height:156px'>
+                        <div class='p-2 d-flex flex-column justify-content-between' style='height:170px'>
                             <div>
-                                <h5 data-search-keyword="<?= $news["title"] ?><"><?= $news["title"] ?></h5>
+                                <h5 data-search-keyword="<?= $news["title"] ?>" style="overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;"><?= $news["title"] ?></h5>
                                 <div style='overflow: hidden;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;'><?= $news["body"] ?></div>
                             </div>
                             <div class=''>
                                 <button type='button' data-bs-toggle='modal' data-bs-target='#viewNewsDetail-<?= $news["news_id"] ?>' class='btn btn-teal w-100'>แสดงรายละเอียด</button>
-                                
                                 <div class="modal fade" id='viewNewsDetail-<?= $news["news_id"] ?>'>
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">

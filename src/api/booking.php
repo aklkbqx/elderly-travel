@@ -9,7 +9,15 @@ if (isset($_SESSION["user_login"])) {
 
 if (isset($_GET["cancel_booking"])) {
     $fetchBooking = sql("SELECT * FROM bookings WHERE user_id = ? AND status = 'PENDING'", [$user['user_id']]);
+    $fetchPayment = sql("SELECT * FROM payments WHERE user_id = ?", [$user['user_id']]);
     if ($fetchBooking->rowCount() > 0) {
+        $booking = $fetchBooking->fetch();
+
+        if ($fetchPayment->rowCount() > 0) {
+            $payment = $fetchPayment->fetch();
+            sql("DELETE FROM payments WHERE user_id = ? AND status = 'PENDING' AND booking_id = ?", [$user['user_id'], $booking["booking_id"]]);
+        }
+
         sql("DELETE FROM bookings WHERE user_id = ? AND status = 'PENDING'", [$user['user_id']]);
         msg("success", "สำเร็จ!", "ยกเลิกการจองเรียบร้อยแล้ว!", $_SERVER["HTTP_REFERER"]);
     }
@@ -17,10 +25,10 @@ if (isset($_GET["cancel_booking"])) {
 
 if (isset($_GET["getBookings"]) && $_SERVER["REQUEST_METHOD"] == "GET") {
     $booking = sql("SELECT * FROM bookings WHERE user_id = ? AND status = 'PENDING'", [$user["user_id"]])->fetch();
-    if($booking){
+    if ($booking) {
         $booking_details = json_decode($booking["booking_details"], true);
         echo json_encode($booking_details);
-    }else{
+    } else {
         echo json_encode([]);
     }
 }
@@ -49,7 +57,7 @@ if (isset($_GET["addToBookings"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
         "place_id" => $place["place_id"],
         "name" => $place["name"],
         "start_time" => $startTime,
-        "end_time" => $endTime, 
+        "end_time" => $endTime,
         "price" => $place["price"]
     ];
 
@@ -70,7 +78,6 @@ if (isset($_GET["removeFromBookings"]) && $_SERVER["REQUEST_METHOD"] == "POST") 
     $booking_details = json_decode($booking["booking_details"], true);
 
     if (isset($booking_details[$date])) {
-        // หาตำแหน่ง index ของสถานที่ที่ต้องการลบ
         $indexToRemove = null;
         foreach ($booking_details[$date] as $index => $detail) {
             if ($detail["place_id"] == $place_id) {
@@ -78,8 +85,7 @@ if (isset($_GET["removeFromBookings"]) && $_SERVER["REQUEST_METHOD"] == "POST") 
                 break;
             }
         }
-        
-        // ถ้าพบสถานที่ที่ต้องการลบ ให้ลบออกจาก array
+
         if ($indexToRemove !== null) {
             array_splice($booking_details[$date], $indexToRemove, 1);
         }
@@ -98,7 +104,7 @@ if (isset($_GET["updateBookingTime"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
     $time = $_POST["time"];
     $type = $_POST["type"];
     $date = $_POST["date"];
-    
+
     $booking = sql("SELECT * FROM bookings WHERE user_id = ? AND status = 'PENDING'", [$user["user_id"]])->fetch();
     $booking_details = json_decode($booking["booking_details"], true);
 
@@ -122,7 +128,7 @@ if (isset($_GET["updateBookingTime"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 if (isset($_GET["getPlaceDetails"]) && $_SERVER["REQUEST_METHOD"] == "GET") {
     $place_id = $_GET["place_id"];
     $place = sql("SELECT * FROM places WHERE place_id = ?", [$place_id])->fetch();
-    
+
     if ($place) {
         echo json_encode([
             "description" => $place["description"],
@@ -133,4 +139,9 @@ if (isset($_GET["getPlaceDetails"]) && $_SERVER["REQUEST_METHOD"] == "GET") {
     }
 }
 
-
+if(isset($_GET["bookingCompleted"])){
+    sql("UPDATE bookings SET status = 'COMPLETED' WHERE user_id = ?",[
+        $user["user_id"]
+    ]);
+    msg("success","สำเร็จ!","เที่ยวเสร็จสิ้นแล้ว!",$_SERVER["HTTP_REFERER"]);
+}

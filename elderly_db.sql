@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mariadb
--- Generation Time: Mar 11, 2025 at 07:47 PM
--- Server version: 10.11.11-MariaDB-ubu2204
+-- Generation Time: Mar 26, 2025 at 03:18 PM
+-- Server version: 11.7.2-MariaDB-ubu2404
 -- PHP Version: 8.2.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -43,7 +43,8 @@ CREATE TABLE `assessments` (
 --
 
 INSERT INTO `assessments` (`assessment_id`, `title`, `body`, `questions`, `additional`, `visitors`, `created_at`, `updated_at`) VALUES
-(3, 'ทดสอบ', 'ทดสอบบบ', '[\"1\",\"2\",\"3\",\"4\"]', 'เทสสดี', 3, '2025-02-20 15:27:11', '2025-02-20 16:02:03');
+(3, 'แบบประเมินความพึงพอใจ', 'ประเมินเว็บไซต์ของเรา ให้คะแนน \r\n\r\n5 มากที่สุด \r\n4 มาก \r\n3 ปานกลาง \r\n2 น้อย \r\n1 น้อยที่สุด', '[\"\\u0e01\\u0e32\\u0e23\\u0e43\\u0e0a\\u0e49\\u0e07\\u0e32\\u0e19\",\"\\u0e02\\u0e19\\u0e32\\u0e14\\u0e2a\\u0e35\\u0e41\\u0e25\\u0e30\\u0e15\\u0e31\\u0e27\\u0e2d\\u0e31\\u0e01\\u0e29\\u0e23\",\"\\u0e1f\\u0e35\\u0e40\\u0e08\\u0e2d\\u0e23\\u0e4c\\u0e15\\u0e48\\u0e32\\u0e07\\u0e46\",\"\\u0e04\\u0e27\\u0e32\\u0e21\\u0e40\\u0e2a\\u0e16\\u0e35\\u0e22\\u0e23\\u0e02\\u0e2d\\u0e07\\u0e23\\u0e30\\u0e1a\\u0e1a\"]', 'ข้อเสนอแนะเพิ่มเติม', 3, '2025-02-20 15:27:11', '2025-03-12 20:51:18'),
+(5, 'การใช้งานของเว็บไซต์', 'ให้คะเเนนการใช้งานเว็บไซต์ในมุมมองของคุณ\r\nเกณฑ์คะเเนนมีดังนี้\r\n  5 มากที่สุด\r\n  4 มาก\r\n  3 ปานกลาง\r\n  2 น้อย\r\n  1 น้อยที่สุด', '[\"\\u0e01\\u0e32\\u0e23\\u0e2a\\u0e21\\u0e31\\u0e04\\u0e23\\u0e43\\u0e0a\\u0e49\\u0e07\\u0e32\\u0e19\\u0e40\\u0e27\\u0e47\\u0e1a\\u0e44\\u0e0b\\u0e15\\u0e4c\\u0e21\\u0e35\\u0e04\\u0e27\\u0e32\\u0e21\\u0e07\\u0e48\\u0e32\\u0e22\\u0e15\\u0e48\\u0e2d\\u0e01\\u0e32\\u0e23\\u0e43\\u0e0a\\u0e49\\u0e07\\u0e32\\u0e19\\u0e21\\u0e32\\u0e01\\u0e19\\u0e49\\u0e2d\\u0e22\\u0e40\\u0e40\\u0e04\\u0e48\\u0e44\\u0e2b\\u0e19?\",\"\\u0e02\\u0e48\\u0e32\\u0e27\\u0e1b\\u0e23\\u0e30\\u0e0a\\u0e32\\u0e2a\\u0e31\\u0e21\\u0e1e\\u0e31\\u0e19\\u0e18\\u0e4c\\u0e21\\u0e35\\u0e40\\u0e19\\u0e37\\u0e49\\u0e2d\\u0e2b\\u0e32\\u0e17\\u0e35\\u0e48\\u0e2d\\u0e48\\u0e32\\u0e19\\u0e07\\u0e48\\u0e32\\u0e22\\u0e21\\u0e32\\u0e01\\u0e19\\u0e49\\u0e2d\\u0e22\\u0e40\\u0e40\\u0e04\\u0e48\\u0e44\\u0e2b\\u0e19?\",\"\\u0e01\\u0e32\\u0e23\\u0e04\\u0e38\\u0e22\\u0e2a\\u0e37\\u0e48\\u0e2d\\u0e2a\\u0e32\\u0e23\\u0e01\\u0e31\\u0e1a\\u0e40\\u0e40\\u0e0a\\u0e17\\u0e1a\\u0e2d\\u0e17\\u0e21\\u0e35\\u0e04\\u0e27\\u0e32\\u0e21\\u0e2a\\u0e30\\u0e14\\u0e27\\u0e01\\u0e2a\\u0e1a\\u0e32\\u0e22\\u0e21\\u0e32\\u0e01\\u0e19\\u0e49\\u0e2d\\u0e22\\u0e40\\u0e40\\u0e04\\u0e48\\u0e44\\u0e2b\\u0e19?\",\"\\u0e2a\\u0e16\\u0e32\\u0e19\\u0e17\\u0e35\\u0e48\\u0e17\\u0e48\\u0e2d\\u0e07\\u0e40\\u0e17\\u0e35\\u0e48\\u0e22\\u0e27\\u0e17\\u0e35\\u0e48\\u0e40\\u0e27\\u0e47\\u0e1a\\u0e44\\u0e0b\\u0e15\\u0e4c\\u0e08\\u0e31\\u0e14\\u0e02\\u0e36\\u0e49\\u0e19\\u0e21\\u0e35\\u0e04\\u0e27\\u0e32\\u0e21\\u0e19\\u0e48\\u0e32\\u0e2a\\u0e19\\u0e43\\u0e08\\u0e21\\u0e32\\u0e01\\u0e19\\u0e49\\u0e2d\\u0e22\\u0e40\\u0e40\\u0e04\\u0e48\\u0e44\\u0e2b\\u0e19?\",\"\\u0e01\\u0e32\\u0e23\\u0e08\\u0e2d\\u0e07\\u0e2a\\u0e16\\u0e32\\u0e19\\u0e17\\u0e35\\u0e48\\u0e17\\u0e48\\u0e2d\\u0e07\\u0e40\\u0e17\\u0e35\\u0e48\\u0e22\\u0e27\\u0e21\\u0e35\\u0e04\\u0e27\\u0e32\\u0e21\\u0e22\\u0e32\\u0e01\\u0e21\\u0e32\\u0e01\\u0e19\\u0e49\\u0e2d\\u0e22\\u0e40\\u0e40\\u0e04\\u0e48\\u0e44\\u0e2b\\u0e19?\"]', 'ข้อเสนอเเนะ', 0, '2025-03-16 18:35:51', NULL);
 
 -- --------------------------------------------------------
 
@@ -82,18 +83,10 @@ CREATE TABLE `bookings` (
   `booking_date` date NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
-  `total_price` decimal(8,2) NOT NULL DEFAULT 0.00,
-  `status` enum('PENDING','CONFIRMED','COMPLETED','CANCELED','PAID') NOT NULL DEFAULT 'PENDING',
+  `status` enum('PENDING','CONFIRMED','COMPLETED','CANCELED') NOT NULL DEFAULT 'PENDING',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
-
---
--- Dumping data for table `bookings`
---
-
-INSERT INTO `bookings` (`booking_id`, `user_id`, `booking_details`, `people`, `booking_date`, `start_date`, `end_date`, `total_price`, `status`, `created_at`, `updated_at`) VALUES
-(7, 4, '[]', 1, '2025-02-22', '2025-02-22', '2025-02-22', 0.00, 'PENDING', '2025-02-22 13:41:08', '2025-02-22 15:35:37');
 
 -- --------------------------------------------------------
 
@@ -109,13 +102,6 @@ CREATE TABLE `bot_responses` (
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
---
--- Dumping data for table `bot_responses`
---
-
-INSERT INTO `bot_responses` (`response_id`, `questions`, `responses`, `created_at`, `updated_at`) VALUES
-(2, '[\"hi,test\"]', '[\"hi,test\"]', '2025-02-20 15:58:52', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -126,7 +112,7 @@ CREATE TABLE `chats` (
   `chat_id` int(11) NOT NULL,
   `sender_id` int(11) NOT NULL,
   `receiver_id` int(11) NOT NULL,
-  `message` varchar(150) NOT NULL,
+  `message` text NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
@@ -140,7 +126,7 @@ CREATE TABLE `chats` (
 CREATE TABLE `news` (
   `news_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
-  `body` varchar(255) NOT NULL,
+  `body` text NOT NULL,
   `image` varchar(150) NOT NULL,
   `visitors` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -152,7 +138,9 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`news_id`, `title`, `body`, `image`, `visitors`, `created_at`, `updated_at`) VALUES
-(6, 'test', 'test', '67b7546d97b91.jpeg', 48, '2025-02-20 16:12:29', '2025-02-25 11:28:20');
+(8, 'ผู้สูงอายุนอนไม่หลับ สาเหตุจากอะไร แก้ไขได้หรือไม่', '          เมื่อเข้าสู่วัยผู้สูงอายุ มักจะมีอาการนอนไม่หลับ หรือนอนหลับยากและยังตื่นง่าย เมื่อตื่นแล้วก็ทำให้หลับยากขึ้นไปอีก สาเหตุของอาการนี้มาจากอะไร และส่งผลเสียต่อสุขภาพของผู้สูงวัยอย่างไรบ้าง\r\n\r\n          การนอนไม่หลับทำให้ผู้สูงอายุมีปัญหาการใช้ชีวิตประจำวัน รู้สึกอ่อนเพลีย สมองตื้อ ทำอะไรช้าลง อารมณ์เสียง่าย เสี่ยงวิตกกังวลและซึมเศร้า อาจมีปัญหาสุขภาพด้านต่างๆ ตามมา เช่น ความดันโลหิตสูง เบาหวาน ภูมิคุ้มกันทำงานลดลง อ้วน และมีโอกาสเสี่ยงสมองเสื่อม\r\n\r\nผู้สูงอายุนอนไม่หลับ มีสาเหตุจากอะไร\r\n           สาเหตุที่ทำให้ผู้สูงอายุนอนไม่หลับ มาจากหลายปัจจัยด้วยกันดังต่อไปนี้\r\n\r\n- ระดับฮอร์โมนต่างๆ ในร่างกายที่ลดต่ำลง\r\n- ความเครียด ความวิตกกังวล และความกังวลว่านอนไม่หลับขณะพยายามนอนให้หลับ\r\n- อาการปวดต่างๆ ที่เป็นอยู่ เช่น ปวดข้อ ปวดแขน ปวดขา ปวดหลัง\r\n- มีโรครบกวนการนอน เช่น เบาหวาน ต่อมลูกหมากโต ที่ต้องตื่นมาปัสสาวะตอนกลางคืน โรคหัวใจ โรคปอด โรคซึมเศร้า สมองเสื่อม นอนกรน ภาวะหยุดหายใจตอนนอนหลับ กล้ามเนื้อขากระตุก\r\n- ปัญหาระบบทางเดินอาหาร เช่น อาหารไม่ย่อย ท้องอืดแน่นท้อง กรดไหลย้อน\r\n- รับประทานยาบางชนิด เช่น ยาแก้หวัด ยารักษาหอบหืด ยาขยายหลอดลม ยาต้านซึมเศร้า หรืออาหารเสริม เช่น โสม\r\n- ดื่มเครื่องดื่มที่มีแอลกอฮอล์ และคาเฟอีน เช่น ชา กาแฟ โกโก้ ช็อกโกแลต น้ำอัดลมสีดำ เครื่องดื่มชูกำลัง และสูบบุหรี่\r\n- สิ่งแวดล้อมรบกวนการนอน มีเสียงดัง แสงสว่างกวนสายตา อุณหภูมิร้อนหรือเย็นเกินไป ที่นอนนอนแล้วไม่สบายตัว ห้องอับ\r\n- ทำกิจกรรมที่ทำให้นอนไม่หลับ เช่น ออกกำลังกายใกล้เวลานอน ดูหนังตื่นเต้นหรือน่ากลัว เล่นเกมที่ต้องลุ้น อยู่หน้าจอมือถือหรือหน้าจอต่างๆ ใกล้เวลานอน', '67d713095eadd.webp', 20, '2025-03-16 18:06:01', '2025-03-23 05:17:03'),
+(9, 'ส่องอาชีพไม่มีวันเกษียณ รับมือสังคมสูงวัยยุคยิ่งแก่ยิ่งจน!', '           ในโลกที่ความแน่นอนคือความไม่แน่นอน คาดหวังอะไรไว้ก็ต้องเผื่อใจคิดแผนสำรองด้วย วันดีคืนดีอาจตกงานโดยไม่รู้ตัว หรือไม่ก็มีเหตุจำเป็นให้ต้องเออร์ลี่ก่อนเกษียณ\r\n\r\n           เกษียณยังไงไม่ให้เฉา อาจไม่ท้าทายเท่ากับเกษียณยังไงให้สามารถเลี้ยงปากเลี้ยงท้องตัวเองได้ บอกเลยว่าอย่ารอให้ถึงอายุ 60 แล้วค่อยวางแผน เพราะชีวิตจริงดราม่ากว่าที่คิดไว้เยอะ! ในวัยที่ร่างกายเริ่มถดถอยอ่อนล้า แต่สมองยังไม่โรยราไปตามวัย ต้องมองหาอาชีพที่ไม่มีวันเกษียณ เตรียมสร้างรายได้ไว้รองรับชีวิตสูงวัย ที่รันเวย์ยังยาวไกลไปอีกหลายสิบปี ลำพังแค่เบี้ยผู้สูงอายุ, เงินบำนาญชราภาพ และกองทุนสำรองเลี้ยงชีพ อาจไม่เพียงพอกับการมีอายุเกิน 80 ปี\r\n\r\n“เพาะต้นไม้ขาย” เปลี่ยนงานอดิเรกที่รักให้เกิดรายได้ แถมยังได้ออกแรงทุกวัน ทำให้สุขภาพแข็งแรงทั้งกายใจ ถือเป็นความสุขในรั้วบ้านที่เหมาะกับผู้สูงวัย\r\n\r\n“ทำขนมและอาหารขาย” เป็นอาชีพอิสระที่ไม่มีวันเกษียณ แถมสร้างรายได้อย่างต่อเนื่อง ขอเพียงแต่มีฝีมือ รับรองว่าไม่อดตาย\r\n\r\n“ปล่อยเช่าอสังหาริมทรัพย์” ในช่วงวัยทำงานหากมีกำลังทรัพย์อาจซื้อคอนโด หรือตึกแถวไว้ปล่อยเช่า กินค่าเช่าในยามแก่เฒ่า ถือเป็นการลงทุนที่สามารถเอาชนะเงินเฟ้อได้ และมีรายรับต่อเนื่องทุกเดือน\r\n\r\n“เลือกลงทุนในหุ้นปันผล” ถือเป็นช่องทางการออมเงินที่ดี และสามารถสร้างรายได้อย่างต่อเนื่องโดยไม่มีวันเกษียณ แต่ต้องลงทุนกับความรู้ควบคู่ไปด้วย อย่าลงทุนด้วยความโลภ\r\n\r\n“นักเขียน-นักแปล-ล่าม-ไกด์” การเป็นนักเขียนและนักแปลสามารถพัฒนาตัวเองได้ทั้งชีวิต และสร้างจุดเด่นจากประสบการณ์หลาก หลายที่สั่งสมมา\r\n\r\n“อาชีพในโลกออนไลน์” โลกโซเชียลมีเดียเป็นช่องทางหาเงินและเปิดโอกาสให้คนทุกเพศทุกวัย ถ้ามีไฟซะอย่าง จะเป็นอะไรก็ได้ ทั้งอินฟลูเอนเซอร์, ยูทูบเบอร์, รีวิวสินค้า, ขายของออนไลน์ หรือดาว tiktok รับรองว่าไม่เหงาแน่นอน แถมมีรายได้เป็นกอบเป็นกำ และได้แฟนคลับต่อยอดขยายธุรกิจใหม่ๆ ดูอย่างคุณยายชาวญี่ปุ่น “มาซาโกะ วากามิยะ” ลุกขึ้นเป็นนักพัฒนาแอปพลิเคชันของ Apple สร้างเกมบนมือถือสมาร์ทโฟนให้ผู้สูงอายุได้เล่นกันทั่วโลก ตอนอายุ 80 ปี และยังพัฒนาตัวเองไม่หยุดจนถึงปัจจุบันอายุเฉียดเลขเก้า\r\n\r\n“พนักงานร้านค้าปลีก และบาริสต้า” ปัจจุบันร้านค้าหลายแห่งและห้างสรรพสินค้า เปิดโอกาสให้ผู้สูงอายุได้เข้าไปเป็นพนักงาน เช่น เจ้าหน้าที่ชงกาแฟ, เจ้าหน้าที่แนะนำหนังสือ, พนักงานขาย และแคชเชียร์เก็บเงิน\r\n\r\n“ค้าขายทั่วไป” นอกจากจะทำให้ชีวิตมีคุณค่าไม่ต้องง้อลูกหลาน ยังมีรายได้เลี้ยงตัวเอง และได้ออกจากบ้านทุกวัน ไม่ต้องทนเฉาทนเหงา เพราะไม่มีอะไรทำ', '67d714c957556.webp', 2, '2025-03-16 18:13:29', '2025-03-23 05:16:59'),
+(10, 'เรื่องดีๆ ปีใหม่รับสังคมสูงวัย 2568', '          “มิสเตอร์พี” ขอสวัสดีปีใหม่ 2568 อย่างเป็นทางการ และขอให้สิ่งศักดิ์สิทธิ์อวยพรให้ผู้อ่านทุกคนมีความสุข สุขภาพกายและใจแข็งแรง แข็งแกร่ง และเรื่องสุขภาพนี้ ถือเป็นเรื่องสำคัญมากของเศรษฐกิจไทย เพราะปี 2568 นี้ ถือเป็นปีที่ 2 ที่ประเทศไทยเข้าสู่การเป็น “สังคมผู้สูงอายุโดยสมบูรณ์”กล่าวคือ เป็นประเทศที่มีประชากรอายุ 60 ปีขึ้นไปเกิน 20% ประชากรอายุ 65 ปีขึ้นไป 14% ของประชากรทั้งหมด และอีกภายในไม่กี่ปีเราจะเข้าสู่ “สังคมสูงวัยระดับสุดยอด” คือมีประชากรอายุ 60 ปีเกินกว่า 28%\r\n\r\n          โดยในปี 2568 นี้คาดว่า อายุเฉลี่ยของคนไทยจะขยับมาอยู่ที่ 85 ปี แต่ทุก 1 นาที จะมีคนไทยเสียชีวิตด้วยโรคมะเร็ง โรคหัวใจ หรือเส้นเลือดในสมองแตก รวมทั้งกลายเป็นผู้ป่วยติดเตียงจำนวนมาก ทำให้ปีที่ผ่านมา ข่าวผู้ป่วยติดเตียงที่นอนรักษาตัวอยู่ที่บ้านที่เสียชีวิต เนื่องจากชำระค่าไฟฟ้าล่าช้า จนถูกเจ้าหน้าที่ตัดกระแสไฟฟ้า หรือถอดมิเตอร์ไฟฟ้า ทำให้ไม่มีไฟสำหรับอุปกรณ์รักษาพยาบาล สร้างความหดหู่ใจให้กับคนไทยอย่างมากและเรื่องดังกล่าวเป็นบทเรียนให้กับคนไทยทุกบ้านที่มีคนติดเตียง รวมทั้ง ทำให้สำนักงานคณะกรรมการกำกับกิจการพลังงาน หรือสำนักงาน กกพ. มองว่าจะต้องแก้ไขเรื่องดังกล่าวไม่ให้เกิดขึ้นอีก\r\n\r\n          โดยได้ร่วมจัดทำบันทึกความเข้าใจความร่วมมือระหว่าง 4 หน่วยงาน ได้แก่ สำนักงานคณะกรรมการกำกับกิจการพลังงาน กระทรวงสาธารณสุข การไฟฟ้านครหลวง (กฟน.) และการไฟฟ้าส่วนภูมิภาค (กฟภ.) เพื่อลดความเสี่ยงของการเสียชีวิตของผู้ป่วย ซึ่งมีความจำเป็นที่จะต้องใช้ไฟฟ้าในการเดินเครื่องมือทางการแพทย์เพื่อการรักษาพยาบาล โดยจะต้องไม่ถูกงดจ่ายไฟฟ้าทุกกรณี เพื่อให้อัตราการเสียชีวิตจากการถูกตัดไฟของผู้ป่วยกลุ่มนี้เป็นศูนย์', '67d716323cf2c.webp', 0, '2025-03-16 18:19:30', NULL);
 
 -- --------------------------------------------------------
 
@@ -187,7 +175,24 @@ CREATE TABLE `news_likes` (
 --
 
 INSERT INTO `news_likes` (`like_id`, `news_id`, `user_id`, `like`, `created_at`) VALUES
-(2, 6, 4, 1, '2025-02-21 11:40:21');
+(2, 6, 4, 1, '2025-02-21 11:40:21'),
+(3, 9, 4, 1, '2025-03-23 05:16:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `payment_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `booking_id` int(11) NOT NULL,
+  `status` enum('PENDING','PAID','FAIL','CANCEL') NOT NULL DEFAULT 'PENDING',
+  `payment_method` enum('QRCODE_PROMPTPAY','BANK_ACCOUNT_NUMBER') DEFAULT NULL,
+  `slip_image` varchar(20) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -213,8 +218,8 @@ CREATE TABLE `places` (
 --
 
 INSERT INTO `places` (`place_id`, `name`, `address`, `health`, `price`, `images`, `category_id`, `visitors`, `created_at`, `updated_at`) VALUES
-(4, 'tet', 'test', 'test', 0.00, '[\"67b85bc6dcdc3.png\"]', 10, 87, '2025-02-21 10:50:05', '2025-02-21 17:42:35'),
-(5, '1111', '23123', '123123123', 0.00, '[\"67b85bc6dcdc3.png\"]', 10, 87, '2025-02-21 10:50:05', '2025-02-21 17:42:35');
+(4, 'tet', 'test', 'test', 20.00, '[\"67e2a2c427bfb.jpeg\"]', 10, 97, '2025-02-21 10:50:05', '2025-03-25 12:34:12'),
+(5, '1111', '23123', '123123123', 0.00, '[\"67e2a2d490ffb.jpg\"]', 10, 87, '2025-02-21 10:50:05', '2025-03-25 12:34:28');
 
 -- --------------------------------------------------------
 
@@ -274,15 +279,6 @@ CREATE TABLE `place_reviews` (
   `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
---
--- Dumping data for table `place_reviews`
---
-
-INSERT INTO `place_reviews` (`review_id`, `place_id`, `user_id`, `comment`, `rating`, `created_at`, `updated_at`) VALUES
-(3, 4, 4, 'test', 5, '2025-02-22 00:42:27', NULL),
-(4, 4, 4, 'test', 5, '2025-02-22 00:42:27', NULL),
-(5, 4, 4, 'test', 4, '2025-02-22 00:42:27', '2025-02-22 01:08:57');
-
 -- --------------------------------------------------------
 
 --
@@ -292,18 +288,11 @@ INSERT INTO `place_reviews` (`review_id`, `place_id`, `user_id`, `comment`, `rat
 CREATE TABLE `posts` (
   `post_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `text` varchar(255) NOT NULL,
+  `text` text NOT NULL,
   `image` varchar(150) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
-
---
--- Dumping data for table `posts`
---
-
-INSERT INTO `posts` (`post_id`, `user_id`, `text`, `image`, `created_at`, `updated_at`) VALUES
-(11, 4, 'asd', '67b755cf6394a.jpeg', '2025-02-20 16:18:23', NULL);
 
 -- --------------------------------------------------------
 
@@ -376,8 +365,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `email`, `password`, `image`, `role`, `active_status`, `created_at`, `updated_at`) VALUES
-(4, 'asd', 'asd', 'asd@gmail.com', '$2y$10$W2EN3tgzp5c1DdWGILoHxOEoIwyD1/TGf7HnB2m4LCeeldSUctvxO', '67b75078e5581.jpeg', 'user', 'online', '2025-01-25 01:13:01', '2025-02-21 11:35:46'),
-(5, 'admin', 'admin', 'admin@admin.com', '$2y$10$c19VUioqWilX2ukGXCtec.6cWoEDpjU9YWZV629bdit4PUWCjYFHS', '67b7506a808c7.jpeg', 'admin', 'online', '2025-01-25 03:21:32', '2025-02-21 11:52:00'),
+(4, 'asd', 'asd', 'asd@gmail.com', '$2y$10$7fjDy0Y3dNb0KeoWeNcQxuBMJCvncATammDmWipieKWR4xAwY/OEC', '67b75078e5581.jpeg', 'user', 'online', '2025-01-25 01:13:01', '2025-03-26 14:22:56'),
+(5, 'admin', 'admin', 'admin@admin.com', '$2y$10$c19VUioqWilX2ukGXCtec.6cWoEDpjU9YWZV629bdit4PUWCjYFHS', '67e29ca7bd260.jpeg', 'admin', 'offline', '2025-01-25 03:21:32', '2025-03-26 15:18:01'),
 (7, '123', '123', '123@gmail.com', '$2y$10$TgSE.pD7M7jn2bo6hjK9A.bJp2lq1tgrtqgbpqzgU/tMeCBsv.5gG', 'default-profile.png', 'user', 'offline', '2025-01-27 02:03:04', '2025-01-27 02:35:11'),
 (8, 'zxc', 'zxc', 'zxc@gmail.com', '$2y$10$YA4QFVyupO6njKLUUzaRk.5vTDpl73c50jwpZkfKdh5Ltgxr.t/Ii', 'default-profile.png', 'user', 'offline', '2025-01-27 02:03:10', '2025-01-27 02:33:39');
 
@@ -398,7 +387,7 @@ CREATE TABLE `visitors` (
 --
 
 INSERT INTO `visitors` (`visitor_id`, `count`, `created_at`) VALUES
-(1, 1485, '2025-01-24 20:59:57');
+(1, 1970, '2025-01-24 20:59:57');
 
 --
 -- Indexes for dumped tables
@@ -460,6 +449,14 @@ ALTER TABLE `news_likes`
   ADD PRIMARY KEY (`like_id`),
   ADD KEY `news_id` (`news_id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`payment_id`),
+  ADD KEY `payments_ibfk_1` (`user_id`),
+  ADD KEY `payments_ibfk_2` (`booking_id`);
 
 --
 -- Indexes for table `places`
@@ -530,7 +527,7 @@ ALTER TABLE `visitors`
 -- AUTO_INCREMENT for table `assessments`
 --
 ALTER TABLE `assessments`
-  MODIFY `assessment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `assessment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `assessment_responses`
@@ -542,7 +539,7 @@ ALTER TABLE `assessment_responses`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `bot_responses`
@@ -560,7 +557,7 @@ ALTER TABLE `chats`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `news_comments`
@@ -572,7 +569,13 @@ ALTER TABLE `news_comments`
 -- AUTO_INCREMENT for table `news_likes`
 --
 ALTER TABLE `news_likes`
-  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `places`
@@ -644,6 +647,13 @@ ALTER TABLE `assessment_responses`
 --
 ALTER TABLE `bookings`
   ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `payments`
+--
+ALTER TABLE `payments`
+  ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `payments_ibfk_2` FOREIGN KEY (`booking_id`) REFERENCES `bookings` (`booking_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

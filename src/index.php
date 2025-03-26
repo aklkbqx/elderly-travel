@@ -42,24 +42,59 @@ $booking = null;
             if (isLogin()) {
                 $fetchBooking = sql("SELECT * FROM bookings WHERE user_id = ? AND status = 'PENDING'", [$row["user_id"]]);
                 if ($fetchBooking->rowCount() > 0) {
+                    $label = [];
                     $booking = $fetchBooking->fetch();
+                    $payment = sql("SELECT * FROM payments WHERE user_id = ? AND booking_id = ?", [$row["user_id"], $booking["booking_id"]])->fetch();
+                    if ($payment) {
+                        if ($payment["status"] == "PAID") {
+                            $label = [
+                                "header" => "ติดตามสถานะการเดินทาง",
+                                "button" => [
+                                    "label" => "ตรวจสอบ",
+                                    "link" => "my-booking.php"
+                                ]
+                            ];
+                        } elseif ($payment["status"] == "PENDING") {
+                            $label = [
+                                "header" => "ดำเนินการชำระเงินให้เสร็จสมบูรณ์",
+                                "button" => [
+                                    "label" => "ชำระเงิน",
+                                    "link" => "payment.php"
+                                ]
+                            ];
+                        }
+                    } else {
+                        $label = [
+                            "header" => "ดำเนินการจองให้เสร็จสมบูรณ์",
+                            "button" => [
+                                "label" => "ดำเนินการต่อ",
+                                "link" => "booking.php"
+                            ]
+                        ];
+                    }
             ?>
                     <div class="shadow mt-2 mt-xl-0 booking-card mb-2 align-items-start" style="border-radius:1.5rem;z-index:1;">
-                        <h3 class="text-center d-flex align-items-center justify-content-center w-100">ดำเนินการจองให้เสร็จสมบูรณ์</h3>
+                        <h3 class="text-center d-flex align-items-center justify-content-center w-100"><?= $label["header"] ?></h3>
                         <div class="d-flex flex-column gap-2 my-4 text-muted">
                             <h5>วันที่เช็คอิน: <?= formatThaiDate($booking["start_date"]) ?></h5>
                             <h5>วันที่เช็คเอาท์: <?= formatThaiDate($booking["end_date"]) ?></h5>
                             <h5>จำนวนคน: <?= $booking["people"] ?></h5>
                         </div>
                         <div class='w-100 gap-2 d-flex align-items-center'>
-                            <button type='button' data-bs-toggle="modal" data-bs-target="#cancelBooking" class='btn btn-danger w-100'>ยกเลิกการจอง</button>
-                            <a href="booking.php" class='btn btn-teal w-100'>ดำเนินการต่อ</a>
+                            <?php if ($payment) {
+                                if ($payment["status"] == "PENDING") { ?>
+                                    <button type='button' data-bs-toggle="modal" data-bs-target="#cancelBooking" class='btn btn-danger w-100'>ยกเลิกการจอง</button>
+                                <?php }
+                            } else { ?>
+                                <button type='button' data-bs-toggle="modal" data-bs-target="#cancelBooking" class='btn btn-danger w-100'>ยกเลิกการจอง</button>
+                            <?php } ?>
+                            <a href="<?= $label["button"]["link"] ?>" class='btn btn-teal w-100'><?= $label["button"]["label"] ?></a>
                         </div>
                     </div>
             <?php } else {
                     formSelectDateBooking();
                 }
-            }else{
+            } else {
                 formSelectDateBooking();
             } ?>
         </div>

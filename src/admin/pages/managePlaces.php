@@ -227,7 +227,7 @@
                         <div class='badge text-bg-success position-absolute' style="top:10px; right:10px"><?= sql("SELECT * FROM place_categories WHERE category_id = ?", [$place["category_id"]])->fetch()["name"]; ?></div>
                         <div class='p-2 d-flex flex-column justify-content-between' style='height:160px'>
                             <div>
-                                <h5 data-search-keyword="<?= $place["name"] ?><"><?= $place["name"] ?></h5>
+                                <h5 data-search-keyword="<?= $place["name"] ?>" style='overflow: hidden;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;'><?= $place["name"] ?></h5>
                                 <div style='overflow: hidden;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;'>ที่อยู่: <?= $place["address"] ?></div>
                                 <div style='overflow: hidden;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;'>ผลต่อสุขภาพ: <?= $place["health"] ?></div>
                                 <div style='overflow: hidden;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;'>ราคา: <?= $place["price"] ?></div>
