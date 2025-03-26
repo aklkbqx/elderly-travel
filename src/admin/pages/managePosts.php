@@ -6,7 +6,7 @@
                 <img src="<?= imagePath("user_images", $row["image"]) ?>" alt="" class='border rounded-circle object-fit-cover' width='50px' height='50px'>
                 <div><?= $row["firstname"] ?> <?= $row["lastname"] ?></div>
             </div>
-            <textarea name="text" placeholder='เขียนโพสต์...' class='form-control mt-2 border-0'></textarea>
+            <textarea name="text" placeholder='เขียนโพสต์...' class='form-control mt-2 border'></textarea>
 
             <label for="imagePost" class='btn btn-outline-light mb-2 border-0' style="font-size: 30px;">🖼️</label>
 
@@ -20,7 +20,10 @@
     </div>
 
     <div class='col-lg-8'>
-        <div class='overflow-auto h-100'>
+        <a href="../posts.php" class="text-center btn border mb-2">
+            > ไปยังหน้ากระดานสนทนา
+        </a>
+        <div class='overflow-auto p-4 rounded-xl border' style="height: 670px;">
             <?php
             $fetchPost = sql("SELECT * FROM posts ORDER BY created_at DESC");
             if ($fetchPost->rowCount() > 0) {
@@ -39,13 +42,13 @@
                         }
                     }
             ?>
-                    <div class='shadow border rounded-xl mb-2'>
+                    <div class='border rounded-xl mb-2'>
                         <div class='d-flex align-items-center justify-content-between p-4'>
                             <div class='d-flex align-items-center gap-2'>
                                 <img src="<?= imagePath("user_images", $user["image"]) ?>" alt="" class='border rounded-circle object-fit-cover' width='50px' height='50px'>
                                 <div class='d-flex flex-column'>
                                     <div><?= $user["firstname"] ?> <?= $user["lastname"] ?></div>
-                                    <div><?= $post["created_at"] ?></div>
+                                    <div><?= timeElapsed($post["created_at"]) ?></div>
                                 </div>
                             </div>
                             <div class='dropdown'>
@@ -102,7 +105,27 @@
                             <?= $post["text"] ?>
                         </div>
                         <?php if ($post['image']) { ?>
-                            <img src="<?= imagePath("post_images", $post['image']) ?>" width='100%' height='500px' class='object-fit-cover'>
+                            <style>
+                                .hover-image {
+                                    cursor: pointer;
+                                    transition: transform 0.4s;
+
+                                    &:hover {
+                                        transform: scale(1.01);
+                                    }
+                                }
+                            </style>
+                            <img src="<?= imagePath("post_images", $post["image"]) ?>" width='100%' height='600px' class='object-fit-cover hover-image' data-bs-toggle='modal' data-bs-target='#imagePost-<?= $post["post_id"] ?>'>
+                            <div class="modal fade" id='imagePost-<?= $post["post_id"] ?>'>
+                                <div class="modal-dialog modal-dialog-centered modal-xl" data-bs-dismiss="modal">
+                                    <div class="modal-content bg-transparent">
+                                        <div class="position-relative" style="z-index: 9999;">
+                                            <button type="button" data-bs-dismiss="modal" class="btn-close position-absolute cursor-pointer bg-white rounded-circle p-2" style="z-index: 99999;top:10px;right:10px"></button>
+                                            <img src="<?= imagePath("post_images", $post["image"]) ?>" width='100%' height='100%' class='object-fit-cover rounded-xl'>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         <?php } ?>
                         <div class='d-flex justify-content-end p-2'>
                             <div>
@@ -128,7 +151,7 @@
                                         <div>
                                             <div class='d-flex align-items-center gap-2'>
                                                 <h6 class='fw-bold'><?= $post_comnent["firstname"] ?> <?= $post_comnent["lastname"] ?></h6>
-                                                <div><?= $post_comnent["comment_created_at"] ?></div>
+                                                <div><?= timeElapsed($post_comnent["comment_created_at"]) ?></div>
                                             </div>
                                             <div class='text-muted'><?= $post_comnent["comment"] ?></div>
                                         </div>

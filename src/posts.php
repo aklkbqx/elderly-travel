@@ -22,13 +22,15 @@ if (isset($_SESSION["user_login"])) {
 
 <body>
     <?php
-    require_once("components/nav.php");
+    if(!isset($_SESSION["admin_login"])){
+        require_once("components/nav.php");
+    }
     require_once("components/popChats.php");
     require_once("components/options.php");
     ?>
 
-    <div class='mx-auto' style='margin-top:10rem;max-width:1000px'>
-        <?php backPage("/"); ?>
+    <div class='mx-auto' style='margin-top:<?= isset($_SESSION["admin_login"]) ? "2rem" : "10rem" ?>;max-width:1000px'>
+        <?php backPage(isset($_SESSION["admin_login"]) ? "/admin/?managePosts" : "/"); ?>
 
         <div class='border shadow-sm mt-2 rounded-xl mb-4 p-2'>
             <?php
@@ -92,7 +94,7 @@ if (isset($_SESSION["user_login"])) {
                                 <div>
                                     <?= $post["firstname"] ?> <?= $post["lastname"] ?>
                                 </div>
-                                <div class='text-muted' style='font-size:14px'><?= $post["post_created_at"] ?></div>
+                                <div class='text-muted' style='font-size:14px'><?= timeElapsed($post["post_created_at"]) ?></div>
                             </div>
                         </div>
                         <?php

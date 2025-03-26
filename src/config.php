@@ -107,5 +107,32 @@ function formatThaiDate($date)
 
     return "$day $month $year";
 }
+function timeElapsed($datetime, $full = false) {
+    date_default_timezone_set('Asia/Bangkok'); // ตั้งค่าโซนเวลา
+    $now = new DateTime();
+    $ago = new DateTime($datetime);
+    $diff = $now->diff($ago);
+
+    $string = [
+        'y' => 'ปี',
+        'm' => 'เดือน',
+        'd' => 'วัน',
+        'h' => 'ชั่วโมง',
+        'i' => 'นาที',
+        's' => 'วินาที',
+    ];
+    
+    $result = [];
+    foreach ($string as $key => $value) {
+        if ($diff->$key > 0) {
+            $result[] = $diff->$key . ' ' . $value;
+        }
+    }
+
+    if (!$full) $result = array_slice($result, 0, 1);
+    
+    return $result ? implode(', ', $result) . 'ที่แล้ว' : 'ไม่กี่วินาทีที่ผ่านมา';
+}
+
 
 ?>

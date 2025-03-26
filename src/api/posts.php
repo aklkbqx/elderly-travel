@@ -146,16 +146,28 @@ if(isset($_GET['getComments']) && isset($_GET["post_id"])){
         while($comment = $post_comments->fetch()){
             if($row && $row["user_id"] == $comment["user_id"]){
                 $html .= '
-                <div class="d-flex align-items-center justify-content-end gap-2">
-                    <div class="bg-white rounded-xl shadow p-2">'.$comment['comment'].'</div>
-                    <img src="'.imagePath('user_images',$comment["image"]).'" width="40px" height="40px" class="object-fit-cover rounded-circle border">
+                <div class="d-flex align-items-start justify-content-end gap-2">
+                    <div>
+                        <div style="font-size:14px">'.$comment["firstname"].' '.$comment["lastname"].'</div>
+                        <div style="font-size:12px">'.timeElapsed($comment["post_comment_created_at"]).'</div>
+                        <div class="bg-white rounded-xl shadow p-2 mt-1">'.$comment['comment'].'</div>
+                    </div>
+                    <div class="d-flex">
+                        <img src="'.imagePath('user_images',$comment["image"]).'" width="40px" height="40px" class="object-fit-cover rounded-circle border">
+                    </div>  
                 </div>
                 ';
             }else{
                 $html .= '
-                <div class="d-flex align-items-center justify-content-start gap-2">
-                    <img src="'.imagePath('user_images',$comment["image"]).'" width="40px" height="40px" class="object-fit-cover rounded-circle border">
-                    <div class="bg-white rounded-xl shadow p-2">'.$comment['comment'].'</div>
+                <div class="d-flex align-items-start justify-content-start gap-2">
+                    <div class="d-flex">
+                        <img src="'.imagePath('user_images',$comment["image"]).'" width="40px" height="40px" class="object-fit-cover rounded-circle border">
+                    </div>
+                    <div>
+                        <div style="font-size:14px">'.$comment["firstname"].' '.$comment["lastname"].'</div>
+                        <div style="font-size:12px">'.timeElapsed($comment["post_comment_created_at"]).'</div>
+                        <div class="bg-white rounded-xl shadow p-2 mt-1">'.$comment['comment'].'</div>
+                    </div>
                 </div>
                 ';
             }

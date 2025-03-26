@@ -1,5 +1,13 @@
 <?php
 require_once("config.php");
+$row = null;
+if (isset($_SESSION["user_login"])) {
+    $row = sql("SELECT * FROM users WHERE user_id = ?", [$_SESSION["user_login"]])->fetch();
+} elseif (isset($_SESSION["admin_login"])) {
+    $row = sql("SELECT * FROM users WHERE user_id = ?", [$_SESSION["admin_login"]])->fetch();
+} elseif (isset($_SESSION["doctor_login"])) {
+    $row = sql("SELECT * FROM users WHERE user_id = ?", [$_SESSION["doctor_login"]])->fetch();
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +21,7 @@ require_once("config.php");
 
 <body>
     <?php
-    if (!isset($_SESSION["admin_login"]) && !isset($_SESSION["doctor_login"])) {
+    if (!isset($_SESSION["admin_login"]) || !isset($_SESSION["doctor_login"])) {
         require_once("components/nav.php");
     }
     require_once("components/popChats.php");

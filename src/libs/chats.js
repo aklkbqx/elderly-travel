@@ -35,16 +35,17 @@ $(document).ready(() => {
     }
 
     if (messageBox) {
-        setInterval(() => getMessage(), 1);
+        setInterval(() => getMessage(), 1000);
     }
 
     const formChat = $("#form-chat");
     formChat.on("submit", function(e) {
         e.preventDefault();
         const inputMessage = $(this).find("input[name=message]");
-        if (inputMessage.val().trim() == "") {
-            return;
-        }
+
+        // if (inputMessage.val().trim() == "") {
+        //     return;
+        // }
 
         const formData = new FormData($(this)[0]);
 
