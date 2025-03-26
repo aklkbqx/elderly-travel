@@ -25,18 +25,21 @@ if (isset($_SESSION["user_login"])) {
 
 <body>
     <?php
-    if (!isset($_SESSION["admin_login"]) && !isset($_SESSION["doctor_login"])) {
+    if (!isset($_SESSION["admin_login"])) {
         require_once("components/nav.php");
     }
     require_once("components/popChats.php");
     require_once("components/options.php");
     ?>
 
-    <div class='container d-flex justify-content-center' style="margin-top: 10rem;">
-        <div class="rounded-xl border shadow w-100 mb-5">
+    <div class='d-flex justify-content-center container' style="margin-top: <?= isset($_SESSION["admin_login"]) ? "2rem" : "10rem" ?>;">
+        <div class='rounded-xl shadow d-flex flex-column border w-100' style='height:80%'>
+            <div class="p-2">
+                <?php backPage("/") ?>
+            </div>
             <div class='row'>
                 <div class="col-lg-4">
-                    <h5 class='text-center mt-4'>ส่งข้อความ</h5>
+                    <h5 class='text-center'>ส่งข้อความ</h5>
                     <div class='mt-2 w-100 overflow-auto' style="max-height: 650px;">
                         <?php function showUsersChat($role)
                         {

@@ -21,24 +21,24 @@ if (isset($_SESSION["user_login"])) {
 
 <body>
     <?php
-    if (!isset($_SESSION["admin_login"]) || !isset($_SESSION["doctor_login"])) {
+    if (!isset($_SESSION["admin_login"])) {
         require_once("components/nav.php");
     }
     require_once("components/popChats.php");
     require_once("components/options.php");
     ?>
-    <div class='d-flex justify-content-center container' style="margin-top: 10rem;">
-        <div class='rounded-xl shadow d-flex flex-column border w-100' style='height:80%'>
+    <div class='d-flex justify-content-center container' style="margin-top: <?= isset($_SESSION["admin_login"]) ? "2rem" : "10rem" ?>;">
+        <div class='rounded-xl shadow d-flex flex-column border w-100'>
             <div class='p-2'>
                 <div class='d-flex mb-2'>
-                    <?php backPage("window.history.back()"); ?>
+                    <?php backPage("javascript:window.history.back()"); ?>
                 </div>
                 <div class='d-flex align-items-center gap-2'>
                     <img src="<?= imagePath("user_images", "bot.png") ?>" width='50px' height='50px' class='rounded-circle border object-fit-cover'>
                     <div>แชทบอทช่วยเหลือ 24 ชม.</div>
                 </div>
             </div>
-            <div class='p-2 overflow-auto' id='chat-box' style="height: 500px;">
+            <div class='p-2 overflow-auto' id='chat-box' style="height: 650px;">
                 <div class="w-100 h-100 d-flex align-items-center justify-content-center" id="getStarted">เริ่มสนทนากับแชทบอทเลย...</div>
             </div>
             <form id='chat-form' class='d-flex align-items-center gap-2 p-2 mt-2'>
