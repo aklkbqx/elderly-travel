@@ -74,9 +74,29 @@ function formSelectDateBooking()
 function placeCardBooking($place, $booked = false, $user_id = 0)
 {
 ?>
+    <style>
+        .hover-image {
+            cursor: pointer;
+            transition: transform 0.4s;
+
+            &:hover {
+                transform: translateX(3px) scale(1.02);
+            }
+        }
+    </style>
     <div class='w-100 border shadow rounded-xl overflow-hidden mb-2 d-md-flex'>
         <div class="col-lg-4">
-            <img src="<?= imagePath("place_images", json_decode($place["images"])[0]) ?>" alt="" width="100%" height="250px" class='object-fit-cover'>
+            <img src="<?= imagePath("place_images", json_decode($place["images"])[0]) ?>" alt="" width="100%" height="100%" class='object-fit-cover hover-image' data-bs-toggle='modal' data-bs-target='#imagePlace-<?= $place["place_id"] ?>'>
+            <div class="modal fade" id='imagePlace-<?= $place["place_id"] ?>'>
+                <div class="modal-dialog modal-dialog-centered modal-xl" data-bs-dismiss="modal">
+                    <div class="modal-content bg-transparent">
+                        <div class="position-relative" style="z-index: 9999;">
+                            <button type="button" data-bs-dismiss="modal" class="btn-close position-absolute cursor-pointer bg-white rounded-circle p-2" style="z-index: 99999;top:10px;right:10px"></button>
+                            <img src="<?= imagePath("place_images", json_decode($place["images"])[0]) ?>" width="100%" height="100%" class='object-fit-cover rounded-xl'>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class='col-lg-8 p-4 d-flex flex-column position-relative'>
             <div>
@@ -119,7 +139,7 @@ function placeCardBooking($place, $booked = false, $user_id = 0)
                     <div><?= round($ratingAverage, 1) ?></div>
                 </div>
             </div>
-            <div class="d-flex gap-2 align-items-center mt-auto">
+            <div class="d-flex gap-2 align-items-center mt-2">
                 <?php if ($booked) { ?>
                     <button type='button' data-addPlaceId='<?= $place["place_id"]; ?>' class='btn btn-teal rounded-xl w-100'>เพิ่มลงในรายการจอง</button>
                     <?php } else {

@@ -58,10 +58,23 @@ if (isset($_SESSION["user_login"])) {
                         <?php if (isset($_GET["booking"])) { ?>
                             <button type='button' class='btn btn-teal rounded-xl w-100'>เพิ่มลงในรายการจอง</button>
                         <?php } ?>
-                        <h3 class='mt-2 mb-2'><?= $place["name"] ?></h3>
-                        <div>📍 ที่อยู่: <?= $place["address"] ?></div>
-                        <div>❤️ ผลต่อสุขภาพ: <?= $place["health"] ?></div>
-                        <div>💰 ราคา: <?= $place["price"] ?></div>
+                        <h4 class="mb-2"><?= $place["name"] ?></h4>
+                        <div>
+                            <p class="mb-1">
+                                <?php svg("map-pin", "25px", "25px", "#212529") ?>
+                                <span><?= $place["address"] ?></span>
+                            </p>
+                        </div>
+                        <div>
+                            <h6>
+                                <?php svg("heart", "25px", "25px", "#dc3545") ?>
+                                ผลต่อสุขภาพ:
+                            </h6>
+                            <p><?= $place["health"] ?></p>
+                        </div>
+                        <h5>
+                            ราคา: <?= $place["price"] ?>
+                        </h5>
 
                         <div class='d-flex justify-content-between mt-4 mb-2'>
                             <a href="<?= isLogin() ? "./api/place.php?like&place_id=$place_id" : "login.php" ?>" class='text-decoration-none d-flex align-items-center gap-1 btn btn-light'>

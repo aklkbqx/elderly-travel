@@ -1,16 +1,43 @@
 <?php function navlink($className)
 { ?>
+    <style>
+        .navlink {
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .navlink li {
+            list-style: none;
+        }
+
+        .navlink a {
+            text-decoration: none;
+            font-weight: 700;
+            color: #212529;
+            display: inline-block;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .navlink a:hover {
+            transform: translateY(5px);
+        }
+    </style>
     <ul class="navlink">
-        <a href="/" class="<?= $className; ?>">
-            <li>หน้าแรก</li>
-        </a>
-        <a href="posts.php" class="<?= $className; ?>">
-            <li>กระดานสนทนา</li>
-        </a>
-        <a href="places.php" class="<?= $className; ?>">
-            <li>สถานที่ท่องเที่ยว</li>
-        </a>
+        <li>
+            <a href="/" class="<?= $className; ?>">หน้าแรก</a>
+        </li>
+        <li>
+            <a href="posts.php" class="<?= $className; ?>">กระดานสนทนา</a>
+        </li>
+        <li>
+            <a href="places.php" class="<?= $className; ?>">สถานที่ท่องเที่ยว</a>
+        </li>
     </ul>
+
 <?php } ?>
 
 <nav class="w-100 position-fixed z-99" style="top:10px;z-index:9" id="navbar">

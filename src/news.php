@@ -47,7 +47,27 @@ if (isset($_SESSION["user_login"])) {
             }
         ?>
             <div class='p-2 rounded-xl shadow border mt-2'>
-                <img src="<?= imagePath("news_images", $news["image"]) ?>" width='100%' height='500px' class='rounded-4 border object-fit-cover'>
+                <style>
+                    .hover-image {
+                        cursor: pointer;
+                        transition: transform 0.4s;
+
+                        &:hover {
+                            transform: scale(1.01);
+                        }
+                    }
+                </style>
+                <img src="<?= imagePath("news_images", $news["image"]) ?>" width='100%' height='500px' class='rounded-4 object-fit-cover hover-image' data-bs-toggle='modal' data-bs-target='#imageNews-<?= $news["news_id"] ?>'>
+                <div class="modal fade" id='imageNews-<?= $news["news_id"] ?>'>
+                    <div class="modal-dialog modal-dialog-centered modal-xl" data-bs-dismiss="modal">
+                        <div class="modal-content bg-transparent">
+                            <div class="position-relative" style="z-index: 9999;">
+                                <button type="button" data-bs-dismiss="modal" class="btn-close position-absolute cursor-pointer bg-white rounded-circle p-2" style="z-index: 99999;top:10px;right:10px"></button>
+                                <img src="<?= imagePath("news_images", $news["image"]) ?>" width='100%' height='100%' class='rounded-4 object-fit-cover'>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class='p-2'>
                     <h3 class='mt-2'><?= $news["title"] ?></h3>
                     <div><?= $news["body"] ?></div>

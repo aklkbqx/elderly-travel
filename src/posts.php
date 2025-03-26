@@ -143,7 +143,27 @@ if (isset($_SESSION["user_login"])) {
                         <?= $post["text"] ?>
                     </div>
                     <?php if ($post["post_image"] !== null) { ?>
-                        <img src="<?= imagePath("post_images", $post["post_image"]) ?>" width='100%' height='600px' class='object-fit-cover'>
+                        <style>
+                            .hover-image {
+                                cursor: pointer;
+                                transition: transform 0.4s;
+
+                                &:hover {
+                                    transform: scale(1.01);
+                                }
+                            }
+                        </style>
+                        <img src="<?= imagePath("post_images", $post["post_image"]) ?>" width='100%' height='600px' class='object-fit-cover hover-image' data-bs-toggle='modal' data-bs-target='#imagePost-<?= $post["post_id"] ?>'>
+                        <div class="modal fade" id='imagePost-<?= $post["post_id"] ?>'>
+                            <div class="modal-dialog modal-dialog-centered modal-xl" data-bs-dismiss="modal">
+                                <div class="modal-content bg-transparent">
+                                    <div class="position-relative" style="z-index: 9999;">
+                                        <button type="button" data-bs-dismiss="modal" class="btn-close position-absolute cursor-pointer bg-white rounded-circle p-2" style="z-index: 99999;top:10px;right:10px"></button>
+                                        <img src="<?= imagePath("post_images", $post["post_image"]) ?>" width='100%' height='100%' class='object-fit-cover rounded-xl'>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     <?php } ?>
                     <div class='p-2 px-4 d-flex justify-content-between'>
                         <div>ถูกใจแล้ว <span id="like-count-id-<?= $post["post_id"] ?>"></span> คน</div>
