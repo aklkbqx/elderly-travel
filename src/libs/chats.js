@@ -29,7 +29,6 @@ $(document).ready(() => {
                     sended = false;
                     toggleScrollButton();
                 }
-
                 toggleScrollButton();
             }
         });

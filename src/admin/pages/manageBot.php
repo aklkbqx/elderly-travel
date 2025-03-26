@@ -4,9 +4,9 @@
         <label for="" style='position: absolute;top: 0px;left: 8px;font-size: 25px;'>🔍</label>
         <button type='button' class='btn btn-teal'>ค้นหา</button>
     </div>
-    <button data-bs-toggle='modal' data-bs-target="#addQue-Res" type="button" class='btn btn-teal'>เพิ่มคำถามและคำตอบ+</button>
+    <button data-bs-toggle='modal' data-bs-target="#add" type="button" class='btn btn-teal'>เพิ่มคำถามและคำตอบ+</button>
 
-    <div class="modal fade" id='addQue-Res'>
+    <div class="modal fade" id='add'>
         <div class="modal-dialog modal-dialog-centered">
             <form action='../api/admin/manageBot.php' method='post' class="modal-content">
                 <div class="modal-header">
@@ -26,7 +26,7 @@
                 <div class="modal-footer">
                     <div class="d-flex gap-2 flex-row w-100">
                         <button class="btn btn-light w-100" type='button' data-bs-dismiss='modal'>ปิด</button>
-                        <button class="btn btn-teal w-100" type='submit' name='addQue-Res'>เพิ่ม</button>
+                        <button class="btn btn-teal w-100" type='submit' name='add'>เพิ่ม</button>
                     </div>
                 </div>
             </form>
@@ -54,8 +54,6 @@
                     while($bot = $bot_responses->fetch()){
                         $questions = json_decode($bot["questions"]);
                         $responses = json_decode($bot["responses"]);
-
-                        // echo implode(", ",$responses);
                         ?>
                         <tr data-search-item>
                             <td class='text-center'><?= $index; ?></td>
@@ -67,9 +65,9 @@
 
                                     <div class="modal fade" id='editQue-Res-<?= $bot["response_id"] ?>'>
                                         <div class="modal-dialog modal-dialog-centered">
-                                            <form action='../api/admin/manageBot.php' method='post' class="modal-content">
+                                            <form action='../api/admin/manageBot.php?response_id=<?= $bot["response_id"] ?>' method='post' class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title">เพิ่มคำถามและคำตอบ</h5>
+                                                    <h5 class="modal-title">แก้ไขคำถามและคำตอบ</h5>
                                                     <button class="btn-close" data-bs-dismiss='modal' type='button'></button>
                                                 </div>
                                                 <div class="modal-body">
@@ -85,14 +83,14 @@
                                                 <div class="modal-footer">
                                                     <div class="d-flex gap-2 flex-row w-100">
                                                         <button class="btn btn-light w-100" type='button' data-bs-dismiss='modal'>ปิด</button>
-                                                        <button class="btn btn-warning w-100" type='submit' name='editQue-Res'>แก้ไข</button>
+                                                        <button class="btn btn-warning w-100" type='submit' name='edit'>แก้ไข</button>
                                                     </div>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
 
-                                    <a href='../api/admin/manageBot.php?deleteBotResponse&response_id=<?= $bot["response_id"] ?>' class="btn btn-danger w-100">ลบ</a>
+                                    <a href='../api/admin/manageBot.php?delete&response_id=<?= $bot["response_id"] ?>' class="btn btn-danger w-100">ลบ</a>
                                 </div>
                             </td>
                         </tr>

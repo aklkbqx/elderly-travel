@@ -56,22 +56,22 @@
                 ];
             }
     ?>
-            <div class="border rounded-xl mb-2 p-3">
+            <div data-search-item class="border rounded-xl mb-2 p-3">
                 <div class="row">
                     <div class="col-lg-8">
                         <h5>รายการ #<?= $numberList ?></h5>
                         <div class="d-flex align-items-center mt-2 gap-2">
                             <img src="<?= imagePath("user_images", $booking["image"]) ?>" width="50px" height="50px" class="object-fit-cover rounded-circle">
                             <div class="d-flex flex-column">
-                                <h5><?= $booking["firstname"] ?> <?= $booking["lastname"] ?></h5>
+                                <h5 data-search-keyword="<?= $booking["firstname"] ?> <?= $booking["lastname"] ?>"><?= $booking["firstname"] ?> <?= $booking["lastname"] ?></h5>
                                 <div class="text-muted"><?= $booking["email"] ?></div>
                             </div>
                         </div>
 
                         <div class="mt-2">
-                            <div>จำนวนคน: <?= $booking["people"] ?> คน</div>
-                            <div>ราคารวมทั้งหมด: ฿<?= number_format($totalAmount, 2) ?></div>
-                            <div>จองวันที่: <?= formatThaiDate($booking["booking_date"]) ?></div>
+                            <div data-search-keyword="<?= $booking["people"] ?>">จำนวนคน: <?= $booking["people"] ?> คน</div>
+                            <div data-search-keyword="<?= number_format($totalAmount, 2) ?>">ราคารวมทั้งหมด: ฿<?= number_format($totalAmount, 2) ?></div>
+                            <div data-search-keyword="<?= formatThaiDate($booking["booking_date"]) ?>">จองวันที่: <?= formatThaiDate($booking["booking_date"]) ?></div>
                             <div>
                                 เที่ยววันที่:
                                 <?= formatThaiDate($booking["start_date"]) ?>
@@ -79,7 +79,7 @@
                                     ถึง <?= formatThaiDate($booking["end_date"]) ?>
                                 <?php endif; ?>
                             </div>
-                            <div class="d-flex gap-2 align-items-center">
+                            <div class="d-flex gap-2 align-items-center" data-search-keyword="<?= $status["label"] ?>">
                                 สถานะการจอง:
                                 <?= $status["label"]; ?>
                                 <?php if ($status["loading"]) {

@@ -19,22 +19,19 @@ require_once("config.php");
     require_once("components/popChats.php");
     require_once("components/options.php");
     ?>
-    <div class='vh-100 d-flex flex-column justify-content-center align-items-center bg-light'>
-        <div class='bg-white rounded-xl shadow d-flex flex-column' style='width:40%;height:80%'>
+    <div class='d-flex justify-content-center' style="margin-top: 10rem;">
+        <div class='rounded-xl shadow d-flex flex-column border' style='width:40%;height:80%'>
             <div class='p-2'>
                 <div class='d-flex mb-2'>
-                    <a href="javascript:window.history.back()" class='d-flex text-decoration-none text-dark align-items-center gap-2'>
-                        <img src="<?= imagePath("web_images/icons", "chevron-back.svg") ?>" width='15px' height='15px' class='object-fit-cover'>
-                        <div>กลับ</div>
-                    </a>
+                    <?php backPage("window.history.back()"); ?>
                 </div>
                 <div class='d-flex align-items-center gap-2'>
                     <img src="<?= imagePath("user_images", "bot.png") ?>" width='50px' height='50px' class='rounded-circle border object-fit-cover'>
                     <div>แชทบอทช่วยเหลือ 24 ชม.</div>
                 </div>
             </div>
-            <div class='bg-light p-2 h-100 overflow-auto' id='chat-box'>
-
+            <div class='p-2 overflow-auto' id='chat-box' style="height: 500px;">
+                <div class="w-100 h-100 d-flex align-items-center justify-content-center" id="getStarted">เริ่มสนทนากับแชทบอทเลย...</div>
             </div>
             <form id='chat-form' class='d-flex align-items-center gap-2 p-2 mt-2'>
                 <input type="text" class="form-control" name='message' placeholder='พิมพ์ข้อความสอบถาม...' required>
@@ -59,7 +56,12 @@ require_once("config.php");
                     processData: false,
                     contentType: false,
                     success: function(response) {
+                        if($("#getStarted")){
+                            $("#getStarted").remove();
+                        }
+                        $("[name='message']").val(null);
                         chatBox.append(response);
+                        chatBox.scrollTop(chatBox.prop("scrollHeight"));
                     }
                 });
             });
