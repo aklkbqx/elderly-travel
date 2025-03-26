@@ -178,7 +178,7 @@
                                                 $place = sql("SELECT * FROM places WHERE place_id = ?", [$place_detail->place_id])->fetch(); ?>
                                                 <div class='w-100 mb-2 d-md-flex'>
                                                     <div class="col-lg-4">
-                                                        <img src="<?= imagePath("place_images", json_decode($place["images"])[0]) ?>" alt="" width="100%" height="250px" class='object-fit-cover'>
+                                                        <img src="<?= imagePath("place_images", json_decode($place["images"])[0]) ?>" alt="" width="100%" height="100%" class='object-fit-cover'>
                                                     </div>
                                                     <div class='col-lg-8 p-4 d-flex position-relative text-start'>
                                                         <div>

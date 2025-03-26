@@ -25,15 +25,15 @@ if (isset($_SESSION["user_login"])) {
 
 <body>
     <?php
-    if (!isset($_SESSION["admin_login"])) {
+    if (!isset($_SESSION["admin_login"]) && !isset($_SESSION["doctor_login"])) {
         require_once("components/nav.php");
     }
     require_once("components/popChats.php");
     require_once("components/options.php");
     ?>
 
-    <div class='d-flex justify-content-center container' style="margin-top: <?= isset($_SESSION["admin_login"]) ? "2rem" : "10rem" ?>;">
-        <div class='rounded-xl shadow d-flex flex-column border w-100' style='height:80%'>
+    <div class='d-flex justify-content-center container' style="margin-top: <?= isset($_SESSION["admin_login"]) || isset($_SESSION["doctor_login"]) ? "2rem" : "8rem" ?>;">
+        <div class='rounded-xl shadow d-flex flex-column border w-100 mb-4'>
             <div class="p-2">
                 <?php backPage("/") ?>
             </div>
@@ -88,7 +88,7 @@ if (isset($_SESSION["user_login"])) {
                                     </div>
                                     <div><?= $user["firstname"] ?> <?= $user["lastname"] ?></div>
                                 </div>
-                                <div class='bg-light p-2 d-flex flex-column gap-2 overflow-auto' id='message-box' style='height:600px;'></div>
+                                <div class='p-2 d-flex flex-column gap-2 overflow-auto' id='message-box' style='height:600px;'></div>
                                 <div id='srollToDown' class='position-absolute bg-white cursor-pointer rounded-circle border d-flex justify-content-center align-items-center shadow' style='bottom:0;right:50%;width:50px;height:50px;'>
                                     <img src="<?= imagePath('web_images/icons', 'chevron-down.png') ?>" width='25px' height='25px' class='object-fit-cover'>
                                 </div>
@@ -101,7 +101,7 @@ if (isset($_SESSION["user_login"])) {
                                 </label>
                                 <input name="message" type="text" class='form-control h-100' placeholder='เขียนข้อความ...'>
                                 <button type='submit' class='btn btn-outline-teal p-2'>
-                                    <img src="<?= imagePath("web_images/icons", "send.svg") ?>" width='25px' height='25px' class='object-fit-cover'>
+                                    <img src="<?= imagePath("web_images/icons", "send.svg") ?>" width='25px' height='25px' class='object-fit-cover svg-icon'>
                                 </button>
                             </form>
                             <div id='showImagePreview' class='my-4 d-none justify-content-center align-items-center'>

@@ -7,7 +7,7 @@ function chatbot()
     </a>
 <?php } ?>
 <div class='position-fixed' style='bottom:1rem;right:1rem;z-index:99'>
-    <?php if (isset($_SESSION["user_login"]) || isset($_SESSION["admin_login"])) { ?>
+    <?php if (isset($_SESSION["user_login"]) || isset($_SESSION["admin_login"]) || isset($_SESSION["doctor_login"])) { ?>
         <div class='dropup'>
             <img src="<?= imagePath("web_images/icons", "chat.svg") ?>" data-bs-toggle='dropdown' style='width:60px;height:60px;filter:drop-shadow(0 0 5px white);object-fit:contain' class='cursor-pointer'>
             <div class='dropdown-menu p-2 overflow-hidden' style='width:300px;height:500px;'>

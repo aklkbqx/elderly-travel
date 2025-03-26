@@ -56,7 +56,7 @@ $(document).ready(() => {
             processData: false,
             contentType: false,
             success: function(response) {
-                console.log(response);
+                $("#chooseImage").val(null);$("#showImagePreview").removeClass("d-flex").addClass("d-none")
                 inputMessage.val(null);
                 sended = true;
             }

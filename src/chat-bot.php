@@ -21,14 +21,14 @@ if (isset($_SESSION["user_login"])) {
 
 <body>
     <?php
-    if (!isset($_SESSION["admin_login"])) {
+    if (!isset($_SESSION["admin_login"]) && !isset($_SESSION["doctor_login"])) {
         require_once("components/nav.php");
     }
     require_once("components/popChats.php");
     require_once("components/options.php");
     ?>
-    <div class='d-flex justify-content-center container' style="margin-top: <?= isset($_SESSION["admin_login"]) ? "2rem" : "10rem" ?>;">
-        <div class='rounded-xl shadow d-flex flex-column border w-100'>
+    <div class='d-flex justify-content-center container' style="margin-top: <?= isset($_SESSION["admin_login"]) || isset($_SESSION["doctor_login"]) ? "2rem" : "8rem" ?>;">
+        <div class='rounded-xl shadow d-flex flex-column border w-100 mb-4'>
             <div class='p-2'>
                 <div class='d-flex mb-2'>
                     <?php backPage("javascript:window.history.back()"); ?>

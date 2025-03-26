@@ -26,7 +26,7 @@ if(isset($_GET["getMessage"]) && isset($_GET["receiver_id"])){
             $chatImage = $chatUser["image"] ? '<img src="'. imagePath("chat_images",$chatUser["image"]) .'" width="300px" height="200px" class="object-fit-cover border rounded-xl mt-2">' : null;
             if ($chatUser['sender_id'] == $sender_id) {
                 $output .= '<div class="d-flex align-items-start justify-content-end gap-2">
-                                <div class="bg-white p-2 rounded-xl shadow">
+                                <div class="border p-2 rounded-xl shadow">
                                     <div>' . $chatUser['message'] . '</div>
                                     '.$chatImage.'
                                 </div>
@@ -35,7 +35,7 @@ if(isset($_GET["getMessage"]) && isset($_GET["receiver_id"])){
             } else {
                 $output .= '<div class="d-flex align-items-start justify-content-start gap-2">
                             <img src="'. imagePath("user_images",$chatUser["user_image"]) .'" width="40px" height="40px" class="object-fit-cover border rounded-circle">
-                            <div class="bg-white p-2 rounded-xl shadow">
+                            <div class="border p-2 rounded-xl shadow">
                                     <div>' . $chatUser['message'] . '</div>
                                     '.$chatImage.'
                                 </div>
