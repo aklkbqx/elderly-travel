@@ -2,10 +2,9 @@
 session_start();
 date_default_timezone_set('Asia/Bangkok');
 
-$servername = "156.67.218.234";
-// $servername = "mariadb";
-$username = "username";
-$password = "password";
+$servername = "localhost";
+$username = "root";
+$password = "";
 $dbname = "elderly_db";
 
 try {
