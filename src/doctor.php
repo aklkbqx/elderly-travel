@@ -20,7 +20,7 @@ if (isset($_SESSION["user_login"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor</title>
-    <?php require "link.php"; ?>
+    <?php require_once("link.php"); ?>
 </head>
 
 <body>

@@ -73,7 +73,7 @@ if (isset($_SESSION["user_login"])) {
                     <div><?= $news["body"] ?></div>
 
                     <div class='d-flex justify-content-between mt-4 mb-2'>
-                        <a href="<?= isLogin() ? "./api/news.php?like&news_id=$news_id" : "login.php" ?>" class='text-decoration-none d-flex align-items-center gap-1 btn btn-light'>
+                        <a href="<?= isLogin() ? "./api/news?like&news_id=$news_id" : "login" ?>" class='text-decoration-none d-flex align-items-center gap-1 btn btn-light'>
                             <img src="<?= imagePath("web_images/icons", $heart) ?>" width='30px' height='30px' class='object-fit-cover'>
                             <div class=''><?= sql("SELECT COUNT(*) as count FROM news_likes WHERE news_id = ?", [$news_id])->fetch()["count"] ?></div>
                         </a>
@@ -85,7 +85,7 @@ if (isset($_SESSION["user_login"])) {
 
                     <?php
                     if (isLogin()) { ?>
-                        <form method='post' action='api/news.php?comment&news_id=<?= $news_id ?>' class='d-flex align-items-center gap-2'>
+                        <form method='post' action='api/news?comment&news_id=<?= $news_id ?>' class='d-flex align-items-center gap-2'>
                             <input type="text" name='comment' class='form-control' placeholder='แสดงความคิดเห็น'>
                             <button type='submit' name='submit_comment' class='btn btn-teal'>ส่ง</button>
                         </form>
@@ -107,7 +107,7 @@ if (isset($_SESSION["user_login"])) {
                                 </div>
                                 <?php if (isLogin() && ($news_comnent["user_id"] == $row["user_id"])) { ?>
                                     <div class='d-flex align-items-center gap-2'>
-                                        <a href="api/news.php?delete_comment&comment_id=<?= $news_comnent["comment_id"] ?>&news_id=<?= $news_id ?>" class='btn btn-danger'>ลบ</a>
+                                        <a href="api/news?delete_comment&comment_id=<?= $news_comnent["comment_id"] ?>&news_id=<?= $news_id ?>" class='btn btn-danger'>ลบ</a>
                                     </div>
                                 <?php } ?>
                             </div>
@@ -123,7 +123,7 @@ if (isset($_SESSION["user_login"])) {
                 <div class='list-group'>
                     <?php
                     while ($news = $fetchAllNews->fetch()) { ?>
-                        <a href="news.php?news_id=<?= $news["news_id"] ?>" class='list-group-item list-group-item-action d-flex gap-2'>
+                        <a href="news?news_id=<?= $news["news_id"] ?>" class='list-group-item list-group-item-action d-flex gap-2'>
                             <img src="<?= imagePath("news_images", $news["image"]) ?>" width="330px" height="125px" class='object-fit-cover rounded-xl'>
                             <div>
                                 <div class='mb-2 fw-semibold fs-5'><?= $news["title"] ?></div>
@@ -145,7 +145,7 @@ if (isset($_SESSION["user_login"])) {
             <script>
                 setTimeout(() => {
                     $.ajax({
-                        url: "./api/news.php?visitors&news_id=<?= $news_id ?>",
+                        url: "./api/news?visitors&news_id=<?= $news_id ?>",
                         type: "post"
                     })
                 }, 2000);
@@ -165,7 +165,7 @@ if (isset($_SESSION["user_login"])) {
                                     </div>
                                 </div>
                                 <div class="px-2 pb-2">
-                                    <a href="news.php?news_id=<?= $news["news_id"] ?>" class='btn btn-teal mt-2 w-100'>อ่านรายละเอียดเพิ่มเติม</a>
+                                    <a href="news?news_id=<?= $news["news_id"] ?>" class='btn btn-teal mt-2 w-100'>อ่านรายละเอียดเพิ่มเติม</a>
                                 </div>
                             </div>
                         </div>

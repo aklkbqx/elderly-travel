@@ -8,7 +8,7 @@
     <button data-bs-toggle='modal' data-bs-target="#addUser" type="button" class='btn btn-teal'>เพิ่ม+</button>
     <div class="modal fade" id='addUser'>
         <div class="modal-dialog modal-dialog-centered">
-            <form action="../api/admin/manageUsers.php" class="modal-content" method='post' enctype='multipart/form-data'>
+            <form action="../api/admin/manageUsers" class="modal-content" method='post' enctype='multipart/form-data'>
                 <div class="modal-header">
                     <h4 class="modal-title">เพิ่มสมาชิก</h4>
                     <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
@@ -105,7 +105,7 @@
                                 <button type='button' data-bs-toggle='modal' class='btn btn-danger w-100' data-bs-target='#deleteUser-<?= $user["user_id"]; ?>'>ลบ</button>
                                 <div class="modal fade" id='editUser-<?= $user["user_id"]; ?>'>
                                     <div class="modal-dialog modal-dialog-centered">
-                                        <form action="../api/admin/manageUsers.php?user_id=<?= $user["user_id"]; ?>" class="modal-content" method='post' enctype='multipart/form-data'>
+                                        <form action="../api/admin/manageUsers?user_id=<?= $user["user_id"]; ?>" class="modal-content" method='post' enctype='multipart/form-data'>
                                             <div class="modal-header">
                                                 <h4 class="modal-title">แก้ไขสมาชิก</h4>
                                                 <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
@@ -156,7 +156,7 @@
                                 </div>
                                 <div class="modal fade" id='deleteUser-<?= $user["user_id"]; ?>'>
                                     <div class="modal-dialog modal-dialog-centered">
-                                        <form action="../api/admin/manageUsers.php?user_id=<?= $user["user_id"]; ?>" class="modal-content" method='post' enctype='multipart/form-data'>
+                                        <form action="../api/admin/manageUsers?user_id=<?= $user["user_id"]; ?>" class="modal-content" method='post' enctype='multipart/form-data'>
                                             <div class="modal-header">
                                                 <h4 class="modal-title">ลบสมาชิก</h4>
                                                 <button type='button' class='btn-close' data-bs-dismiss='modal'></button>

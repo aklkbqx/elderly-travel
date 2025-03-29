@@ -11,7 +11,7 @@ foreach (["user", "doctor"] as $index => $type) {
 }
 
 if (!$row) {
-    msg("warning", "คำเตือน", "ไม่สามารถเข้าถึงหน้านี้ได้ กรุณาทำการเข้าสู่ระบบ", "login.php");
+    msg("warning", "คำเตือน", "ไม่สามารถเข้าถึงหน้านี้ได้ กรุณาทำการเข้าสู่ระบบ", "login");
 }
 
 $isSelectedDate = false;
@@ -134,7 +134,7 @@ if ($fetchBooking->rowCount() > 0) {
             $payment = sql("SELECT * FROM payments WHERE user_id = ? AND booking_id = ?", [$row["user_id"], $booking["booking_id"]])->fetch();
             if ($payment) {
                 if ($payment["status"] == "PAID" || $booking["status"] != "PENDING") { ?>
-                    <h3 class="text-center">เกิดข้อผิดพลาด ได้โปรดตรวจสอบ <a href="my-booking.php">รายการจองของคุณ</a></h3>
+                    <h3 class="text-center">เกิดข้อผิดพลาด ได้โปรดตรวจสอบ <a href="my-booking">รายการจองของคุณ</a></h3>
         <?php return;
                 }
                 bookingComponent();
@@ -156,7 +156,7 @@ if ($fetchBooking->rowCount() > 0) {
             const peopleCount = Number($("#peopleCount").text());
 
             $.ajax({
-                url: "../api/booking.php?getBookings",
+                url: "../api/booking?getBookings",
                 type: "GET",
                 success: (response) => {
                     const json = JSON.parse(response);
@@ -267,13 +267,13 @@ if ($fetchBooking->rowCount() > 0) {
             const bookingId = $(this).data("bookingId");
             $.ajax({
                 type: "POST",
-                url: `../api/payment.php?continueTopayment&booking_id=${bookingId}`,
+                url: `../api/payment?continueTopayment&booking_id=${bookingId}`,
                 success: (response) => {
                     const {
                         success
                     } = JSON.parse(response);
                     if (success) {
-                        window.location = `./payment.php`;
+                        window.location = `./payment`;
                     }
                 }
             })
@@ -293,7 +293,7 @@ if ($fetchBooking->rowCount() > 0) {
             }
 
             $.ajax({
-                url: "../api/booking.php?addToBookings",
+                url: "../api/booking?addToBookings",
                 type: "POST",
                 data: {
                     place_id,
@@ -307,7 +307,7 @@ if ($fetchBooking->rowCount() > 0) {
 
         const removeFromBookings = (date, place_id) => {
             $.ajax({
-                url: "../api/booking.php?removeFromBookings",
+                url: "../api/booking?removeFromBookings",
                 type: "POST",
                 data: {
                     date,
@@ -324,7 +324,7 @@ if ($fetchBooking->rowCount() > 0) {
 
         const updateBookingTime = (place_id, time, type, date) => {
             $.ajax({
-                url: "../api/booking.php?updateBookingTime",
+                url: "../api/booking?updateBookingTime",
                 type: "POST",
                 data: {
                     place_id,

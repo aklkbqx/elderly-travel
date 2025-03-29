@@ -1,7 +1,7 @@
 <?php
 function chatbot()
 { ?>
-    <a href="<?= $_SERVER["REQUEST_URI"] == "/" ? "chat-bot.php" : "../chat-bot.php" ?>" class='btn btn-outline-teal border-0 p-2 w-100'>
+    <a href="<?= $_SERVER["REQUEST_URI"] == "/" ? "chat-bot" : "../chat-bot" ?>" class='btn btn-outline-teal border-0 p-2 w-100'>
         <img src="<?= imagePath("user_images", "bot.png") ?>" class='border rounded-circle object-fit-cover' style='width:50px;height:50px' />
         <div>แชทบอทช่วยเหลือ 24. ชม</div>
     </a>
@@ -26,7 +26,7 @@ function chatbot()
                                     }
                                     $showTextRole = $role == 'admin' ? '• ผู้ดูและระบบ' : ($role == "user" ? '• ผู้ใช้งานทั่วไป' : '• แพทย์/หมอ');
                                     echo $index == 0 ? "<div>$showTextRole</div>" : null ?>
-                                    <a href="<?= $_SERVER["REQUEST_URI"] === "/" ? "chats.php?receiver_id=" . $user['user_id'] : "../chats.php?receiver_id=" . $user['user_id'] ?>" class='btn btn-outline-teal border-0 p-1 w-100'>
+                                    <a href="<?= $_SERVER["REQUEST_URI"] === "/" ? "chats?receiver_id=" . $user['user_id'] : "../chats?receiver_id=" . $user['user_id'] ?>" class='btn btn-outline-teal border-0 p-1 w-100'>
                                         <li class='d-flex align-items-center gap-2'>
                                             <div class='position-relative'>
                                                 <img src="<?= imagePath("user_images", $user["image"]) ?>" class='border rounded-circle object-fit-cover' style='width:50px;height:50px' />

@@ -46,7 +46,7 @@ $score = [
             $assessment_responses = $row ? sql("SELECT * FROM assessment_responses WHERE assessment_id = ? AND user_id = ?", [$assessment_id, $row["user_id"]])->fetch() : null;
             $responses = $assessment_responses ? json_decode($assessment_responses["responses"]) : null;
         ?>
-            <form action="api/assessments.php?assessment_id=<?= $assessment_id ?>" method='post'>
+            <form action="api/assessments?assessment_id=<?= $assessment_id ?>" method='post'>
                 <div class='mt-2 overflow-hidden rounded-xl border shadow-sm'>
                     <div class='bg-teal w-100' style='height:20px'></div>
                     <div class='px-5 py-4 position-relative'>
@@ -109,7 +109,7 @@ $score = [
                             <button type="submit" name='sendAssessment' class='btn btn-teal px-4'>ส่ง</button>
                         <?php }
                     } else { ?>
-                        <a href="login.php" class='btn btn-teal px-4'>เข้าสู่ระบบ</a>
+                        <a href="login" class='btn btn-teal px-4'>เข้าสู่ระบบ</a>
                     <?php } ?>
                 </div>
             </form>
@@ -117,7 +117,7 @@ $score = [
             <script>
                 setTimeout(() => {
                     $.ajax({
-                        url: "./api/assessments.php?visitors&assessment_id=<?= $assessment_id ?>",
+                        url: "./api/assessments?visitors&assessment_id=<?= $assessment_id ?>",
                         type: "post"
                     })
                 }, 2000);

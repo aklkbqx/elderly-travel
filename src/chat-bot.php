@@ -58,7 +58,7 @@ if (isset($_SESSION["user_login"])) {
                 const formData = new FormData($(this)[0]);
 
                 $.ajax({
-                    url: "api/chat-bot.php?sendMessage",
+                    url: "api/chat-bot?sendMessage",
                     type: 'POST',
                     data: formData,
                     processData: false,

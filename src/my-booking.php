@@ -8,7 +8,7 @@ if (isset($_SESSION["user_login"])) {
 } elseif (isset($_SESSION["admin_login"])) {
     msg("warning", "คำเตือน", "ไม่สามารถเข้าถึงหน้านี้ได้", "admin/");
 } elseif (isset($_SESSION["doctor_login"])) {
-    msg("warning", "คำเตือน", "ไม่สามารถเข้าถึงหน้านี้ได้", "doctor.php");
+    msg("warning", "คำเตือน", "ไม่สามารถเข้าถึงหน้านี้ได้", "doctor");
 } else {
     msg("warning", "คำเตือน", "ไม่สามารถเข้าถึงหน้านี้ได้", "/");
 }
@@ -27,7 +27,7 @@ if (isset($_SESSION["user_login"])) {
 <body>
 
     <?php
-    require "components/nav.php";
+    require_once("components/nav.php");
     require_once("components/popChats.php");
     require_once("components/options.php");
     ?>
@@ -109,9 +109,9 @@ if (isset($_SESSION["user_login"])) {
                                     <td>
                                         <div class="d-flex justify-content-center gap-2">
                                             <?php if ($payment) {
-                                                if ($payment["status"] == "PENDING" && $booking["status"] == "PENDING") { ?>
+                                                if (($payment["status"] == "PENDING" && $booking["status"] == "PENDING")) { ?>
                                                     <button type='button' data-bs-toggle="modal" data-bs-target="#cancelBooking" class='btn btn-danger flex-grow-1'>ยกเลิกการจอง</button>
-                                                    <a href="payment.php" class="btn btn-warning flex-grow-1">ชำระเงิน</a>
+                                                    <a href="payment" class="btn btn-warning flex-grow-1">ชำระเงิน</a>
                                                 <?php } elseif ($payment["status"] == "PAID" && ($booking["status"] == "CONFIRMED" || $booking["status"] == "COMPLETED")) { ?>
                                                     <button type='button' data-bs-toggle="modal" data-bs-target="#bookingTracking-<?= $booking["booking_id"] ?>" class='btn btn-teal flex-grow-1'>
                                                         <?= $booking["status"] == "CONFIRMED" ? "ติดตามสถานะการเดินทาง" : ($booking["status"] == "COMPLETED" ? "ดูการเดินทาง" : "") ?>
@@ -188,7 +188,7 @@ if (isset($_SESSION["user_login"])) {
                                                                 if ($booking["status"] == "CONFIRMED") { ?>
                                                                     <div class="modal-footer">
                                                                         <div class="w-100">
-                                                                            <a href="./api/booking.php?bookingCompleted" class="btn btn-teal w-100">เที่ยวสำเร็จแล้ว</a>
+                                                                            <a href="./api/booking?bookingCompleted" class="btn btn-teal w-100">เที่ยวสำเร็จแล้ว</a>
                                                                         </div>
                                                                     </div>
                                                                 <?php }
@@ -205,7 +205,7 @@ if (isset($_SESSION["user_login"])) {
                                                 }
                                             } else { ?>
                                                 <button type="button" data-bs-toggle="modal" data-bs-target="#cancelBooking" class="btn btn-danger flex-grow-1">ยกเลิกการจอง</button>
-                                                <a href="booking.php" class="btn btn-teal flex-grow-1">ดำเนินการจองต่อ</a>
+                                                <a href="booking" class="btn btn-teal flex-grow-1">ดำเนินการจองต่อ</a>
                                             <?php } ?>
                                         </div>
                                         <?php cancelBooking($booking["booking_id"]); ?>

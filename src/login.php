@@ -6,7 +6,7 @@ if (isset($_SESSION["user_login"])) {
 } elseif (isset($_SESSION["admin_login"])) {
     msg("warning", "คำเตือน", "ไม่สามารถเข้าถึงหน้านี้ได้", "admin/");
 } elseif (isset($_SESSION["doctor_login"])) {
-    msg("warning", "คำเตือน", "ไม่สามารถเข้าถึงหน้านี้ได้", "doctor.php");
+    msg("warning", "คำเตือน", "ไม่สามารถเข้าถึงหน้านี้ได้", "doctor");
 }
 ?>
 <!DOCTYPE html>
@@ -37,11 +37,11 @@ if (isset($_SESSION["user_login"])) {
             <div class='d-flex justify-contnt-center align-items-center flex-column text-white'>
                 <h1 style='font-size:50px' class='fw-bold'>ยินดีต้อนรับ</h1>
                 <p style='font-size:20px'>คุณยังไม่มีบัญชีใช่หรือไม่</p>
-                <a href="register.php" style='font-size:30px' class='btn btn-outline-light'>สมัครสมาชิก</a>
+                <a href="register" style='font-size:30px' class='btn btn-outline-light'>สมัครสมาชิก</a>
             </div>
         </div>
         <div class='flex-1 d-flex justify-content-center p-4 align-items-center align-item-lg-start'>
-            <form action="api/auth.php" method='post' class='m-0' style='width:400px;'>
+            <form action="./api/auth" method='POST' class='m-0' style='width:400px;'>
                 <h1 class='text-center mb-2'>เข้าสู่ระบบ</h1>
                 <div class='d-flex flex-column gap-2 mb-2'>
                     <div class="form-floating">
@@ -55,7 +55,7 @@ if (isset($_SESSION["user_login"])) {
                     </div>
                 </div>
                 <!-- <div class="d-flex align-items-center justify-content-end mb-2">
-                    <a href="forgotpassword.php" class='text-teal' style='font-size:20px'>ลืมรหัสผ่าน</a>
+                    <a href="forgotpassword" class='text-teal' style='font-size:20px'>ลืมรหัสผ่าน</a>
                 </div> -->
                 <button type='submit' name='login' class="btn btn-teal w-100" style='font-size:30px'>
                     เข้าสู่ระบบ
@@ -63,7 +63,7 @@ if (isset($_SESSION["user_login"])) {
 
                 <div class='mt-4 d-flex d-lg-none align-items-center gap-2 justify-content-center'>
                     <p style='font-size:20px' class="m-0 p-0">คุณยังไม่มีบัญชีใช่หรือไม่</p>
-                    <a href="register.php" class='btn btn-teal'>สมัครสมาชิก</a>
+                    <a href="register" class='btn btn-teal'>สมัครสมาชิก</a>
                 </div>
             </form>
         </div>

@@ -1,0 +1,7 @@
+{
+    "name": "aklkbqx/elderly-travel",
+    "description": "elderly travel",
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

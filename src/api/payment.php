@@ -38,7 +38,7 @@ if (isset($_GET["processPayment"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($insertPayment) {
         sql("UPDATE payments SET status = 'COMPLETED' WHERE booking_id = ?", [$booking_id]);
-        msg("success", "สำเร็จ!", "การชำระเงินเสร็จสมบูรณ์!", "confirmation.php");
+        msg("success", "สำเร็จ!", "การชำระเงินเสร็จสมบูรณ์!", "confirmation");
     } else {
         msg("error", "ข้อผิดพลาด!", "เกิดข้อผิดพลาดในการชำระเงิน", $_SERVER["HTTP_REFERER"]);
     }

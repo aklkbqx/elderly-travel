@@ -21,7 +21,7 @@ $(document).ready(() => {
     const getMessage = () => {
         $.ajax({
             type: "GET",
-            url: `../api/chats.php?getMessage&receiver_id=${urlParams.get("receiver_id")}`,
+            url: `../api/chats?getMessage&receiver_id=${urlParams.get("receiver_id")}`,
             success: function(response) {
                 messageBox.html(response);
                 if (sended) {
@@ -51,7 +51,7 @@ $(document).ready(() => {
 
         $.ajax({
             type: "POST",
-            url: `../api/chats.php?sendMessage&receiver_id=${urlParams.get("receiver_id")}`,
+            url: `../api/chats?sendMessage&receiver_id=${urlParams.get("receiver_id")}`,
             data: formData,
             processData: false,
             contentType: false,

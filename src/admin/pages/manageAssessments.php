@@ -8,7 +8,7 @@
 
     <div class="modal fade" id='addAssessment'>
         <div class="modal-dialog modal-dialog-centered">
-            <form action="../api/admin/manageAssessments.php" class="modal-content" method='post' enctype='multipart/form-data'>
+            <form action="../api/admin/manageAssessments" class="modal-content" method='post' enctype='multipart/form-data'>
                 <div class="modal-header">
                     <h4 class="modal-title">เพิ่มแบบสอบถาม/ประเมิน</h4>
                     <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
@@ -121,7 +121,7 @@
 
                                     <div class="modal fade" id='detailAssessment-<?= $assessment["assessment_id"] ?>'>
                                         <div class="modal-dialog modal-dialog-centered modal-xl">
-                                            <div action="../api/admin/manageAssessments.php?assessment_id=<?= $assessment["assessment_id"] ?>" class="modal-content" method='post' enctype='multipart/form-data'>
+                                            <div action="../api/admin/manageAssessments?assessment_id=<?= $assessment["assessment_id"] ?>" class="modal-content" method='post' enctype='multipart/form-data'>
                                                 <div class="modal-header">
                                                     <h4 class="modal-title">รายละเอียดแบบสอบถาม/ประเมิน</h4>
                                                     <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
@@ -239,7 +239,7 @@
                                                         <button type="reset" data-bs-dismiss='modal' class='btn btn-light w-100'>ปิด</button>
                                                         <?php
                                                         if ($assessment_responses->rowCount() > 0) { ?>
-                                                            <a target="_blank" href="report-assessment.php?assessment_id=<?= $assessment["assessment_id"] ?>" name='editAssessment' class='btn btn-teal w-100'>พิมพ์รายงาน</a>
+                                                            <a target="_blank" href="report-assessment?assessment_id=<?= $assessment["assessment_id"] ?>" name='editAssessment' class='btn btn-teal w-100'>พิมพ์รายงาน</a>
                                                         <?php }
                                                         ?>
                                                     </div>
@@ -250,7 +250,7 @@
 
                                     <div class="modal fade" id='editAssessment-<?= $assessment["assessment_id"] ?>'>
                                         <div class="modal-dialog modal-dialog-centered">
-                                            <form action="../api/admin/manageAssessments.php?assessment_id=<?= $assessment["assessment_id"] ?>" class="modal-content" method='post' enctype='multipart/form-data'>
+                                            <form action="../api/admin/manageAssessments?assessment_id=<?= $assessment["assessment_id"] ?>" class="modal-content" method='post' enctype='multipart/form-data'>
                                                 <div class="modal-header">
                                                     <h4 class="modal-title">แก้ไขแบบสอบถาม/ประเมิน</h4>
                                                     <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
@@ -296,7 +296,7 @@
                                     </div>
                                     <div class="modal fade" id='deleteAssessment-<?= $assessment["assessment_id"] ?>'>
                                         <div class="modal-dialog modal-dialog-centered">
-                                            <form action="../api/admin/manageAssessments.php?assessment_id=<?= $assessment["assessment_id"] ?>" class="modal-content" method='post' enctype='multipart/form-data'>
+                                            <form action="../api/admin/manageAssessments?assessment_id=<?= $assessment["assessment_id"] ?>" class="modal-content" method='post' enctype='multipart/form-data'>
                                                 <div class="modal-header">
                                                     <h4 class="modal-title">ลบแบบสอบถาม/ประเมิน</h4>
                                                     <button type='button' class='btn-close' data-bs-dismiss='modal'></button>

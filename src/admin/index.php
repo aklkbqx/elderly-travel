@@ -61,7 +61,7 @@ $pages = [
                 <div><?= $row["firstname"] ?> <?= $row["lastname"] ?></div>
             </div>
             <ul class="dropdown-menu">
-                <a href="editprofile.php" class="dropdown-item mb-2">
+                <a href="editprofile" class="dropdown-item mb-2">
                     <li class="d-flex align-items-center gap-2">
                         <img src="<?= imagePath("web_images/icons","people.svg") ?>" width="35px" height="35px" class='object-fit-cover' />
                         <div>แก้ไขข้อมูลส่วนตัว</div>
