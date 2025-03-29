@@ -1,5 +1,5 @@
 <?php 
-require_once('../../config');
+require_once('../../config.php');
 
 if(isset($_REQUEST["add"])){
     $questions = json_encode(explode(".",$_POST["questions"]));

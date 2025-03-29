@@ -26,7 +26,7 @@ if (isset($_SESSION["user_login"])) {
 
 <body>
     <?php
-    require_once("./components/nav");
+    require_once("components/nav.php");
     require_once("components/popChats.php");
     require_once("components/options.php");
     ?>
