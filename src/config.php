@@ -2,10 +2,15 @@
 session_start();
 date_default_timezone_set('Asia/Bangkok');
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "elderly_db";
+require 'vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$servername = $_ENV["DB_SERVER"];
+$username = $_ENV["DB_USERNAME"];
+$password = $_ENV["DB_PASSWORD"];
+$dbname = $_ENV["DB_NAME"];
 
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
