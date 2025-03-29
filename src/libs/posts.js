@@ -1,6 +1,6 @@
 function likePost (element,post_id){
     $.ajax({
-        url: `../api/posts.php?sendLike&post_id=${post_id}`,
+        url: `../api/posts?sendLike&post_id=${post_id}`,
         success: (response) =>{
             if(response){
                 element.removeClass("btn-outline-light text-dark").addClass("btn-teal")

@@ -1,6 +1,6 @@
 <div class='row'>
     <div class='col-lg-4'>
-        <form action="../api/posts.php" method='post' enctype='multipart/form-data' class="mb-5">
+        <form action="../api/posts" method='post' enctype='multipart/form-data' class="mb-5">
             <input name='image' accept="image/*" id='imagePost' hidden type="file" onchange="$('#previewImage').attr('src',window.URL.createObjectURL(this.files[0]));$('#imagePreview').removeClass('d-none')">
             <div class='d-flex align-items-center gap-2'>
                 <img src="<?= imagePath("user_images", $row["image"]) ?>" alt="" class='border rounded-circle object-fit-cover' width='50px' height='50px'>
@@ -20,7 +20,7 @@
     </div>
 
     <div class='col-lg-8'>
-        <a href="../posts.php" class="text-center btn border mb-2">
+        <a href="../posts" class="text-center btn border mb-2">
             > ไปยังหน้ากระดานสนทนา
         </a>
         <div class='overflow-auto p-4 rounded-xl border' style="height: 670px;">
@@ -58,14 +58,14 @@
                                 <ul class='dropdown-menu'>
                                     <li class='dropdown-item' data-bs-toggle='modal' data-bs-target='#editPost-<?= $post["post_id"] ?>'>แก้ไข</li>
                                     <div class="dropdown-divider"></div>
-                                    <a href="../api/posts.php?deletePost&post_id=<?= $post["post_id"] ?>" class='text-danger dropdown-item'>
+                                    <a href="../api/posts?deletePost&post_id=<?= $post["post_id"] ?>" class='text-danger dropdown-item'>
                                         <li>ลบ</li>
                                     </a>
                                 </ul>
 
                                 <div class="modal fade" id='editPost-<?= $post["post_id"] ?>'>
                                     <div class="modal-dialog modal-dialog-centered">
-                                        <form action="../api/posts.php?post_id=<?= $post["post_id"] ?>" class="modal-content" method='post' enctype='multipart/form-data'>
+                                        <form action="../api/posts?post_id=<?= $post["post_id"] ?>" class="modal-content" method='post' enctype='multipart/form-data'>
                                             <div class="modal-header">
                                                 <h4 class="modal-title">แก้ไขกระทู้ของฉัน</h4>
                                                 <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
@@ -133,11 +133,11 @@
                             </div>
                         </div>
                         <div class='d-flex align-items-center gap-2 px-4'>
-                            <a href="../api/posts.php?like&post_id=<?= $post["post_id"] ?>" class='text-decoration-none d-flex align-items-center gap-1 btn btn-outline-light  border'>
+                            <a href="../api/posts?like&post_id=<?= $post["post_id"] ?>" class='text-decoration-none d-flex align-items-center gap-1 btn btn-outline-light  border'>
                                 <img src="<?= imagePath("web_images/icons", $heart) ?>" width='30px' height='30px' class='object-fit-cover svg-icon'>
                                 <div class='text-dark'><?= sql("SELECT COUNT(*) as count FROM post_likes WHERE post_id = ?", [$post["post_id"]])->fetch()["count"] ?></div>
                             </a>
-                            <form method='post' action='../api/posts.php?comment&post_id=<?= $post["post_id"] ?>' class='d-flex w-100 align-items-center gap-2 m-0'>
+                            <form method='post' action='../api/posts?comment&post_id=<?= $post["post_id"] ?>' class='d-flex w-100 align-items-center gap-2 m-0'>
                                 <input type="text" name='comment' class='form-control' placeholder='แสดงความคิดเห็น'>
                                 <button type='submit' name='submit_comment' class='btn btn-teal'>ส่ง</button>
                             </form>
@@ -158,7 +158,7 @@
                                     </div>
                                     <?php if (isLogin() && ($post_comnent["user_id"] == $row["user_id"])) { ?>
                                         <div class='d-flex align-items-center gap-2'>
-                                            <a href="../api/posts.php?delete_comment&comment_id=<?= $post_comnent["comment_id"] ?>&post_id=<?= $post["post_id"] ?>" class='btn btn-danger'>ลบ</a>
+                                            <a href="../api/posts?delete_comment&comment_id=<?= $post_comnent["comment_id"] ?>&post_id=<?= $post["post_id"] ?>" class='btn btn-danger'>ลบ</a>
                                         </div>
                                     <?php } ?>
                                 </div>

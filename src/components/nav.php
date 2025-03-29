@@ -31,10 +31,10 @@
             <a href="/" class="<?= $className; ?>">หน้าแรก</a>
         </li>
         <li>
-            <a href="posts.php" class="<?= $className; ?>">กระดานสนทนา</a>
+            <a href="posts" class="<?= $className; ?>">กระดานสนทนา</a>
         </li>
         <li>
-            <a href="places.php" class="<?= $className; ?>">สถานที่ท่องเที่ยว</a>
+            <a href="places" class="<?= $className; ?>">สถานที่ท่องเที่ยว</a>
         </li>
     </ul>
 
@@ -60,13 +60,13 @@
                             <div><?= $row["firstname"] ?></div>
                         </div>
                         <ul class="dropdown-menu">
-                            <a href="editprofile.php" class="dropdown-item mb-2">
+                            <a href="editprofile" class="dropdown-item mb-2">
                                 <li class="d-flex align-items-center gap-2">
                                     <img src="<?= imagePath("web_images/icons", "people.svg") ?>" width="35px" height="35px" class='object-fit-cover svg-icon' />
                                     <div>แก้ไขข้อมูลส่วนตัว</div>
                                 </li>
                             </a>
-                            <a href="my-booking.php" class="dropdown-item">
+                            <a href="my-booking" class="dropdown-item">
                                 <li class="d-flex align-items-center gap-2">
                                     <img src="<?= imagePath("web_images/icons", "list-paper.svg") ?>" width="35px" height="35px" class='object-fit-cover' />
                                     <div>การจองของคุณ</div>
@@ -83,8 +83,8 @@
                     </div>
                 <?php } else { ?>
                     <div class="d-none d-lg-flex align-items-center gap-4">
-                        <a href="register.php" class="text-decoration-none text-white">สมัครสมาชิก</a>
-                        <a href="login.php" class='btn btn-light'>เข้าสู่ระบบ</a>
+                        <a href="register" class="text-decoration-none text-white">สมัครสมาชิก</a>
+                        <a href="login" class='btn btn-light'>เข้าสู่ระบบ</a>
                     </div>
                 <?php } ?>
 
@@ -118,13 +118,13 @@
                             <div><?= $row["firstname"] ?></div>
                         </div>
                         <ul class="dropdown-menu">
-                            <a href="editprofile.php" class="dropdown-item mb-2">
+                            <a href="editprofile" class="dropdown-item mb-2">
                                 <li class="d-flex align-items-center gap-2">
                                     <img src="<?= imagePath("web_images/icons", "people.svg") ?>" width="35px" height="35px" class='object-fit-cover svg-icon' />
                                     <div>แก้ไขข้อมูลส่วนตัว</div>
                                 </li>
                             </a>
-                            <a href="my-booking.php" class="dropdown-item">
+                            <a href="my-booking" class="dropdown-item">
                                 <li class="d-flex align-items-center gap-2">
                                     <img src="<?= imagePath("web_images/icons", "list-paper.svg") ?>" width="35px" height="35px" class='object-fit-cover' />
                                     <div>การจองของคุณ</div>
@@ -141,8 +141,8 @@
                     </div>
                 <?php } else { ?>
                     <div class="d-flex align-items-center gap-4">
-                        <a href="register.php" class="text-decoration-none text-white">สมัครสมาชิก</a>
-                        <a href="login.php" class='btn btn-light'>เข้าสู่ระบบ</a>
+                        <a href="register" class="text-decoration-none text-white">สมัครสมาชิก</a>
+                        <a href="login" class='btn btn-light'>เข้าสู่ระบบ</a>
                     </div>
                 <?php } ?>
             </div>

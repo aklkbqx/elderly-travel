@@ -34,14 +34,14 @@ if(isset($_REQUEST["register"])){
 if(isset($_REQUEST["login"])){
     $email = $_POST["email"];
     $password = $_POST["password"];
-    
+
     try{
         $fetchUser = sql("SELECT * FROM users WHERE email = ?",[$email]);
         if($fetchUser->rowCount() > 0){
             $row = $fetchUser->fetch();
             if(password_verify($password,$row["password"])){
                 $_SESSION[$row["role"]."_login"] = $row["user_id"];
-                $location = $row["role"] == "admin" ? "../admin/" : ($row["role"] == "doctor" ? "../doctor.php" : "../") ;
+                $location = $row["role"] == "admin" ? "../admin/" : ($row["role"] == "doctor" ? "../doctor" : "../") ;
                 $firstname = $row["firstname"];
                 sql("UPDATE users SET active_status=? WHERE user_id = ?",["online",$row["user_id"]]);
                 msg("success","สำเร็จ!","คุณ $firstname เข้าสู่ระบบสำเร็จแล้ว",$location);
@@ -49,7 +49,7 @@ if(isset($_REQUEST["login"])){
                 throw new PDOException("รหัสผ่านของคุณไม่ถูกต้อง!");
             }
         }else{
-            msg("warning","คำเตือน","ไม่พบข้อมูลของคุณในระบบ กรุณา <a href='../register.php'>สมัครสมาชิก</a>",$_SERVER["HTTP_REFERER"]);
+            msg("warning","คำเตือน","ไม่พบข้อมูลของคุณในระบบ กรุณา <a href='../register'>สมัครสมาชิก</a>",$_SERVER["HTTP_REFERER"]);
         }
     }catch(PDOException $e){
         msg("danger","เกิดข้อผิดพลาด",$e->getMessage(),$_SERVER["HTTP_REFERER"]);

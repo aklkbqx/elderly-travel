@@ -3,7 +3,7 @@ services:
     container_name: php
     build: .
     volumes:
-      - ./src:/var/www/html/:cached
+      - ./src:/var/www/html/
     networks:
       - web_network
       

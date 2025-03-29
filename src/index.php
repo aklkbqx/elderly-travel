@@ -7,7 +7,7 @@ if (isset($_SESSION["user_login"])) {
 } elseif (isset($_SESSION["admin_login"])) {
     msg("warning", "คำเตือน", "ไม่สามารถเข้าถึงหน้านี้ได้", "admin/");
 } elseif (isset($_SESSION["doctor_login"])) {
-    msg("warning", "คำเตือน", "ไม่สามารถเข้าถึงหน้านี้ได้", "doctor.php");
+    msg("warning", "คำเตือน", "ไม่สามารถเข้าถึงหน้านี้ได้", "doctor");
 }
 
 $booking = null;
@@ -20,13 +20,13 @@ $booking = null;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elderly Travel</title>
-    <?php require "link.php"; ?>
+    <?php require_once("link.php"); ?>
 </head>
 
 <body>
 
     <?php
-    require "components/nav.php";
+    require_once("components/nav.php");
     require_once("components/popChats.php");
     require_once("components/options.php");
     ?>
@@ -51,7 +51,7 @@ $booking = null;
                                 "header" => "ติดตามสถานะการเดินทาง",
                                 "button" => [
                                     "label" => "ตรวจสอบ",
-                                    "link" => "my-booking.php"
+                                    "link" => "my-booking"
                                 ]
                             ];
                         } elseif ($payment["status"] == "PENDING") {
@@ -59,7 +59,7 @@ $booking = null;
                                 "header" => "ดำเนินการชำระเงินให้เสร็จสมบูรณ์",
                                 "button" => [
                                     "label" => "ชำระเงิน",
-                                    "link" => "payment.php"
+                                    "link" => "payment"
                                 ]
                             ];
                         }
@@ -68,7 +68,7 @@ $booking = null;
                             "header" => "ดำเนินการจองให้เสร็จสมบูรณ์",
                             "button" => [
                                 "label" => "ดำเนินการต่อ",
-                                "link" => "booking.php"
+                                "link" => "booking"
                             ]
                         ];
                     }
@@ -132,14 +132,14 @@ $booking = null;
                         <div class="text-teal">News</div>
                         <h1>ข่าวสารประชาสัมพันธ์</h1>
                     </div>
-                    <a href="news.php" class="btn btn-outline-teal">ดูเพิ่มเติม</a>
+                    <a href="news" class="btn btn-outline-teal">ดูเพิ่มเติม</a>
                 </div>
                 <div class="carousel slide mt-2" id="carouselSlide" data-bs-ride="carousel" style="z-index: 1;">
                     <div class="carousel-inner rounded-xl overflow-hidden">
                         <?php
                         $index = 1;
                         while ($news = $fetchAllNews->fetch()) { ?>
-                            <a href='news.php?news_id=<?= $news["news_id"] ?>' class="carousel-item btn btn-outline-teal p-0 <?= $index == 1 ? 'active' : null ?>" data-bs-intervel="1000">
+                            <a href='news?news_id=<?= $news["news_id"] ?>' class="carousel-item btn btn-outline-teal p-0 <?= $index == 1 ? 'active' : null ?>" data-bs-intervel="1000">
                                 <img src="<?= imagePath("news_images", $news["image"]) ?>" alt="" class="rounded-xl object-fit-cover" height="500px" width="100%">
                                 <div class="position-absolute" style="bottom:3rem;left:5%;z-index:99">
                                     <h3 class="text-white"><?= $news["title"] ?></h3>
@@ -172,7 +172,7 @@ $booking = null;
                 <?php while ($assessment = $fetchAllAssessments->fetch()) {
                     $assessment_responses = $row ? sql("SELECT * FROM assessment_responses WHERE assessment_id = ? AND user_id = ?", [$assessment["assessment_id"], $row["user_id"]])->fetch() : null;
                 ?>
-                    <a href='assessments.php?assessment_id=<?= $assessment["assessment_id"] ?>' class="btn w-100 p-4 justify-content-between flex-row d-flex shadow rounded-xl border align-items-center mb-2">
+                    <a href='assessments?assessment_id=<?= $assessment["assessment_id"] ?>' class="btn w-100 p-4 justify-content-between flex-row d-flex shadow rounded-xl border align-items-center mb-2">
                         <div class="d-flex flex-column align-items-start gap-2">
                             <?php if ($assessment_responses) { ?>
                                 <div class="badge text-bg-success fw-bold fs-6">ทำแล้ว</div>
@@ -222,7 +222,7 @@ $booking = null;
         $(document).ready(() => {
             setTimeout(async () => {
                 $.ajax({
-                    url: "api/visitors.php",
+                    url: "api/visitors",
                     type: "POST",
                     success: (response) => {
                         console.log(response);

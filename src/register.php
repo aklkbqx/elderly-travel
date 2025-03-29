@@ -7,6 +7,7 @@ if (isset($_SESSION["user_login"])) {
     msg("warning", "คำเตือน", "ไม่สามารถเข้าถึงหน้านี้ได้", "admin/");
 }
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +32,7 @@ if (isset($_SESSION["user_login"])) {
     <div class="vh-100 d-flex flex-column flex-lg-row align-items-lg-center justify-content-between">
         <div class='flex-1 d-flex justify-content-center p-4 align-items-center align-items-lg-start'>
 
-            <form action="api/auth.php" method='post' class='m-0' style='width:400px;'>
+            <form action="api/auth" method='post' class='m-0' style='width:400px;'>
                 <h1 class='text-center mb-2'>สมัครสมาชิก</h1>
                 <div class='d-flex flex-column gap-2 mb-2'>
                     <div class='flex-1 d-flex flex-row gap-2'>
@@ -64,7 +65,7 @@ if (isset($_SESSION["user_login"])) {
                 </button>
                 <div class='mt-4 d-flex d-lg-none align-items-center gap-2 justify-content-center'>
                     <p style='font-size:20px' class="m-0 p-0">คุณมีบัญชีแล้วใช่หรือไม่</p>
-                    <a href="login.php" class='btn btn-teal'>เข้าสู่ระบบ</a>
+                    <a href="login" class='btn btn-teal'>เข้าสู่ระบบ</a>
                 </div>
             </form>
         </div>
@@ -73,7 +74,7 @@ if (isset($_SESSION["user_login"])) {
             <div class='d-flex justify-contnt-center align-items-center flex-column text-white'>
                 <h1 style='font-size:50px' class='fw-bold'>ยินดีต้อนรับ</h1>
                 <p style='font-size:20px'>คุณมีบัญชีแล้วใช่หรือไม่</p>
-                <a href="login.php" style='font-size:30px' class='btn btn-outline-light'>เข้าสู่ระบบ</a>
+                <a href="login" style='font-size:30px' class='btn btn-outline-light'>เข้าสู่ระบบ</a>
             </div>
         </div>
     </div>

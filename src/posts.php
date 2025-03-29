@@ -44,8 +44,8 @@ if (isset($_SESSION["user_login"])) {
                     <div class='d-flex flex-column align-items-center gap-2'>
                         <div>กรุณาทำการเข้าสู่ระบบก่อนทำการโพสต์กระทู้</div>
                         <div class='d-flex align-items-center gap-2'>
-                            <a href='register.php' class="btn btn-light">สมัครสมาชิก</a>
-                            <a href='login.php' class="btn btn-teal">เข้าสู่ระบบ</a>
+                            <a href='register' class="btn btn-light">สมัครสมาชิก</a>
+                            <a href='login' class="btn btn-teal">เข้าสู่ระบบ</a>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@ if (isset($_SESSION["user_login"])) {
 
             <div class="modal fade" id='addPost'>
                 <div class="modal-dialog modal-dialog-centered">
-                    <form method='post' action='api/posts.php' class="modal-content" enctype='multipart/form-data'>
+                    <form method='post' action='api/posts' class="modal-content" enctype='multipart/form-data'>
                         <div class="modal-header">
                             <h4 class="modal-title">เขียนโพสต์</h4>
                             <button type='button' class="btn-close" data-bs-dismiss="modal"></button>
@@ -106,11 +106,11 @@ if (isset($_SESSION["user_login"])) {
                                 <div class="dropdown-menu">
                                     <button class='dropdown-item' type='button' data-bs-toggle='modal' data-bs-target='#editPost-<?= $post["post_id"] ?>'>แก้ไข</button>
                                     <div class="dropdown-divider"></div>
-                                    <a href="api/posts.php?deletePost&post_id=<?= $post["post_id"] ?>" class='dropdown-item text-danger'>ลบ</a>
+                                    <a href="api/posts?deletePost&post_id=<?= $post["post_id"] ?>" class='dropdown-item text-danger'>ลบ</a>
                                 </div>
                                 <div class="modal fade" id='editPost-<?= $post["post_id"] ?>'>
                                     <div class="modal-dialog modal-dialog-centered">
-                                        <form method='post' action='api/posts.php?post_id=<?= $post["post_id"] ?>' class="modal-content" enctype='multipart/form-data'>
+                                        <form method='post' action='api/posts?post_id=<?= $post["post_id"] ?>' class="modal-content" enctype='multipart/form-data'>
                                             <div class="modal-header">
                                                 <h4 class="modal-title">แก้ไขโพสต์</h4>
                                                 <button type='button' class="btn-close" data-bs-dismiss="modal"></button>
@@ -176,7 +176,7 @@ if (isset($_SESSION["user_login"])) {
                     ?>
 
                     <div class='p-2 px-4 d-flex justify-content-between border-top gap-2'>
-                        <button type='button' onclick="<?= isLogin() ? "likePost($(this),'" . $post['post_id'] . "')" : "window.location = 'login.php'" ?>" class='btn <?= ($row && $post_like) && $row["user_id"] == $post_like["user_id"] ? "btn-teal" : "" ?>  w-100 border d-flex align-items-center gap-2 justify-content-center'>
+                        <button type='button' onclick="<?= isLogin() ? "likePost($(this),'" . $post['post_id'] . "')" : "window.location = 'login'" ?>" class='btn <?= ($row && $post_like) && $row["user_id"] == $post_like["user_id"] ? "btn-teal" : "" ?>  w-100 border d-flex align-items-center gap-2 justify-content-center'>
                             <img src="<?= ($row && $post_like) && $row["user_id"] == $post_like["user_id"] ? imagePath("web_images/icons", "heart-red.png") : imagePath("web_images/icons", "heart-black.png") ?> " width='15px' height='15px' class='object-fit-cover svg-icon'>
                             <div><?= ($row && $post_like) && $row["user_id"] == $post_like["user_id"] ? "ถูกใจแล้ว" : "ถูกใจ" ?></div>
                         </button>
@@ -213,7 +213,7 @@ if (isset($_SESSION["user_login"])) {
                         <script>
                             setInterval(() => {
                                 $.ajax({
-                                    url: "api/posts.php?getComments&post_id=<?= $post["post_id"] ?>",
+                                    url: "api/posts?getComments&post_id=<?= $post["post_id"] ?>",
                                     type: "GET",
                                     success: (response) => {
                                         $("#comment-box-<?= $post["post_id"] ?>").html(response)
@@ -221,7 +221,7 @@ if (isset($_SESSION["user_login"])) {
                                 });
 
                                 $.ajax({
-                                    url: "api/posts.php?getCommentCount&post_id=<?= $post["post_id"] ?>",
+                                    url: "api/posts?getCommentCount&post_id=<?= $post["post_id"] ?>",
                                     type: "GET",
                                     success: function(response) {
                                         $("#comment-count-id-<?= $post["post_id"] ?>").text(response);
@@ -229,7 +229,7 @@ if (isset($_SESSION["user_login"])) {
                                 });
 
                                 $.ajax({
-                                    url: "api/posts.php?getLikeCount&post_id=<?= $post["post_id"] ?>",
+                                    url: "api/posts?getLikeCount&post_id=<?= $post["post_id"] ?>",
                                     type: "GET",
                                     success: function(response) {
                                         $("#like-count-id-<?= $post["post_id"] ?>").text(response);
@@ -241,14 +241,14 @@ if (isset($_SESSION["user_login"])) {
                                 e.preventDefault();
                                 const formData = new FormData($(this)[0]);
                                 $.ajax({
-                                    url: "api/posts.php?sendComment&post_id=<?= $post["post_id"] ?>",
+                                    url: "api/posts?sendComment&post_id=<?= $post["post_id"] ?>",
                                     type: "POST",
                                     data: formData,
                                     processData: false,
                                     contentType: false,
                                     success: (response) => {
                                         $.ajax({
-                                            url: "../api/posts.php?getComments&post_id=<?= $post["post_id"] ?>",
+                                            url: "../api/posts?getComments&post_id=<?= $post["post_id"] ?>",
                                             type: "GET",
                                             success: (response) => {
                                                 const commentBox = $("#comment-box-<?= $post["post_id"] ?>").html(response)

@@ -8,7 +8,7 @@ if (isset($_SESSION["user_login"])) {
 } elseif (isset($_SESSION["admin_login"])) {
     msg("warning", "คำเตือน", "ไม่สามารถเข้าถึงหน้านี้ได้", "admin/");
 } elseif (isset($_SESSION["doctor_login"])) {
-    msg("warning", "คำเตือน", "ไม่สามารถเข้าถึงหน้านี้ได้", "doctor.php");
+    msg("warning", "คำเตือน", "ไม่สามารถเข้าถึงหน้านี้ได้", "doctor");
 }
 ?>
 
@@ -26,7 +26,7 @@ if (isset($_SESSION["user_login"])) {
 
 <body>
     <?php
-    require_once("./components/nav.php");
+    require_once("./components/nav");
     require_once("components/popChats.php");
     require_once("components/options.php");
     ?>
@@ -77,7 +77,7 @@ if (isset($_SESSION["user_login"])) {
                         </h5>
 
                         <div class='d-flex justify-content-between mt-4 mb-2'>
-                            <a href="<?= isLogin() ? "./api/place.php?like&place_id=$place_id" : "login.php" ?>" class='text-decoration-none d-flex align-items-center gap-1 btn btn-light'>
+                            <a href="<?= isLogin() ? "./api/place?like&place_id=$place_id" : "login" ?>" class='text-decoration-none d-flex align-items-center gap-1 btn btn-light'>
                                 <img src="<?= imagePath("web_images/icons", $heart) ?>" width='30px' height='30px' class='object-fit-cover'>
                                 <div class=''><?= sql("SELECT COUNT(*) as count FROM place_likes WHERE place_id = ?", [$place_id])->fetch()["count"] ?></div>
                             </a>
@@ -101,7 +101,7 @@ if (isset($_SESSION["user_login"])) {
                                     <?php } ?>
                                 </div>
                                 <div id="commentForm" class="mt-3" style="display: none;">
-                                    <form method="post" action="api/place.php?review&place_id=<?= $place_id ?>" class="d-flex flex-column gap-2">
+                                    <form method="post" action="api/place?review&place_id=<?= $place_id ?>" class="d-flex flex-column gap-2">
                                         <input type="hidden" name="rating" id="ratingInput" value="0">
                                         <textarea name="comment" class="form-control" rows="3" placeholder="เขียนรีวิวของคุณที่นี่..."></textarea>
                                         <div class="d-flex gap-2">
@@ -189,7 +189,7 @@ if (isset($_SESSION["user_login"])) {
                                     </div>
                                     <?php if (isLogin() && ($review["user_id"] == $row["user_id"])) { ?>
                                         <div class='d-flex align-items-center gap-2'>
-                                            <a href="api/place.php?delete_review&review_id=<?= $review["review_id"] ?>&place_id=<?= $place_id ?>" class='btn btn-danger'>ลบ</a>
+                                            <a href="api/place?delete_review&review_id=<?= $review["review_id"] ?>&place_id=<?= $place_id ?>" class='btn btn-danger'>ลบ</a>
                                         </div>
                                     <?php } ?>
                                 </div>
@@ -205,7 +205,7 @@ if (isset($_SESSION["user_login"])) {
                     <div class='list-group'>
                         <?php
                         while ($place = $fetchAllPlaces->fetch()) { ?>
-                            <a href="place.php?place_id=<?= $place["place_id"] ?>" class='list-group-item list-group-item-action d-flex gap-2'>
+                            <a href="place?place_id=<?= $place["place_id"] ?>" class='list-group-item list-group-item-action d-flex gap-2'>
                                 <img src="<?= imagePath("place_images", json_decode($place["images"])[0]) ?>" width="330px" height="125px" class='object-fit-cover rounded-xl'>
                                 <div>
                                     <div class='mb-2 fw-semibold fs-5'><?= $place["name"] ?></div>
@@ -226,7 +226,7 @@ if (isset($_SESSION["user_login"])) {
                 <script>
                     setTimeout(() => {
                         $.ajax({
-                            url: "./api/place.php?visitors&place_id=<?= $place_id ?>",
+                            url: "./api/place?visitors&place_id=<?= $place_id ?>",
                             type: "post"
                         })
                     }, 2000);

@@ -52,7 +52,7 @@
 
     <div class="modal fade" id='addPlaces'>
         <div class="modal-dialog modal-dialog-centered modal-xl">
-            <form action="../api/admin/managePlaces.php" class="modal-content" method='post' enctype='multipart/form-data'>
+            <form action="../api/admin/managePlaces" class="modal-content" method='post' enctype='multipart/form-data'>
                 <div class="modal-header">
                     <h4 class="modal-title">เพิ่มสถานที่</h4>
                     <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
@@ -145,7 +145,7 @@
 
                     const getCategory = () => {
                         $.ajax({
-                            url: "../api/admin/managePlaceCategories.php?getCategories",
+                            url: "../api/admin/managePlaceCategories?getCategories",
                             success: (response) => {
                                 const json = JSON.parse(response);
                                 if (json.length > 0) {
@@ -180,7 +180,7 @@
 
                     const addCategory = () => {
                         $.ajax({
-                            url: "../api/admin/managePlaceCategories.php?addCategory",
+                            url: "../api/admin/managePlaceCategories?addCategory",
                             type: "POST",
                             data: {
                                 name: $("#category_name").val()
@@ -194,7 +194,7 @@
 
                     const deleteCategory = (category_id) => {
                         $.ajax({
-                            url: `../api/admin/managePlaceCategories.php?deleteCategory&category_id=${category_id}`,
+                            url: `../api/admin/managePlaceCategories?deleteCategory&category_id=${category_id}`,
                             type: "POST",
                             success: () => {
                                 getCategory()
@@ -237,7 +237,7 @@
 
                                     <div class="modal fade" id='editPlace-<?= $place["place_id"] ?>'>
                                         <div class="modal-dialog modal-dialog-centered modal-xl">
-                                            <form action="../api/admin/managePlaces.php?place_id=<?= $place["place_id"] ?>" class="modal-content" method='post' enctype='multipart/form-data'>
+                                            <form action="../api/admin/managePlaces?place_id=<?= $place["place_id"] ?>" class="modal-content" method='post' enctype='multipart/form-data'>
                                                 <div class="modal-header">
                                                     <h4 class="modal-title">แก้ไขสถานที่</h4>
                                                     <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
@@ -373,7 +373,7 @@
 
                                     <div class="modal fade" id='deletePlaces-<?= $place["place_id"] ?>'>
                                         <div class="modal-dialog modal-dialog-centered">
-                                            <form action="../api/admin/managePlaces.php?place_id=<?= $place["place_id"] ?>" class="modal-content" method='post' enctype='multipart/form-data'>
+                                            <form action="../api/admin/managePlaces?place_id=<?= $place["place_id"] ?>" class="modal-content" method='post' enctype='multipart/form-data'>
                                                 <div class="modal-header">
                                                     <h4 class="modal-title">ลบสถานที่</h4>
                                                     <button type='button' class='btn-close' data-bs-dismiss='modal'></button>

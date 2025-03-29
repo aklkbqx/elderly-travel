@@ -24,7 +24,7 @@ if (isset($_SESSION["user_login"])) {
 
 <body>
     <?php
-    require "components/nav.php";
+    require_once("components/nav.php");
     require_once("components/popChats.php");
     require_once("components/options.php");
     ?>
@@ -33,7 +33,7 @@ if (isset($_SESSION["user_login"])) {
             <?php backPage("/") ?>
         </div>
         <div class='container shadow p-4 rounded-xl'>
-            <form method='post' action='api/user.php' class='row' enctype='multipart/form-data'>
+            <form method='post' action='api/user' class='row' enctype='multipart/form-data'>
                 <?php require_once("components/editprofile.php"); ?>
             </form>
         </div>

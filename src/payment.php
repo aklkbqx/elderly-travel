@@ -3,7 +3,7 @@ require_once("config.php");
 require_once("components/components.php");
 
 if (!isset($_SESSION["user_login"])) {
-    msg("warning", "คำเตือน", "กรุณาเข้าสู่ระบบเพื่อทำการชำระเงิน", "login.php");
+    msg("warning", "คำเตือน", "กรุณาเข้าสู่ระบบเพื่อทำการชำระเงิน", "login");
 }
 
 $row = sql("SELECT * FROM users WHERE user_id = ?", [$_SESSION["user_login"]])->fetch();
@@ -52,7 +52,7 @@ $paymentMethod = [
     ?>
 
     <div class="container mb-5" style='margin-top:10rem'>
-        <div class="mb-2"><?php backPage("booking.php"); ?></div>
+        <div class="mb-2"><?php backPage("booking"); ?></div>
         <?php
         $payments = sql("SELECT * FROM payments WHERE user_id = ? AND booking_id = ? AND status = 'PENDING'", [
             $row["user_id"],
@@ -200,7 +200,7 @@ $paymentMethod = [
                 </div>
             </div>
         <?php } else { ?>
-            <h3 class="text-center">เกิดข้อผิดพลาด ได้โปรดตรวจสอบ <a href="my-booking.php">รายการจองของคุณ</a> </h3>
+            <h3 class="text-center">เกิดข้อผิดพลาด ได้โปรดตรวจสอบ <a href="my-booking">รายการจองของคุณ</a> </h3>
         <?php } ?>
 
     </div>
@@ -272,7 +272,7 @@ $paymentMethod = [
                     confirmPayment.on("click", function() {
                         $.ajax({
                             type: "POST",
-                            url: "./api/payment.php?confirmPayment",
+                            url: "./api/payment?confirmPayment",
                             data: formData,
                             processData: false,
                             contentType: false,
@@ -288,7 +288,7 @@ $paymentMethod = [
                                 const res = JSON.parse(response);
                                 if (res.success) {
                                     if (confirm(res.message)) {
-                                        window.location = "./my-booking.php";
+                                        window.location = "./my-booking";
                                     } else {
                                         window.location = "/";
                                     }
@@ -311,7 +311,7 @@ $paymentMethod = [
                 if ($(this).prop("checked") == true) {
                     $.ajax({
                         type: "POST",
-                        url: "./api/payment.php?changePaymentMethod",
+                        url: "./api/payment?changePaymentMethod",
                         data: {
                             payment_method: $(this).val()
                         },

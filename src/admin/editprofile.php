@@ -30,7 +30,7 @@ if(isset($_SESSION["user_login"])){
         </div>
         
         <div class='container shadow p-4 rounded-xl'>
-            <form method='post' action='../api/user.php' class='row mb-0' enctype='multipart/form-data'>
+            <form method='post' action='../api/user' class='row mb-0' enctype='multipart/form-data'>
                 <?php require_once("../components/editprofile.php"); ?>
             </form>
         </div>

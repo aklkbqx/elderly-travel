@@ -2,7 +2,7 @@
 require_once("svg.php");
 function formSelectDateBooking()
 { ?>
-    <form action="booking.php" method="post" class="shadow mt-2 mt-xl-0 booking-card mb-2" style="border-radius:1.5rem;z-index:1">
+    <form action="booking" method="post" class="shadow mt-2 mt-xl-0 booking-card mb-2" style="border-radius:1.5rem;z-index:1">
         <h3>จองทริปการท่องเที่ยว</h3>
         <div class="d-flex align-items-center gap-4 w-100 mt-2 flex-warp flex-column flex-lg-row">
             <div class="form-floating w-100">
@@ -29,7 +29,7 @@ function formSelectDateBooking()
                 ดำเนินการต่อ
             </button>
         <?php } else { ?>
-            <a href="login.php" class="btn btn-teal w-100 py-3">
+            <a href="login" class="btn btn-teal w-100 py-3">
                 เข้าสู่ระบบ
             </a>
         <?php } ?>
@@ -145,13 +145,13 @@ function placeCardBooking($place, $booked = false, $user_id = 0)
                     <?php } else {
                     $fetchBooking = sql("SELECT * FROM bookings WHERE user_id = ? AND status = 'PENDING'", [$user_id]);
                     if ($fetchBooking->rowCount() === 1) { ?>
-                        <a href='booking.php' class='btn btn-teal border w-100'>ดำเนินการจองต่อ</a>
+                        <a href='booking' class='btn btn-teal border w-100'>ดำเนินการจองต่อ</a>
                     <?php } else { ?>
-                        <a href='booking.php' class='btn btn-teal border w-100'>จอง</a>
+                        <a href='booking' class='btn btn-teal border w-100'>จอง</a>
                     <?php }
                     ?>
                 <?php } ?>
-                <a href="places.php?place_id=<?= $place["place_id"] ?>" class='btn btn-secondary rounded-xl w-100'>รายละเอียด</a>
+                <a href="places?place_id=<?= $place["place_id"] ?>" class='btn btn-secondary rounded-xl w-100'>รายละเอียด</a>
             </div>
         </div>
     </div>
@@ -161,7 +161,7 @@ function cancelBooking($booking)
 { ?>
     <div class="modal fade" id='cancelBooking'>
         <div class="modal-dialog modal-dialog-centered">
-            <form action="api/booking.php?cancel_booking" class="modal-content rounded-xl" method='post' enctype='multipart/form-data'>
+            <form action="api/booking?cancel_booking" class="modal-content rounded-xl" method='post' enctype='multipart/form-data'>
                 <div class="modal-header">
                     <h4 class="modal-title">ยกเลิกการจอง</h4>
                     <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
@@ -172,7 +172,7 @@ function cancelBooking($booking)
                 <div class="modal-footer d-flex w-100 align-items-center">
                     <div class="w-100 d-flex align-items-center gap-2">
                         <button type="reset" data-bs-dismiss='modal' class='btn btn-light w-100'>ปิด</button>
-                        <button type="submit" id="confirmCancelBooking" class='btn btn-danger w-100'>ยืนยันการยกเลิก</button>
+                        <button type="submit" id="confirmCancelBooking" name="confirmCancelBooking" class='btn btn-danger w-100'>ยืนยันการยกเลิก</button>
                     </div>
                 </div>
             </form>

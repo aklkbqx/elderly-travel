@@ -112,13 +112,13 @@
                 <div class="w-100 d-flex gap-2 mt-2 flex-wrap">
                     <button type='button' data-bs-toggle="modal" data-bs-target="#bookingTracking-<?= $booking["booking_id"] ?>" class='btn btn-teal flex-grow-1'>แสดงข้อมูลการเดินทาง</button>
                     <?php if (($payment && $payment["status"] == "PAID") && ($booking["status"] === "PENDING")) { ?>
-                        <a href="../api/admin/manageBookings.php?confirmBooking&booking_id=<?= $booking["booking_id"] ?>" class="btn btn-warning flex-grow-1">ยืนยันการจอง</a>
+                        <a href="../api/admin/manageBookings?confirmBooking&booking_id=<?= $booking["booking_id"] ?>" class="btn btn-warning flex-grow-1">ยืนยันการจอง</a>
                     <?php }
                     if ($booking["status"] == "PENDING") { ?>
                         <button type="button" data-bs-toggle="modal" data-bs-target="#cancelBooking" class="btn btn-danger flex-grow-1">ปฏิเสษการจอง</button>
                         <div class="modal fade" id='cancelBooking'>
                             <div class="modal-dialog modal-dialog-centered">
-                                <form action="../api/admin/manageBookings.php?cancelBooking&booking_id=<?= $booking["booking_id"] ?>" class="modal-content rounded-xl" method='post'>
+                                <form action="../api/admin/manageBookings?cancelBooking&booking_id=<?= $booking["booking_id"] ?>" class="modal-content rounded-xl" method='post'>
                                     <div class="modal-header">
                                         <h4 class="modal-title">ยกเลิกการจอง</h4>
                                         <button type='button' class='btn-close' data-bs-dismiss='modal'></button>

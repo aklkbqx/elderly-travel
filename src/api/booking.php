@@ -20,6 +20,8 @@ if (isset($_GET["cancel_booking"])) {
 
         sql("DELETE FROM bookings WHERE user_id = ? AND status = 'PENDING'", [$user['user_id']]);
         msg("success", "สำเร็จ!", "ยกเลิกการจองเรียบร้อยแล้ว!", $_SERVER["HTTP_REFERER"]);
+    }else{
+        msg("danger", "เกิดข้อผิดพลาด!", "ไม่สามารถยกเลิกการจองนี้ได้!", $_SERVER["HTTP_REFERER"]);
     }
 }
 

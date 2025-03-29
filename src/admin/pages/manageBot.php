@@ -8,7 +8,7 @@
 
     <div class="modal fade" id='add'>
         <div class="modal-dialog modal-dialog-centered">
-            <form action='../api/admin/manageBot.php' method='post' class="modal-content">
+            <form action='../api/admin/manageBot' method='post' class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">เพิ่มคำถามและคำตอบ</h5>
                     <button class="btn-close" data-bs-dismiss='modal' type='button'></button>
@@ -65,7 +65,7 @@
 
                                     <div class="modal fade" id='editQue-Res-<?= $bot["response_id"] ?>'>
                                         <div class="modal-dialog modal-dialog-centered">
-                                            <form action='../api/admin/manageBot.php?response_id=<?= $bot["response_id"] ?>' method='post' class="modal-content">
+                                            <form action='../api/admin/manageBot?response_id=<?= $bot["response_id"] ?>' method='post' class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title">แก้ไขคำถามและคำตอบ</h5>
                                                     <button class="btn-close" data-bs-dismiss='modal' type='button'></button>
@@ -90,7 +90,7 @@
                                         </div>
                                     </div>
 
-                                    <a href='../api/admin/manageBot.php?delete&response_id=<?= $bot["response_id"] ?>' class="btn btn-danger w-100">ลบ</a>
+                                    <a href='../api/admin/manageBot?delete&response_id=<?= $bot["response_id"] ?>' class="btn btn-danger w-100">ลบ</a>
                                 </div>
                             </td>
                         </tr>

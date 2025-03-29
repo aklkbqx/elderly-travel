@@ -9,7 +9,7 @@ if (isset($_SESSION["user_login"])) {
 } elseif (isset($_SESSION["doctor_login"])) {
     $row = sql("SELECT * FROM users WHERE user_id = ?", [$_SESSION["doctor_login"]])->fetch();
 } else {
-    msg("warning", "คำเตือน", "ไม่สามารถเข้าถึงหน้านี้ได้", "404.php");
+    msg("warning", "คำเตือน", "ไม่สามารถเข้าถึงหน้านี้ได้", "404");
 }
 ?>
 
@@ -54,7 +54,7 @@ if (isset($_SESSION["user_login"])) {
                                         }
                                         $showTextRole = $role == 'admin' ? '• ผู้ดูและระบบ' : ($role == "doctor" ? "• แพทย์/หมอ" : "• ผู้ใช้งานทั่วไป");
                                         echo $index == 0 ? "<div>$showTextRole</div>" : null ?>
-                                        <a href="<?= $_SERVER["REQUEST_URI"] === "/" ? "chats.php?receiver_id=" . $user['user_id'] : "../chats.php?receiver_id=" . $user['user_id'] ?>" class='btn btn-outline-teal border-0 p-1 w-100 <?= $_GET["receiver_id"] == $user['user_id'] ? "bg-teal text-white" : "" ?>'>
+                                        <a href="<?= $_SERVER["REQUEST_URI"] === "/" ? "chats?receiver_id=" . $user['user_id'] : "../chats?receiver_id=" . $user['user_id'] ?>" class='btn btn-outline-teal border-0 p-1 w-100 <?= $_GET["receiver_id"] == $user['user_id'] ? "bg-teal text-white" : "" ?>'>
                                             <li class='d-flex align-items-center gap-2'>
                                                 <div class='position-relative'>
                                                     <img src="<?= imagePath("user_images", $user["image"]) ?>" class='border rounded-circle object-fit-cover' style='width:50px;height:50px' />

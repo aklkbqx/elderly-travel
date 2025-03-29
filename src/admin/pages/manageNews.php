@@ -8,7 +8,7 @@
 
     <div class="modal fade" id='addNews'>
         <div class="modal-dialog modal-dialog-centered">
-            <form action="../api/admin/manageNews.php" class="modal-content" method='post' enctype='multipart/form-data'>
+            <form action="../api/admin/manageNews" class="modal-content" method='post' enctype='multipart/form-data'>
                 <div class="modal-header">
                     <h4 class="modal-title">เพิ่มข่าวสาร/ประชาสัมพันธ์</h4>
                     <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
@@ -102,7 +102,7 @@
 
                                     <div class="modal fade" id='editNews-<?= $news["news_id"] ?>'>
                                         <div class="modal-dialog modal-dialog-centered">
-                                            <form action="../api/admin/manageNews.php?news_id=<?= $news["news_id"] ?>" class="modal-content" method='post' enctype='multipart/form-data'>
+                                            <form action="../api/admin/manageNews?news_id=<?= $news["news_id"] ?>" class="modal-content" method='post' enctype='multipart/form-data'>
                                                 <div class="modal-header">
                                                     <h4 class="modal-title">แก้ไขข่าวสาร/ประชาสัมพันธ์</h4>
                                                     <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
@@ -138,7 +138,7 @@
 
                                     <div class="modal fade" id='deleteNews-<?= $news["news_id"] ?>'>
                                         <div class="modal-dialog modal-dialog-centered">
-                                            <form action="../api/admin/manageNews.php?news_id=<?= $news["news_id"] ?>" class="modal-content" method='post' enctype='multipart/form-data'>
+                                            <form action="../api/admin/manageNews?news_id=<?= $news["news_id"] ?>" class="modal-content" method='post' enctype='multipart/form-data'>
                                                 <div class="modal-header">
                                                     <h4 class="modal-title">ลบข่าวสาร/ประชาสัมพันธ์</h4>
                                                     <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
